@@ -1,0 +1,165 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ── Akun & Instansi ──────────────────────────────────────────
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String   @db.VarChar(255)
+  nama     String?
+  role     UserRole @default(ADMIN_INSTANSI)
+
+  instansiId Int?
+  instansi   Instansi? @relation(fields: [instansiId], references: [id])
+
+  verifiedOrders Order[] @relation("OrderVerifiedBy")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN_INSTANSI
+}
+
+model Instansi {
+  id        Int            @id @default(autoincrement())
+  nama      String
+  slug      String         @unique
+  noWaAdmin String
+  status    InstansiStatus @default(PENDING)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  users    User[]
+  kontes   Kontes[]
+  logAudit LogAudit[]
+}
+
+enum InstansiStatus {
+  PENDING
+  AKTIF
+  NONAKTIF
+}
+
+// ── Kontes ────────────────────────────────────────────────────
+
+model Kontes {
+  id             Int          @id @default(autoincrement())
+  instansiId     Int
+  instansi       Instansi     @relation(fields: [instansiId], references: [id])
+  nama           String
+  deskripsi      String?
+  tanggalMulai   DateTime?
+  tanggalSelesai DateTime?
+  status         KontesStatus @default(DRAFT)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  kandidat      Kandidat[]
+  tokenPackages TokenPackage[]
+}
+
+enum KontesStatus {
+  DRAFT
+  AKTIF
+  DITUTUP
+}
+
+model Kandidat {
+  id        Int      @id @default(autoincrement())
+  kontesId  Int
+  kontes    Kontes   @relation(fields: [kontesId], references: [id])
+  nama      String
+  nomorUrut Int?
+  fotoUrl   String?
+  deskripsi String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  votes Vote[]
+}
+
+// ── Token & Pembayaran ───────────────────────────────────────
+
+model TokenPackage {
+  id          Int      @id @default(autoincrement())
+  kontesId    Int
+  kontes      Kontes   @relation(fields: [kontesId], references: [id])
+  namaPaket   String // "Paket A", "Paket Hemat", dst — custom per kontes
+  jumlahSuara Int // jumlah suara yang didapat per 1 token dari paket ini
+  harga       Int // harga dalam rupiah, ditentukan admin instansi
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orders Order[]
+}
+
+model Order {
+  id            Int          @id @default(autoincrement())
+  packageId     Int
+  package       TokenPackage @relation(fields: [packageId], references: [id])
+  kontakWa      String? // opsional, boleh kosong/anonim
+  buktiBayarUrl String? // referensi bukti transfer yang dikirim voter via WA
+  status        OrderStatus  @default(MENUNGGU_VERIFIKASI)
+  platformFee   Int? // 20% dari harga paket, dihitung saat order diverifikasi
+
+  verifiedById Int?
+  verifiedBy   User?     @relation("OrderVerifiedBy", fields: [verifiedById], references: [id])
+  verifiedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  token Token? // satu order satu token
+}
+
+enum OrderStatus {
+  MENUNGGU_VERIFIKASI
+  TERVERIFIKASI
+  DITOLAK
+}
+
+model Token {
+  id        Int       @id @default(autoincrement())
+  orderId   Int       @unique
+  order     Order     @relation(fields: [orderId], references: [id])
+  code      String    @unique
+  isUsed    Boolean   @default(false)
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  vote Vote?
+}
+
+// ── Voting ───────────────────────────────────────────────────
+
+model Vote {
+  id         Int      @id @default(autoincrement())
+  tokenId    Int      @unique
+  token      Token    @relation(fields: [tokenId], references: [id])
+  kandidatId Int
+  kandidat   Kandidat @relation(fields: [kandidatId], references: [id])
+  voteCount  Int // mengikuti jumlah_suara dari token_package terkait
+  createdAt  DateTime @default(now())
+}
+
+// ── Audit ────────────────────────────────────────────────────
+
+model LogAudit {
+  id         Int      @id @default(autoincrement())
+  instansiId Int
+  instansi   Instansi @relation(fields: [instansiId], references: [id])
+  aktor      String
+  aksi       String
+  waktu      DateTime @default(now())
+}
