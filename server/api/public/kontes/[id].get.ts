@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     where: { id },
     include: {
       instansi: {
-        select: { id: true, nama: true, slug: true, noWaAdmin: true },
+        select: { id: true, nama: true, slug: true, noWaAdmin: true, infoRekening: true },
       },
       kandidat: {
         select: {

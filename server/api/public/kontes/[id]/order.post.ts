@@ -54,12 +54,16 @@ export default defineEventHandler(async (event) => {
   const cleanPhone = kontes.instansi.noWaAdmin.replace(/[^0-9]/g, '')
   const formattedPhone = cleanPhone.startsWith('0') ? `62${cleanPhone.slice(1)}` : cleanPhone
 
-  const defaultTemplate = `Halo Admin {nama_instansi}, saya mau beli token untuk kontes "{nama_kontes}".
+  const defaultTemplate = `Halo Admin {nama_instansi}, saya ingin membeli token untuk kontes "{nama_kontes}".
+
 📦 Paket: {nama_paket} ({jumlah_suara} Suara)
-💰 Harga: Rp {total_harga}
+💰 Total Harga: Rp {total_harga}
 📋 Order ID: #{nomor_order}
 
-Mohon info rekening pembayaran. Terima kasih!`
+💳 Info Rekening Transfer:
+{rekening_admin}
+
+Saya sudah / akan segera melakukan transfer. Mohon diverifikasi setelah pembayaran masuk. Terima kasih!`
 
   const templateToUse = kontes.instansi.templatePesanWa && kontes.instansi.templatePesanWa.trim() !== ''
     ? kontes.instansi.templatePesanWa

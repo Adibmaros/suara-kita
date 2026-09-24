@@ -1,6 +1,6 @@
 <template>
   <aside 
-    class="bg-white border-r border-slate-200/80 flex flex-col min-h-screen sticky top-0 shrink-0 transition-all duration-300 z-30 shadow-sm"
+    class="bg-white border-r border-slate-200/80 flex flex-col h-screen sticky top-0 shrink-0 transition-all duration-300 z-30 shadow-sm"
     :class="isCollapsed ? 'w-20' : 'w-64'"
   >
     <!-- Header Sidebar -->

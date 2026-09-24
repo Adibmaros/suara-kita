@@ -52,16 +52,14 @@ const emit = defineEmits<{
           </div>
         </div>
 
-        <div class="bg-slate-50 px-5 py-3 border-t border-slate-100 flex items-center justify-between">
-          <div class="text-xs text-slate-500">
-            Total Suara: <span class="text-slate-900 font-bold">{{ k._count?.votes || 0 }}</span>
-          </div>
+        <div class="bg-slate-50 px-5 py-2.5 border-t border-slate-100 flex items-center justify-end">
           <button 
             @click="emit('confirm-delete', 'kandidat', k.id, k.nama)"
-            class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+            class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer flex items-center space-x-1 text-xs"
             title="Hapus Kandidat"
           >
             <Trash2 class="w-4 h-4" />
+            <span>Hapus</span>
           </button>
         </div>
       </div>

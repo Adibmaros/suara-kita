@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
     })
 
     return {
+      url: result.publicUrl,
       publicUrl: result.publicUrl,
     }
   } catch (err: any) {

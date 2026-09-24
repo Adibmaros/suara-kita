@@ -2,9 +2,9 @@ import { UserRole } from '@prisma/client'
 import { z } from 'zod'
 
 const paketSchema = z.object({
-  namaPaket: z.string().min(2, 'Nama paket minimal 2 karakter'),
-  jumlahSuara: z.number().min(1, 'Jumlah suara minimal 1'),
-  harga: z.number().min(0, 'Harga tidak boleh negatif'),
+  namaPaket: z.string().trim().min(2, 'Nama paket minimal 2 karakter'),
+  jumlahSuara: z.coerce.number().min(1, 'Jumlah suara minimal 1'),
+  harga: z.coerce.number().min(0, 'Harga tidak boleh negatif'),
 })
 
 export default defineEventHandler(async (event) => {
@@ -22,9 +22,17 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event)
-  const parseResult = paketSchema.safeParse(body)
+  
+  // Dukung field name 'jumlahSuara' maupun 'jumlahToken' dari frontend
+  const normalizedBody = {
+    ...body,
+    jumlahSuara: body.jumlahSuara ?? body.jumlahToken,
+  }
+
+  const parseResult = paketSchema.safeParse(normalizedBody)
   if (!parseResult.success) {
-    throw createError({ statusCode: 400, statusMessage: parseResult.error.errors[0].message })
+    const errorMsg = parseResult.error.issues?.[0]?.message || 'Data paket token tidak valid.'
+    throw createError({ statusCode: 400, statusMessage: errorMsg })
   }
 
   const paket = await prisma.tokenPackage.create({
@@ -38,3 +46,4 @@ export default defineEventHandler(async (event) => {
 
   return paket
 })
+

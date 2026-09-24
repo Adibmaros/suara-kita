@@ -4,6 +4,8 @@ import { z } from 'zod'
 const updateProfilSchema = z.object({
   nama: z.string().min(3, 'Nama instansi minimal 3 karakter'),
   noWaAdmin: z.string().min(8, 'Nomor WA tidak valid'),
+  infoRekening: z.string().optional().nullable(),
+  templatePesanWa: z.string().optional().nullable(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -23,6 +25,8 @@ export default defineEventHandler(async (event) => {
     data: {
       nama: parseResult.data.nama,
       noWaAdmin: parseResult.data.noWaAdmin,
+      infoRekening: parseResult.data.infoRekening ?? undefined,
+      templatePesanWa: parseResult.data.templatePesanWa ?? undefined,
     },
   })
 

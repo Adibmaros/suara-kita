@@ -9,7 +9,6 @@ import KandidatList from '~/components/admin/KandidatList.vue'
 import PaketTokenList from '~/components/admin/PaketTokenList.vue'
 import ModalKandidat from '~/components/admin/ModalKandidat.vue'
 import ModalPaketToken from '~/components/admin/ModalPaketToken.vue'
-import ModalWaSettings from '~/components/admin/ModalWaSettings.vue'
 import ModalConfirmDelete from '~/components/admin/ModalConfirmDelete.vue'
 
 definePageMeta({
@@ -45,13 +44,7 @@ const paketForm = ref({
   harga: 10000
 })
 
-// State Modal WA Settings
-const showWaSettingsModal = ref(false)
-const submittingWaSettings = ref(false)
-const waSettingsForm = ref({
-  infoRekening: '',
-  templatePesanWa: ''
-})
+
 
 // Delete confirmation state
 const deleteModal = ref({
@@ -85,7 +78,7 @@ async function updateStatus(newStatus: string) {
   try {
     updatingStatus.value = true
     await $fetch(`/api/admin/kontes/${kontesId.value}`, {
-      method: 'PUT' as any,
+      method: 'PATCH',
       body: { status: newStatus }
     })
     if (kontes.value) {
@@ -110,13 +103,13 @@ async function handleFileUpload(event: Event) {
 
   try {
     uploadingImage.value = true
-    const res = await $fetch<{ url: string }>('/api/admin/upload', {
+    const res = await $fetch<{ url?: string; publicUrl?: string }>('/api/admin/upload', {
       method: 'POST',
       body: formData
     })
-    kandidatForm.value.fotoUrl = res.url
+    kandidatForm.value.fotoUrl = res.url || res.publicUrl || ''
   } catch (err: any) {
-    alert(err.data?.statusMessage || 'Gagal mengunggah foto')
+    alert(err.data?.statusMessage || err.message || 'Gagal mengunggah foto')
   } finally {
     uploadingImage.value = false
   }
@@ -157,6 +150,7 @@ async function submitPaket() {
       method: 'POST',
       body: {
         namaPaket: paketForm.value.namaPaket,
+        jumlahSuara: paketForm.value.jumlahToken,
         jumlahToken: paketForm.value.jumlahToken,
         harga: paketForm.value.harga
       }
@@ -172,36 +166,6 @@ async function submitPaket() {
   }
 }
 
-// Modal WA Settings Submit
-function openWaSettingsModal() {
-  if (kontes.value) {
-    waSettingsForm.value = {
-      infoRekening: kontes.value.infoRekening || '',
-      templatePesanWa: kontes.value.templatePesanWa || ''
-    }
-  }
-  showWaSettingsModal.value = true
-}
-
-async function submitWaSettings() {
-  try {
-    submittingWaSettings.value = true
-    await $fetch(`/api/admin/kontes/${kontesId.value}`, {
-      method: 'PUT' as any,
-      body: {
-        infoRekening: waSettingsForm.value.infoRekening,
-        templatePesanWa: waSettingsForm.value.templatePesanWa
-      }
-    })
-
-    showWaSettingsModal.value = false
-    await fetchKontes()
-  } catch (err: any) {
-    alert(err.data?.statusMessage || 'Gagal menyimpan pengaturan WA & Rekening')
-  } finally {
-    submittingWaSettings.value = false
-  }
-}
 
 // Confirm Delete Dialog
 function confirmDelete(type: 'kandidat' | 'paket', id: number, title: string) {
@@ -257,6 +221,13 @@ onMounted(() => {
     </div>
 
     <template v-else-if="kontes">
+      <!-- Breadcrumb Nav -->
+      <div class="flex items-center justify-between">
+        <NuxtLink to="/admin/kontes" class="text-xs text-slate-500 hover:text-slate-900 inline-flex items-center gap-1 font-semibold transition-colors">
+          ← Kembali ke Kelola Kontes
+        </NuxtLink>
+      </div>
+
       <!-- Top Action Bar & Header Component -->
       <KontesHeader 
         :kontes="kontes" 
@@ -270,7 +241,6 @@ onMounted(() => {
         :paket-token-count="paketTokenList.length" 
         @open-kandidat-modal="showModalKandidat = true" 
         @open-paket-modal="showModalPaket = true" 
-        @open-wa-modal="openWaSettingsModal" 
       />
 
       <!-- Section Kandidat Component -->
@@ -307,13 +277,6 @@ onMounted(() => {
       @submit="submitPaket" 
     />
 
-    <ModalWaSettings 
-      :show="showWaSettingsModal" 
-      :submitting="submittingWaSettings" 
-      :form="waSettingsForm" 
-      @close="showWaSettingsModal = false" 
-      @submit="submitWaSettings" 
-    />
 
     <ModalConfirmDelete 
       :show="deleteModal.show" 

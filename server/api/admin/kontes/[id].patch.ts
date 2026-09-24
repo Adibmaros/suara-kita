@@ -7,6 +7,8 @@ const updateKontesSchema = z.object({
   tanggalMulai: z.string().optional().nullable(),
   tanggalSelesai: z.string().optional().nullable(),
   status: z.nativeEnum(KontesStatus).optional(),
+  infoRekening: z.string().optional().nullable(),
+  templatePesanWa: z.string().optional().nullable(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -43,12 +45,25 @@ export default defineEventHandler(async (event) => {
   if (parseResult.data.tanggalSelesai !== undefined) {
     dataToUpdate.tanggalSelesai = parseResult.data.tanggalSelesai ? new Date(parseResult.data.tanggalSelesai) : null
   }
-  if (parseResult.data.status !== undefined) dataToUpdate.status = parseResult.data.status
+  // Update instansi infoRekening & templatePesanWa jika dikirim
+  if (parseResult.data.infoRekening !== undefined || parseResult.data.templatePesanWa !== undefined) {
+    const instansiDataToUpdate: any = {}
+    if (parseResult.data.infoRekening !== undefined) instansiDataToUpdate.infoRekening = parseResult.data.infoRekening
+    if (parseResult.data.templatePesanWa !== undefined) instansiDataToUpdate.templatePesanWa = parseResult.data.templatePesanWa
 
-  const updated = await prisma.kontes.update({
-    where: { id },
-    data: dataToUpdate,
-  })
+    await prisma.instansi.update({
+      where: { id: session.user.instansiId },
+      data: instansiDataToUpdate,
+    })
+  }
+
+  let updated = existing
+  if (Object.keys(dataToUpdate).length > 0) {
+    updated = await prisma.kontes.update({
+      where: { id },
+      data: dataToUpdate,
+    })
+  }
 
   return updated
 })
