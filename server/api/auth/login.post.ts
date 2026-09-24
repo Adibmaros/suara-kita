@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { UserRole, InstansiStatus } from '@prisma/client'
+import { scryptSync } from 'crypto'
 import prisma from "../../utils/prisma"
 
 
@@ -33,7 +34,13 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const isValidPassword = verifyPassword(password, user.password)
+  // Verify password using scryptSync
+  const [salt, storedHash] = user.password.split(':')
+  let isValidPassword = false
+  if (salt && storedHash) {
+    const computedHash = scryptSync(password, salt, 64).toString('hex')
+    isValidPassword = computedHash === storedHash
+  }
 
   if (!isValidPassword) {
     throw createError({

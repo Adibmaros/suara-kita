@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
   const kontes = await prisma.kontes.findFirst({
     where: { id, instansiId: session.user.instansiId },
     include: {
+      instansi: { select: { slug: true } },
       kandidat: { orderBy: { nomorUrut: 'asc' } },
       tokenPackages: { orderBy: { harga: 'asc' } },
     },

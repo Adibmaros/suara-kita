@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div>
-        <h1 class="text-2xl font-bold text-white font-heading">Kelola & Approval Instansi</h1>
-        <p class="text-xs text-slate-400 mt-1">Daftar instansi terdaftar dan status persetujuannya</p>
+        <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Kelola & Approval Instansi</h1>
+        <p class="text-xs text-slate-500 mt-1">Daftar instansi terdaftar dan status persetujuannya</p>
       </div>
 
       <div class="flex items-center space-x-2">
@@ -11,22 +11,22 @@
           v-for="st in ['ALL', 'PENDING', 'AKTIF', 'NONAKTIF']"
           :key="st"
           @click="filterStatus = st"
-          class="px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors"
-          :class="filterStatus === st ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'"
+          class="px-3 py-1.5 text-xs font-semibold rounded-lg border transition-colors cursor-pointer"
+          :class="filterStatus === st ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900'"
         >
           {{ st === 'ALL' ? 'Semua' : st }}
         </button>
       </div>
     </div>
 
-    <UiCard class="p-0 overflow-hidden">
-      <div v-if="pending" class="p-8 text-center text-slate-400 text-sm">
+    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
+      <div v-if="pending" class="p-8 text-center text-slate-500 text-sm">
         Memuat daftar instansi...
       </div>
 
       <div v-else-if="filteredInstansi" class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-slate-300">
-          <thead class="bg-slate-900/80 text-xs text-slate-400 uppercase tracking-wider border-b border-slate-800">
+        <table class="w-full text-left text-sm text-slate-700">
+          <thead class="bg-slate-50 text-xs text-slate-500 uppercase tracking-wider border-b border-slate-200">
             <tr>
               <th class="p-4">ID</th>
               <th class="p-4">Nama Instansi</th>
@@ -38,36 +38,43 @@
               <th class="p-4 text-right">Aksi</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60">
+          <tbody class="divide-y divide-slate-100">
             <tr v-if="filteredInstansi.length === 0">
               <td colspan="8" class="p-8 text-center text-slate-500">
                 Tidak ada data instansi.
               </td>
             </tr>
-            <tr v-for="ins in filteredInstansi" :key="ins.id" class="hover:bg-slate-900/40 transition-colors">
-              <td class="p-4 font-mono font-bold text-slate-200">#{{ ins.id }}</td>
-              <td class="p-4 font-bold text-white">{{ ins.nama }}</td>
-              <td class="p-4 font-mono text-indigo-400">/i/{{ ins.slug }}</td>
-              <td class="p-4 font-mono text-slate-400">{{ ins.noWaAdmin }}</td>
-              <td class="p-4 text-slate-300">{{ ins.users[0]?.email || '-' }}</td>
-              <td class="p-4 font-bold text-slate-200">{{ ins._count.kontes }}</td>
+            <tr v-for="ins in filteredInstansi" :key="ins.id" class="hover:bg-slate-50/50 transition-colors">
+              <td class="p-4 font-mono font-bold text-slate-900">#{{ ins.id }}</td>
+              <td class="p-4 font-semibold text-slate-900">{{ ins.nama }}</td>
+              <td class="p-4 font-mono text-slate-600">/instansi/{{ ins.slug }}</td>
+              <td class="p-4 font-mono text-slate-500">{{ ins.noWaAdmin }}</td>
+              <td class="p-4 text-slate-700">{{ ins.users[0]?.email || '-' }}</td>
+              <td class="p-4 font-semibold text-slate-900">{{ ins._count.kontes }}</td>
               <td class="p-4">
-                <UiBadge :variant="ins.status === 'AKTIF' ? 'success' : ins.status === 'PENDING' ? 'warning' : 'danger'">
+                <span
+                  class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                  :class="{
+                    'bg-emerald-100 text-emerald-800': ins.status === 'AKTIF',
+                    'bg-amber-100 text-amber-800': ins.status === 'PENDING',
+                    'bg-rose-100 text-rose-800': ins.status === 'NONAKTIF',
+                  }"
+                >
                   {{ ins.status }}
-                </UiBadge>
+                </span>
               </td>
               <td class="p-4 text-right space-x-2">
                 <button
                   v-if="ins.status !== 'AKTIF'"
                   @click="updateStatus(ins.id, 'AKTIF')"
-                  class="px-2.5 py-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-md transition-colors"
+                  class="px-2.5 py-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-md transition-colors cursor-pointer"
                 >
                   Approve / Aktifkan
                 </button>
                 <button
                   v-if="ins.status !== 'NONAKTIF'"
                   @click="updateStatus(ins.id, 'NONAKTIF')"
-                  class="px-2.5 py-1 text-xs font-semibold text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 rounded-md transition-colors"
+                  class="px-2.5 py-1 text-xs font-semibold text-rose-700 hover:text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md transition-colors cursor-pointer"
                 >
                   Nonaktifkan
                 </button>
@@ -76,7 +83,7 @@
           </tbody>
         </table>
       </div>
-    </UiCard>
+    </div>
   </div>
 </template>
 

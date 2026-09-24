@@ -26,6 +26,7 @@ export default defineEventHandler(async (event) => {
 
   let pendingOrdersCount = 0
   let totalPendapatan = 0
+  let totalPlatformFee = 0
 
   listKontes.forEach((k) => {
     k.tokenPackages.forEach((pkg) => {
@@ -34,6 +35,7 @@ export default defineEventHandler(async (event) => {
           pendingOrdersCount += 1
         } else if (ord.status === OrderStatus.TERVERIFIKASI) {
           totalPendapatan += ord.package.harga
+          totalPlatformFee += Math.round(ord.package.harga * 0.2)
         }
       })
     })
@@ -43,5 +45,7 @@ export default defineEventHandler(async (event) => {
     totalKontes,
     pendingOrdersCount,
     totalPendapatan,
+    totalPlatformFee,
+    pendapatanBersih: totalPendapatan - totalPlatformFee,
   }
 })

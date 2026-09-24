@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { UserRole, InstansiStatus } from '@prisma/client'
+import { UserRole, InstansiStatus, Prisma } from '@prisma/client'
+import { scryptSync, randomBytes } from 'crypto'
 import prisma from "../../utils/prisma"
 
 
@@ -50,7 +51,10 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const passwordHash = hashPassword(password)
+  // Hash password using crypto scryptSync
+  const salt = randomBytes(16).toString('hex')
+  const hashedPassword = scryptSync(password, salt, 64).toString('hex')
+  const passwordHash = `${salt}:${hashedPassword}`
 
   // Buat instansi & user dalam transaksi
   const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {

@@ -1,44 +1,56 @@
 <template>
-  <nav class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3.5 flex items-center justify-between">
-    <NuxtLink to="/" class="flex items-center space-x-3 group">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-400 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-        S
-      </div>
-      <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent font-heading">
-        SuaraKita
-      </span>
-    </NuxtLink>
+  <header class="sticky top-0 z-50 w-full px-4 sm:px-8 py-3 transition-all duration-300">
+    <div class="max-w-7xl mx-auto">
+      <nav class="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between shadow-xs hover:shadow-md transition-shadow duration-300">
+        <!-- Logo Brand -->
+        <NuxtLink to="/" class="flex items-center space-x-3 group">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white font-extrabold text-sm shadow-md group-hover:scale-105 transition-transform duration-200">
+            SK
+          </div>
+          <span class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-slate-700 transition-colors">
+            SuaraKita
+          </span>
+        </NuxtLink>
 
-    <div class="flex items-center space-x-3 sm:space-x-4">
-      <template v-if="loggedIn">
-        <NuxtLink 
-          :to="user?.role === 'SUPER_ADMIN' ? '/super-admin' : '/admin'"
-          class="px-4 py-2 text-sm font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors border border-slate-700 flex items-center space-x-2"
-        >
-          <span>Dashboard</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </NuxtLink>
-      </template>
-      <template v-else>
-        <NuxtLink 
-          to="/login" 
-          class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
-        >
-          Masuk Admin
-        </NuxtLink>
-        <NuxtLink 
-          to="/register" 
-          class="px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-all shadow-md shadow-indigo-600/30"
-        >
-          Daftar Instansi
-        </NuxtLink>
-      </template>
+        <!-- Navigation Buttons -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <template v-if="loggedIn">
+            <NuxtLink 
+              :to="user?.role === 'SUPER_ADMIN' ? '/super-admin' : '/admin'"
+              class="px-4 h-9 text-xs sm:text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all duration-200 flex items-center space-x-2 active:scale-95"
+            >
+              <LayoutGrid class="w-4 h-4 text-slate-700" />
+              <span>Dashboard</span>
+              <ArrowRight class="w-3.5 h-3.5 text-slate-400" />
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <NuxtLink 
+              to="/login" 
+              class="px-3.5 sm:px-4 h-9 text-xs sm:text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 rounded-lg transition-all duration-200 flex items-center space-x-1.5 active:scale-95"
+            >
+              <LogIn class="w-4 h-4 text-slate-500" />
+              <span>Masuk</span>
+            </NuxtLink>
+            <NuxtLink 
+              to="/register" 
+              class="px-4 h-9 text-xs sm:text-sm font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md flex items-center space-x-1.5 active:scale-95"
+            >
+              <Building2 class="w-4 h-4" />
+              <span class="hidden sm:inline">Daftar Instansi</span>
+              <span class="sm:hidden">Daftar</span>
+            </NuxtLink>
+          </template>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </header>
 </template>
 
 <script setup lang="ts">
-const { loggedIn, user } = useUserSession()
+import { LayoutGrid, ArrowRight, LogIn, Building2 } from 'lucide-vue-next'
+
+const session = useUserSession()
+const loggedIn = session.loggedIn
+const user = computed(() => session.user.value as any)
 </script>

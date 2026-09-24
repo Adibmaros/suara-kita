@@ -27,6 +27,13 @@
     "seed": "npx tsx prisma/seed.ts"
   },
   "devDependencies": {
-    "@types/node": "^26.6.2"
+    "@oxc-parser/binding-win32-x64-msvc": "^0.151.0",
+    "@types/node": "^26.6.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-vue-next": "^1.0.0",
+    "radix-vue": "^1.9.17",
+    "shadcn-nuxt": "^2.8.2",
+    "tailwind-merge": "^3.7.0"
   }
 }

@@ -1,42 +1,49 @@
 <template>
-  <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all flex flex-col group">
+  <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-blue-300 transition-all flex flex-col group shadow-sm hover:shadow-md h-full">
     <!-- Image -->
-    <div class="relative aspect-4/3 bg-slate-800 overflow-hidden">
+    <div class="relative aspect-4/3 sm:aspect-16/9 md:aspect-4/3 bg-slate-50 overflow-hidden shrink-0">
       <img 
         v-if="kandidat.fotoUrl" 
         :src="kandidat.fotoUrl" 
         :alt="kandidat.nama" 
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       />
-      <div v-else class="w-full h-full flex items-center justify-center text-slate-600 bg-slate-800">
-        <svg class="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div v-else class="w-full h-full flex items-center justify-center text-slate-400 bg-slate-50">
+        <svg class="w-12 h-12 sm:w-14 sm:h-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       </div>
 
       <!-- Badge Nomor Urut -->
-      <div v-if="kandidat.nomorUrut" class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md text-indigo-400 font-extrabold text-sm px-3 py-1 rounded-lg border border-indigo-500/20 font-heading">
+      <div v-if="kandidat.nomorUrut" class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/90 backdrop-blur-md text-blue-700 font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-lg border border-blue-200 font-heading shadow-sm">
         #{{ kandidat.nomorUrut }}
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-5 flex-1 flex flex-col justify-between">
+    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
       <div>
-        <h4 class="text-lg font-bold text-white font-heading group-hover:text-indigo-400 transition-colors">
+        <h4 class="text-base sm:text-lg font-bold text-slate-900 font-heading group-hover:text-blue-600 transition-colors line-clamp-1">
           {{ kandidat.nama }}
         </h4>
-        <p v-if="kandidat.deskripsi" class="text-xs text-slate-400 mt-2 line-clamp-3 leading-relaxed">
+        <p v-if="kandidat.deskripsi" class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
           {{ kandidat.deskripsi }}
         </p>
       </div>
 
-      <!-- Vote Count -->
-      <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between">
-        <span class="text-xs text-slate-400">Total Suara</span>
-        <span class="text-base font-extrabold text-indigo-400 font-heading">
-          {{ kandidat.totalSuara?.toLocaleString('id-ID') || 0 }} Suara
-        </span>
+      <!-- Progress Bar & Persentase Suara -->
+      <div class="pt-3 border-t border-slate-100 space-y-1.5 mt-auto">
+        <div class="flex items-center justify-between text-xs font-semibold">
+          <span class="text-slate-500">Perolehan Suara</span>
+          <span class="text-blue-600 font-bold font-heading text-sm">{{ kandidat.persentase || '0.0' }}%</span>
+        </div>
+
+        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden p-0.5">
+          <div 
+            class="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-700"
+            :style="{ width: `${kandidat.persentase || 0}%` }"
+          ></div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,6 +58,7 @@ defineProps<{
     fotoUrl?: string | null
     deskripsi?: string | null
     totalSuara?: number
+    persentase?: string
   }
 }>()
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div class="overflow-x-auto">
-    <table class="w-full text-left text-sm text-slate-300">
-      <thead class="bg-slate-900/80 text-xs text-slate-400 uppercase tracking-wider border-b border-slate-800">
+  <div class="overflow-x-auto bg-white rounded-xl border border-slate-200 shadow-2xs">
+    <table class="w-full text-left text-sm text-slate-700">
+      <thead class="bg-slate-50 text-xs text-slate-500 uppercase tracking-wider border-b border-slate-200">
         <tr>
           <th class="p-4">ID</th>
           <th class="p-4">Paket</th>
@@ -13,49 +13,54 @@
           <th class="p-4 text-right">Aksi</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-slate-800/60">
+      <tbody class="divide-y divide-slate-100">
         <tr v-if="orders.length === 0">
           <td colspan="8" class="p-8 text-center text-slate-500">
             Belum ada order.
           </td>
         </tr>
-        <tr v-for="order in orders" :key="order.id" class="hover:bg-slate-900/40 transition-colors">
-          <td class="p-4 font-mono font-bold text-slate-200">#{{ order.id }}</td>
-          <td class="p-4 font-medium text-white">{{ order.package.namaPaket }}</td>
-          <td class="p-4 font-semibold text-slate-200">Rp {{ order.package.harga.toLocaleString('id-ID') }}</td>
-          <td class="p-4 font-bold text-indigo-400">{{ order.package.jumlahSuara }}</td>
-          <td class="p-4 font-mono text-slate-400">{{ order.kontakWa || '-' }}</td>
+        <tr v-for="order in orders" :key="order.id" class="hover:bg-slate-50/50 transition-colors">
+          <td class="p-4 font-mono font-bold text-slate-900">#{{ order.id }}</td>
+          <td class="p-4 font-medium text-slate-900">{{ order.package.namaPaket }}</td>
+          <td class="p-4 font-semibold text-slate-700">Rp {{ order.package.harga.toLocaleString('id-ID') }}</td>
+          <td class="p-4 font-semibold text-slate-900">{{ order.package.jumlahSuara }}</td>
+          <td class="p-4 font-mono text-slate-500">{{ order.kontakWa || '-' }}</td>
           <td class="p-4">
-            <UiBadge :variant="getStatusVariant(order.status)">
+            <span
+              class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
+              :class="{
+                'bg-emerald-100 text-emerald-800': order.status === 'TERVERIFIKASI',
+                'bg-amber-100 text-amber-800': order.status === 'MENUNGGU_VERIFIKASI',
+                'bg-rose-100 text-rose-800': order.status === 'DITOLAK',
+              }"
+            >
               {{ order.status }}
-            </UiBadge>
+            </span>
           </td>
-          <td class="p-4 font-mono font-extrabold text-amber-400">
+          <td class="p-4 font-mono font-bold text-slate-900">
             {{ order.token?.code || '-' }}
           </td>
           <td class="p-4 text-right space-x-2">
             <template v-if="order.status === 'MENUNGGU_VERIFIKASI'">
-              <UiButton 
-                size="sm" 
-                variant="success"
-                :loading="loadingId === order.id"
+              <button 
+                :disabled="loadingId === order.id"
                 @click="$emit('verify', order)"
+                class="px-2.5 py-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-md transition-colors disabled:opacity-50 cursor-pointer"
               >
                 Verifikasi
-              </UiButton>
-              <UiButton 
-                size="sm" 
-                variant="danger"
-                :loading="loadingId === order.id"
+              </button>
+              <button 
+                :disabled="loadingId === order.id"
                 @click="$emit('reject', order)"
+                class="px-2.5 py-1 text-xs font-semibold text-rose-700 hover:text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-md transition-colors disabled:opacity-50 cursor-pointer"
               >
                 Tolak
-              </UiButton>
+              </button>
             </template>
             <template v-else-if="order.token?.code">
               <button 
                 @click="copyToken(order.token.code)"
-                class="px-2.5 py-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 rounded-md transition-colors"
+                class="px-2.5 py-1 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-md transition-colors cursor-pointer"
               >
                 Copy Token
               </button>
