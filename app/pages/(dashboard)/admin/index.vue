@@ -50,7 +50,7 @@
 
         <div class="rounded-xl border border-slate-200 bg-white p-5 flex items-center justify-between shadow-2xs">
           <div>
-            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Potongan Komisi (20%)</p>
+            <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Potongan Komisi ({{ stats.persenKomisi }}%)</p>
             <h4 class="text-2xl font-bold text-slate-900 mt-1">Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }}</h4>
             <p class="text-xs text-slate-500 mt-1">Bagi hasil platform</p>
           </div>
@@ -67,7 +67,7 @@
             Rp {{ stats.pendapatanBersih.toLocaleString('id-ID') }}
           </h3>
           <p class="text-xs text-slate-500 mt-1">
-            (Total Omset Kotor Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }} dikurangi Komisi Platform 20% Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }})
+            (Total Omset Kotor Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }} dikurangi Komisi Platform {{ stats.persenKomisi }}% Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }})
           </p>
         </div>
       </div>

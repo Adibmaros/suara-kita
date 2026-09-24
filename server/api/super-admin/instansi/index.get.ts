@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     where: whereCondition,
     include: {
       users: { select: { email: true, nama: true } },
+      kontes: { select: { id: true, nama: true } },
       _count: { select: { kontes: true } },
     },
     orderBy: { createdAt: 'desc' },

@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const parseResult = createOrderSchema.safeParse(body)
   if (!parseResult.success) {
-    throw createError({ statusCode: 400, statusMessage: parseResult.error.errors[0].message })
+    throw createError({ statusCode: 400, statusMessage: parseResult.error.issues?.[0]?.message || 'Input tidak valid.' })
   }
 
   const { packageId, kontakWa } = parseResult.data
@@ -54,12 +54,25 @@ export default defineEventHandler(async (event) => {
   const cleanPhone = kontes.instansi.noWaAdmin.replace(/[^0-9]/g, '')
   const formattedPhone = cleanPhone.startsWith('0') ? `62${cleanPhone.slice(1)}` : cleanPhone
 
-  const messageText = `Halo Admin ${kontes.instansi.nama}, saya mau beli token untuk kontes "${kontes.nama}".
-📦 Paket: ${tokenPackage.namaPaket} (${tokenPackage.jumlahSuara} Suara)
-💰 Harga: Rp ${tokenPackage.harga.toLocaleString('id-ID')}
-📋 Order ID: #${order.id}
+  const defaultTemplate = `Halo Admin {nama_instansi}, saya mau beli token untuk kontes "{nama_kontes}".
+📦 Paket: {nama_paket} ({jumlah_suara} Suara)
+💰 Harga: Rp {total_harga}
+📋 Order ID: #{nomor_order}
 
 Mohon info rekening pembayaran. Terima kasih!`
+
+  const templateToUse = kontes.instansi.templatePesanWa && kontes.instansi.templatePesanWa.trim() !== ''
+    ? kontes.instansi.templatePesanWa
+    : defaultTemplate
+
+  let messageText = templateToUse
+    .replace(/\{nama_instansi\}/g, kontes.instansi.nama)
+    .replace(/\{nama_kontes\}/g, kontes.nama)
+    .replace(/\{nama_paket\}/g, tokenPackage.namaPaket)
+    .replace(/\{jumlah_suara\}/g, tokenPackage.jumlahSuara.toString())
+    .replace(/\{total_harga\}/g, tokenPackage.harga.toLocaleString('id-ID'))
+    .replace(/\{nomor_order\}/g, order.id.toString())
+    .replace(/\{rekening_admin\}/g, kontes.instansi.infoRekening || '(Akan diberikan oleh admin)')
 
   const waLink = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(messageText)}`
 

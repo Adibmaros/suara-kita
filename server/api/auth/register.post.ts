@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   if (!parseResult.success) {
     throw createError({
       statusCode: 400,
-      statusMessage: parseResult.error.issues[0].message,
+      statusMessage: parseResult.error.issues?.[0]?.message || 'Input tidak valid',
     })
   }
 

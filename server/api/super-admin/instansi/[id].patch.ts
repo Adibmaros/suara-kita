@@ -1,8 +1,9 @@
 import { UserRole, InstansiStatus } from '@prisma/client'
 import { z } from 'zod'
 
-const updateStatusSchema = z.object({
-  status: z.nativeEnum(InstansiStatus),
+const updateInstansiSchema = z.object({
+  status: z.nativeEnum(InstansiStatus).optional(),
+  persenKomisi: z.number().min(0).max(100).optional(),
 })
 
 export default defineEventHandler(async (event) => {
@@ -17,14 +18,26 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event)
-  const parseResult = updateStatusSchema.safeParse(body)
+  const parseResult = updateInstansiSchema.safeParse(body)
   if (!parseResult.success) {
-    throw createError({ statusCode: 400, statusMessage: 'Status tidak valid.' })
+    throw createError({ statusCode: 400, statusMessage: 'Data masukan tidak valid.' })
+  }
+
+  const dataToUpdate: Record<string, any> = {}
+  if (parseResult.data.status !== undefined) {
+    dataToUpdate.status = parseResult.data.status
+  }
+  if (parseResult.data.persenKomisi !== undefined) {
+    dataToUpdate.persenKomisi = parseResult.data.persenKomisi
+  }
+
+  if (Object.keys(dataToUpdate).length === 0) {
+    throw createError({ statusCode: 400, statusMessage: 'Tidak ada data yang diperbarui.' })
   }
 
   const updatedInstansi = await prisma.instansi.update({
     where: { id },
-    data: { status: parseResult.data.status },
+    data: dataToUpdate,
   })
 
   // Catat audit log
@@ -32,7 +45,7 @@ export default defineEventHandler(async (event) => {
     data: {
       instansiId: id,
       aktor: session.user.email,
-      aksi: `Mengubah status instansi menjadi ${parseResult.data.status}`,
+      aksi: `Mengubah data instansi (${Object.keys(dataToUpdate).join(', ')})`,
     },
   })
 

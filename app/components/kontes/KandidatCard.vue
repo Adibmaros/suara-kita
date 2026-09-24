@@ -14,10 +14,7 @@
         </svg>
       </div>
 
-      <!-- Badge Nomor Urut -->
-      <div v-if="kandidat.nomorUrut" class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/90 backdrop-blur-md text-blue-700 font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-lg border border-blue-200 font-heading shadow-sm">
-        #{{ kandidat.nomorUrut }}
-      </div>
+
     </div>
 
     <!-- Content -->

@@ -14,7 +14,18 @@ export default defineEventHandler(async (event) => {
       id: orderId,
       package: { kontesId, kontes: { instansiId: session.user.instansiId } },
     },
-    include: { package: true, token: true },
+    include: { 
+      package: {
+        include: {
+          kontes: {
+            include: {
+              instansi: { select: { persenKomisi: true } }
+            }
+          }
+        }
+      }, 
+      token: true 
+    },
   })
 
   if (!order) {
@@ -29,8 +40,9 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  // Hitung 20% platform fee
-  const platformFee = Math.round(order.package.harga * 0.2)
+  // Hitung platform fee sesuai persenKomisi instansi (default 20%)
+  const persenKomisi = order.package.kontes.instansi.persenKomisi ?? 20
+  const platformFee = Math.round(order.package.harga * (persenKomisi / 100))
 
   // Generate token unik
   const tokenCode = await generateUniqueTokenCode()

@@ -8,6 +8,13 @@ export default defineEventHandler(async (event) => {
 
   const instansiId = session.user.instansiId
 
+  const instansi = await prisma.instansi.findUnique({
+    where: { id: instansiId },
+    select: { persenKomisi: true },
+  })
+
+  const persenKomisi = instansi?.persenKomisi ?? 20
+
   const [totalKontes, listKontes] = await Promise.all([
     prisma.kontes.count({ where: { instansiId } }),
     prisma.kontes.findMany({
@@ -16,7 +23,7 @@ export default defineEventHandler(async (event) => {
         tokenPackages: {
           include: {
             orders: {
-              select: { status: true, package: { select: { harga: true } } },
+              select: { status: true, platformFee: true, package: { select: { harga: true } } },
             },
           },
         },
@@ -35,7 +42,7 @@ export default defineEventHandler(async (event) => {
           pendingOrdersCount += 1
         } else if (ord.status === OrderStatus.TERVERIFIKASI) {
           totalPendapatan += ord.package.harga
-          totalPlatformFee += Math.round(ord.package.harga * 0.2)
+          totalPlatformFee += Math.round(ord.package.harga * (persenKomisi / 100))
         }
       })
     })
@@ -46,6 +53,7 @@ export default defineEventHandler(async (event) => {
     pendingOrdersCount,
     totalPendapatan,
     totalPlatformFee,
+    persenKomisi,
     pendapatanBersih: totalPendapatan - totalPlatformFee,
   }
 })

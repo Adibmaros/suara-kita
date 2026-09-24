@@ -28,12 +28,13 @@ export default defineEventHandler(async (event) => {
     let totalOmset = 0
     let totalKomisi = 0
     let totalOrdersVerified = 0
+    const rate = (instansi.persenKomisi ?? 20) / 100
 
     instansi.kontes.forEach((k) => {
       k.tokenPackages.forEach((pkg) => {
         pkg.orders.forEach((ord) => {
           totalOmset += ord.package.harga
-          totalKomisi += ord.platformFee || 0
+          totalKomisi += Math.round(ord.package.harga * rate)
           totalOrdersVerified += 1
         })
       })
@@ -44,6 +45,7 @@ export default defineEventHandler(async (event) => {
       namaInstansi: instansi.nama,
       slug: instansi.slug,
       noWaAdmin: instansi.noWaAdmin,
+      persenKomisi: instansi.persenKomisi ?? 20,
       totalOrdersVerified,
       totalOmset,
       totalKomisi,
