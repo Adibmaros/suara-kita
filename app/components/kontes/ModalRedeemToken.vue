@@ -15,7 +15,21 @@
           </button>
         </div>
 
-        <!-- Error / Success Messages -->
+        <!-- Error / Success / Draft / Closed Warning Messages -->
+        <div v-if="isClosed" class="p-3.5 bg-rose-50 border border-rose-300 rounded-xl flex items-start gap-2.5 text-rose-900">
+          <Lock class="w-4.5 h-4.5 text-rose-600 mt-0.5 shrink-0" />
+          <div class="text-xs">
+            <p class="font-bold">Kontes Telah Resmi Ditutup</p>
+            <p class="text-rose-700 mt-0.5 leading-relaxed">Sesi voting telah berakhir. Pilihan suara baru tidak lagi dapat dikirimkan.</p>
+          </div>
+        </div>
+        <div v-else-if="isDraft" class="p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex items-start gap-2.5 text-amber-900">
+          <AlertTriangle class="w-4.5 h-4.5 text-amber-600 mt-0.5 shrink-0" />
+          <div class="text-xs">
+            <p class="font-bold">Kontes Masih dalam Status DRAFT</p>
+            <p class="text-amber-700 mt-0.5 leading-relaxed">Voting belum dibuka untuk umum. Pilihan suara tidak dapat dikirimkan saat ini.</p>
+          </div>
+        </div>
         <div v-if="errorMsg" class="p-3 bg-rose-50 border border-rose-200 text-rose-800 text-xs rounded-xl flex items-center gap-2">
           <AlertCircle class="w-4 h-4 text-rose-600 shrink-0" />
           <span>{{ errorMsg }}</span>
@@ -109,7 +123,7 @@
 
             <button
               type="submit"
-              :disabled="!tokenCode || !kandidatId"
+              :disabled="!tokenCode || !kandidatId || isDraft || isClosed"
               class="inline-flex items-center justify-center px-4 h-9 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer shadow-xs active:scale-95"
             >
               <span>Lanjut Konfirmasi Suara →</span>
@@ -166,7 +180,7 @@
             <button
               type="button"
               @click="$emit('submitVote')"
-              :disabled="voting"
+              :disabled="voting || isDraft || isClosed"
               class="inline-flex items-center justify-center px-4 h-9 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition-all disabled:opacity-50 disabled:pointer-events-none cursor-pointer shadow-xs active:scale-95"
             >
               <Loader2 v-if="voting" class="w-4 h-4 mr-2 animate-spin" />
@@ -180,7 +194,7 @@
 </template>
 
 <script setup lang="ts">
-import { X, AlertCircle, CheckCircle2, Search, Loader2 } from 'lucide-vue-next'
+import { X, AlertCircle, CheckCircle2, Search, Loader2, AlertTriangle, Lock } from 'lucide-vue-next'
 
 defineProps<{
   isOpen: boolean
@@ -193,6 +207,8 @@ defineProps<{
   voting: boolean
   errorMsg: string
   successMsg: string
+  isDraft?: boolean
+  isClosed?: boolean
 }>()
 
 defineEmits<{

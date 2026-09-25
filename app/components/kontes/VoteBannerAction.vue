@@ -3,8 +3,16 @@
     <div class="flex items-center space-x-3">
       <span class="text-2xl sm:text-3xl">🗳️</span>
       <div>
-        <h3 class="text-sm sm:text-base font-bold text-slate-900">Siap Memberikan Suara?</h3>
-        <p class="text-xs text-slate-500">Gunakan token suara Anda atau beli paket token langsung via WhatsApp.</p>
+        <h3 class="text-sm sm:text-base font-bold text-slate-900">
+          {{ isClosed ? 'Voting Telah Ditutup' : 'Siap Memberikan Suara?' }}
+        </h3>
+        <p class="text-xs text-slate-500">
+          {{ isClosed 
+            ? 'Kontes ini telah resmi berakhir. Terima kasih atas partisipasi Anda.' 
+            : isDraft 
+            ? 'Kontes ini belum dibuka. Pantau terus untuk mendapatkan info voting terbaru.' 
+            : 'Gunakan token suara Anda atau beli paket token langsung via WhatsApp.' }}
+        </p>
       </div>
     </div>
 
@@ -17,16 +25,19 @@
         <span>Petunjuk Vote</span>
       </button>
       <button 
+        v-if="!isClosed"
         class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-xs rounded-xl transition-all cursor-pointer"
         @click="$emit('scrollToBeli')"
       >
         Belum Punya Token? Beli Token
       </button>
       <button 
-        class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-all shadow-xs cursor-pointer active:scale-95"
-        @click="$emit('openVote')"
+        :disabled="isDraft || isClosed"
+        :title="isClosed ? 'Voting telah ditutup.' : isDraft ? 'Voting belum dibuka. Kontes masih dalam status DRAFT.' : ''"
+        class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-all shadow-xs cursor-pointer active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
+        @click="!isDraft && !isClosed && $emit('openVote')"
       >
-        Masukan Token
+        {{ isClosed ? 'Voting Ditutup' : 'Masukan Token' }}
       </button>
     </div>
   </div>
@@ -34,6 +45,11 @@
 
 <script setup lang="ts">
 import { HelpCircle } from 'lucide-vue-next'
+
+defineProps<{
+  isDraft?: boolean
+  isClosed?: boolean
+}>()
 
 defineEmits<{
   (e: 'openGuide'): void

@@ -39,6 +39,7 @@ export default defineEventHandler(async (event) => {
   const dataToUpdate: any = {}
   if (parseResult.data.nama !== undefined) dataToUpdate.nama = parseResult.data.nama
   if (parseResult.data.deskripsi !== undefined) dataToUpdate.deskripsi = parseResult.data.deskripsi
+  if (parseResult.data.status !== undefined) dataToUpdate.status = parseResult.data.status
   if (parseResult.data.tanggalMulai !== undefined) {
     dataToUpdate.tanggalMulai = parseResult.data.tanggalMulai ? new Date(parseResult.data.tanggalMulai) : null
   }

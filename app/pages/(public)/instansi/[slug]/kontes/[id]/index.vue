@@ -10,8 +10,32 @@
     </div>
 
     <template v-else>
+      <!-- Alert Banner Draft Kontes -->
+      <div v-if="isDraft" class="flex items-start gap-3.5 bg-amber-50 border border-amber-300 rounded-2xl p-4 sm:p-5 text-amber-900 shadow-2xs">
+        <AlertTriangle class="w-5 h-5 text-amber-600 mt-0.5 shrink-0" />
+        <div class="space-y-1">
+          <h3 class="text-sm font-bold text-amber-900">Kontes Belum Dibuka untuk Voting</h3>
+          <p class="text-xs text-amber-800 leading-relaxed">
+            Kontes ini saat ini masih dalam status <strong>DRAFT</strong>. Pengiriman suara belum dibuka hingga admin mengaktifkan kontes ini. Anda tetap dapat mempelajari kandidat dan melihat paket token yang tersedia.
+          </p>
+        </div>
+      </div>
+
+      <!-- Alert Banner Kontes Ditutup -->
+      <div v-else-if="isClosed" class="flex items-start gap-3.5 bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 text-white shadow-md">
+        <Lock class="w-5 h-5 text-slate-400 mt-0.5 shrink-0" />
+        <div class="space-y-1">
+          <h3 class="text-sm font-bold text-white">Kontes Telah Resmi Ditutup</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Sesi pemungutan suara untuk kontes ini telah berakhir. Pengiriman suara dan pembelian token sudah tidak tersedia. Perolehan suara di bawah ini merupakan hasil akhir.
+          </p>
+        </div>
+      </div>
+
       <!-- Tombol Input Token & CTA Beli Token di Paling Atas -->
       <KontesVoteBannerAction 
+        :is-draft="isDraft"
+        :is-closed="isClosed"
         @open-guide="showGuideModal = true"
         @scroll-to-beli="scrollToBeliToken"
         @open-vote="openVoteModal"
@@ -26,7 +50,11 @@
           </div>
           <span 
             class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
-            :class="kontes.status === 'AKTIF' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-700'"
+            :class="{
+              'bg-emerald-100 text-emerald-800': kontes.status === 'AKTIF',
+              'bg-amber-100 text-amber-800': kontes.status === 'DRAFT',
+              'bg-rose-100 text-rose-800': kontes.status === 'DITUTUP'
+            }"
           >
             {{ kontes.status }}
           </span>
@@ -76,7 +104,11 @@
           </p>
         </div>
 
-        <div v-if="kontes.tokenPackages.length === 0" class="text-center py-8 text-slate-500 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
+        <div v-if="isClosed" class="p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-xs font-medium">
+          Pembelian token suara telah ditutup karena sesi voting untuk kontes ini telah berakhir.
+        </div>
+
+        <div v-else-if="kontes.tokenPackages.length === 0" class="text-center py-8 text-slate-500 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
           Belum ada paket token tersedia.
         </div>
 
@@ -99,10 +131,12 @@
       <!-- Modal Redeem Token Popup -->
       <KontesModalRedeemToken 
         :is-open="showTokenModal"
+        :is-draft="isDraft"
+        :is-closed="isClosed"
         :vote-step="voteStep"
         v-model:token-code="voteForm.tokenCode"
-        v-model:kandidat-id="voteForm.kandidatId"
-        v-model:candidate-search="modalCandidateSearch"
+        v-model:kandidatId="voteForm.kandidatId"
+        v-model:candidateSearch="modalCandidateSearch"
         :filtered-kandidat="filteredModalKandidat"
         :selected-kandidat="selectedKandidatObj"
         :voting="voting"
@@ -130,10 +164,10 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import { Search } from 'lucide-vue-next'
+import { Search, AlertTriangle, Lock } from 'lucide-vue-next'
 
 definePageMeta({
-  layout: 'default',
+  layout: 'voter',
 })
 
 const route = useRoute()
@@ -141,6 +175,9 @@ const slug = route.params.slug as string
 const kontesId = route.params.id as string
 
 const { data: kontes, pending, error, refresh } = await useFetch<any>(`/api/public/kontes/${kontesId}`)
+
+const isDraft = computed(() => kontes.value?.status === 'DRAFT')
+const isClosed = computed(() => kontes.value?.status === 'DITUTUP')
 
 const searchQuery = ref('')
 const showModal = ref(false)
@@ -154,6 +191,7 @@ const voteStep = ref<number>(1)
 const modalCandidateSearch = ref('')
 
 const openVoteModal = () => {
+  if (isDraft.value || isClosed.value) return
   voteStep.value = 1
   voteErrorMsg.value = ''
   voteSuccessMsg.value = ''
@@ -209,6 +247,7 @@ const filteredKandidat = computed(() => {
 })
 
 const handleBuyToken = (pkg: any) => {
+  if (isClosed.value) return
   selectedPackage.value = pkg
   showModal.value = true
 }

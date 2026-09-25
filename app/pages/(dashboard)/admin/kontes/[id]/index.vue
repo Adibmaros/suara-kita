@@ -77,12 +77,12 @@ async function fetchKontes() {
 async function updateStatus(newStatus: string) {
   try {
     updatingStatus.value = true
-    await $fetch(`/api/admin/kontes/${kontesId.value}`, {
+    const updated = await $fetch<any>(`/api/admin/kontes/${kontesId.value}`, {
       method: 'PATCH',
       body: { status: newStatus }
     })
-    if (kontes.value) {
-      kontes.value.status = newStatus
+    if (kontes.value && updated) {
+      kontes.value.status = updated.status
     }
   } catch (err: any) {
     alert(err.data?.statusMessage || 'Gagal mengubah status kontes')
