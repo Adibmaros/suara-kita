@@ -6,6 +6,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['nuxt-auth-utils'],
   css: ['~/assets/css/main.css'],
+  routeRules: {
+    '/': { prerender: true },
+    '/kebijakan-privasi': { prerender: true },
+    '/kebijakan-token': { prerender: true },
+    '/panduan': { prerender: true },
+    '/syarat-ketentuan': { prerender: true },
+  },
   vite: {
     plugins: [
       tailwindcss(),
