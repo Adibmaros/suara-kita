@@ -20,53 +20,81 @@
       </NuxtLink>
     </div>
 
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div v-for="kontes in listKontes" :key="kontes.id" class="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-6 shadow-2xs transition-all flex flex-col justify-between space-y-4">
-        <div>
-          <div class="flex items-center justify-between">
-            <span 
-              class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
-              :class="{
-                'bg-emerald-100 text-emerald-800': kontes.status === 'AKTIF',
-                'bg-amber-100 text-amber-800': kontes.status === 'DRAFT',
-                'bg-slate-100 text-slate-700': kontes.status !== 'AKTIF' && kontes.status !== 'DRAFT',
-              }"
-            >
-              {{ kontes.status }}
-            </span>
-            <span class="text-xs text-slate-500 font-mono">ID: #{{ kontes.id }}</span>
+    <div v-else class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-for="kontes in listKontes" :key="kontes.id" class="bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-6 shadow-2xs transition-all flex flex-col justify-between space-y-4">
+          <div>
+            <div class="flex items-center justify-between">
+              <span 
+                class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                :class="{
+                  'bg-emerald-100 text-emerald-800': kontes.status === 'AKTIF',
+                  'bg-amber-100 text-amber-800': kontes.status === 'DRAFT',
+                  'bg-slate-100 text-slate-700': kontes.status !== 'AKTIF' && kontes.status !== 'DRAFT',
+                }"
+              >
+                {{ kontes.status }}
+              </span>
+              <span class="text-xs text-slate-500 font-mono">ID: #{{ kontes.id }}</span>
+            </div>
+
+            <h3 class="text-base font-bold text-slate-900 tracking-tight mt-3">{{ kontes.nama }}</h3>
+            <p v-if="kontes.deskripsi" class="text-xs text-slate-500 mt-1 line-clamp-2">{{ kontes.deskripsi }}</p>
           </div>
 
-          <h3 class="text-base font-bold text-slate-900 tracking-tight mt-3">{{ kontes.nama }}</h3>
-          <p v-if="kontes.deskripsi" class="text-xs text-slate-500 mt-1 line-clamp-2">{{ kontes.deskripsi }}</p>
-        </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div class="text-xs text-slate-500 space-x-2">
+              <span>{{ kontes._count.kandidat }} Kandidat</span>
+              <span>•</span>
+              <span>{{ kontes._count.tokenPackages }} Paket</span>
+            </div>
 
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-          <div class="text-xs text-slate-500 space-x-2">
-            <span>{{ kontes._count.kandidat }} Kandidat</span>
-            <span>•</span>
-            <span>{{ kontes._count.tokenPackages }} Paket</span>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <NuxtLink :to="`/admin/kontes/${kontes.id}/orders`" class="inline-flex items-center justify-center px-3 h-8 bg-slate-100 hover:bg-slate-200 text-slate-900 font-medium text-xs rounded-md transition-colors">
-              Orders
-            </NuxtLink>
-            <NuxtLink :to="`/admin/kontes/${kontes.id}`" class="inline-flex items-center justify-center px-3 h-8 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs rounded-md transition-colors shadow-xs">
-              Kelola
-            </NuxtLink>
+            <div class="flex items-center space-x-2">
+              <NuxtLink :to="`/admin/kontes/${kontes.id}/orders`" class="inline-flex items-center justify-center px-3 h-8 bg-slate-100 hover:bg-slate-200 text-slate-900 font-medium text-xs rounded-md transition-colors">
+                Orders
+              </NuxtLink>
+              <NuxtLink :to="`/admin/kontes/${kontes.id}`" class="inline-flex items-center justify-center px-3 h-8 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs rounded-md transition-colors shadow-xs">
+                Kelola
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Pagination -->
+      <UIPagination
+        v-if="listKontesResponse?.meta"
+        :current-page="currentPage"
+        :total-pages="listKontesResponse.meta.totalPages"
+        :total-items="listKontesResponse.meta.total"
+        :per-page="listKontesResponse.meta.perPage"
+        @page-change="onPageChange"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import UIPagination from '~/components/ui/UIPagination.vue'
+
 definePageMeta({
   layout: 'dashboard',
   middleware: ['auth', 'admin'],
 })
 
-const { data: listKontes, pending } = await useFetch('/api/admin/kontes')
+const currentPage = ref(1)
+
+const { data: listKontesResponse, pending } = await useFetch('/api/admin/kontes', {
+  query: computed(() => ({
+    page: currentPage.value,
+    perPage: 12
+  }))
+})
+
+const listKontes = computed(() => listKontesResponse.value?.data || [])
+
+const onPageChange = (page: number) => {
+  currentPage.value = page
+}
 </script>

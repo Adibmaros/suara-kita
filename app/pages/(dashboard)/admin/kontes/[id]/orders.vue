@@ -75,7 +75,7 @@
       </div>
 
       <div class="text-xs text-slate-500 font-medium">
-        Menampilkan <span class="font-bold text-slate-900">{{ filteredOrders.length }}</span> order
+        Menampilkan <span class="font-bold text-slate-900">{{ filteredOrders.length }}</span> dari <span class="font-bold text-slate-900">{{ ordersResponse?.meta?.total || 0 }}</span> order
       </div>
     </div>
 
@@ -93,6 +93,16 @@
         @reject="openRejectModal"
       />
     </div>
+
+    <!-- Pagination -->
+    <UIPagination
+      v-if="ordersResponse?.meta"
+      :current-page="currentPage"
+      :total-pages="ordersResponse.meta.totalPages"
+      :total-items="ordersResponse.meta.total"
+      :per-page="ordersResponse.meta.perPage"
+      @page-change="onPageChange"
+    />
 
     <!-- Modal Success Verification & Token Generator Result -->
     <Teleport to="body">
@@ -212,6 +222,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import { Search, CheckCircle2, XCircle, Filter, ChevronDown } from 'lucide-vue-next'
+import UIPagination from '~/components/ui/UIPagination.vue'
 
 definePageMeta({
   layout: 'dashboard',
@@ -222,6 +233,7 @@ const route = useRoute()
 const kontesId = route.params.id as string
 
 const filterStatus = ref('ALL')
+const currentPage = ref(1)
 const isFilterOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 
@@ -233,8 +245,15 @@ const statusLabels: Record<string, string> = {
 }
 
 const selectFilter = (key: string) => {
-  filterStatus.value = key
+  if (filterStatus.value !== key) {
+    filterStatus.value = key
+    currentPage.value = 1
+  }
   isFilterOpen.value = false
+}
+
+const onPageChange = (page: number) => {
+  currentPage.value = page
 }
 
 const handleClickOutside = (event: MouseEvent) => {
@@ -255,30 +274,27 @@ const searchQuery = ref('')
 const loadingId = ref<number | null>(null)
 const copiedToken = ref(false)
 
-const { data: orders, pending, refresh } = await useFetch(`/api/admin/kontes/${kontesId}/order`)
+const { data: ordersResponse, pending, refresh } = await useFetch(`/api/admin/kontes/${kontesId}/order`, {
+  query: computed(() => ({
+    page: currentPage.value,
+    perPage: 20,
+    status: filterStatus.value
+  }))
+})
 
 const filteredOrders = computed(() => {
-  if (!orders.value) return []
-  
-  let result = [...orders.value]
+  const rawList = ordersResponse.value?.data || []
+  if (!searchQuery.value.trim()) return rawList
 
-  if (filterStatus.value !== 'ALL') {
-    result = result.filter((o: any) => o.status === filterStatus.value)
-  }
+  const q = searchQuery.value.toLowerCase().trim()
+  return rawList.filter((o: any) => {
+    const matchId = String(o.id).includes(q)
+    const matchWa = o.kontakWa ? o.kontakWa.toLowerCase().includes(q) : false
+    const matchToken = o.token?.code ? o.token.code.toLowerCase().includes(q) : false
+    const matchPaket = o.package?.namaPaket ? o.package.namaPaket.toLowerCase().includes(q) : false
 
-  if (searchQuery.value.trim()) {
-    const q = searchQuery.value.toLowerCase().trim()
-    result = result.filter((o: any) => {
-      const matchId = String(o.id).includes(q)
-      const matchWa = o.kontakWa ? o.kontakWa.toLowerCase().includes(q) : false
-      const matchToken = o.token?.code ? o.token.code.toLowerCase().includes(q) : false
-      const matchPaket = o.package?.namaPaket ? o.package.namaPaket.toLowerCase().includes(q) : false
-
-      return matchId || matchWa || matchToken || matchPaket
-    })
-  }
-
-  return result
+    return matchId || matchWa || matchToken || matchPaket
+  })
 })
 
 // Toast notification state

@@ -5,10 +5,20 @@
 
     <!-- Table Section -->
     <SuperAdminInstansiTable 
-      :instansi-list="filteredInstansi"
+      :instansi-list="instansiList"
       :pending="pending"
       @edit-komisi="openKomisiModal"
       @update-status="openStatusModal"
+    />
+
+    <!-- Pagination -->
+    <UIPagination
+      v-if="instansiResponse?.meta"
+      :current-page="currentPage"
+      :total-pages="instansiResponse.meta.totalPages"
+      :total-items="instansiResponse.meta.total"
+      :per-page="instansiResponse.meta.perPage"
+      @page-change="onPageChange"
     />
 
     <!-- Custom Modal: Confirm Status Change -->
@@ -42,7 +52,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
+import UIPagination from '~/components/ui/UIPagination.vue'
 
 definePageMeta({
   layout: 'dashboard',
@@ -50,14 +61,25 @@ definePageMeta({
 })
 
 const filterStatus = ref('ALL')
+const currentPage = ref(1)
 
-const { data: listInstansi, pending, refresh } = await useFetch('/api/super-admin/instansi')
-
-const filteredInstansi = computed(() => {
-  if (!listInstansi.value) return []
-  if (filterStatus.value === 'ALL') return listInstansi.value
-  return listInstansi.value.filter((i: any) => i.status === filterStatus.value)
+watch(filterStatus, () => {
+  currentPage.value = 1
 })
+
+const { data: instansiResponse, pending, refresh } = await useFetch('/api/super-admin/instansi', {
+  query: computed(() => ({
+    page: currentPage.value,
+    perPage: 15,
+    status: filterStatus.value
+  }))
+})
+
+const instansiList = computed(() => instansiResponse.value?.data || [])
+
+const onPageChange = (page: number) => {
+  currentPage.value = page
+}
 
 // Toast notification state
 const toast = reactive({

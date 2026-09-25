@@ -14,6 +14,14 @@
 
         <!-- Navigation Buttons -->
         <div class="flex items-center space-x-2 sm:space-x-3">
+          <NuxtLink 
+            to="/panduan" 
+            class="px-3.5 sm:px-4 h-9 text-xs sm:text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 rounded-lg transition-all duration-200 flex items-center space-x-1.5 active:scale-95"
+          >
+            <BookOpen class="w-4 h-4 text-slate-500" />
+            <span>Panduan</span>
+          </NuxtLink>
+
           <template v-if="loggedIn">
             <NuxtLink 
               :to="user?.role === 'SUPER_ADMIN' ? '/super-admin' : '/admin'"
@@ -48,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { LayoutGrid, ArrowRight, LogIn, Building2 } from 'lucide-vue-next'
+import { LayoutGrid, ArrowRight, LogIn, Building2, BookOpen } from 'lucide-vue-next'
 
 const session = useUserSession()
 const loggedIn = session.loggedIn
