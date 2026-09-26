@@ -3,7 +3,7 @@
     <LayoutTheSidebar />
     <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
       <LayoutTheHeader />
-      <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+      <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
         <slot />
       </main>
     </div>
