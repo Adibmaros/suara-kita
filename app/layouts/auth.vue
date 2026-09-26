@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen w-full bg-white text-slate-900 font-sans flex">
+  <div class="min-h-screen w-full bg-slate-50 text-slate-900 font-sans flex flex-col lg:flex-row">
     <!-- Left Column: Unsplash Visual Hero Showcase (Visible on Laptop/Desktop lg screens) -->
-    <div class="hidden lg:flex lg:w-1/2 relative bg-slate-900 overflow-hidden flex-col justify-between p-12 text-white">
+    <div class="hidden lg:flex lg:w-1/2 relative bg-slate-900 overflow-hidden flex-col justify-between p-12 text-white min-h-screen">
       <!-- Background Image with Overlay -->
       <img
         src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1600&q=80"
@@ -40,7 +40,7 @@
         <!-- Testimonial Quote Pill -->
         <div class="pt-4">
           <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-xs text-slate-200 space-y-2">
-            <p class="italic">"SuaraKita mempermudah seluruh proses pemilihan BEM di kampus kami. Real-time leaderboard & checkout via WA sangat praktis!"</p>
+            <p class="italic">"SuaraKita mempermudah seluruh proses pemilihan BEM di kampus kami. Real-time leaderboard & checkout via WA sangat practical!"</p>
             <div class="font-bold text-white text-[11px]">— Panitia Pemilu Kampus FIKOM</div>
           </div>
         </div>
@@ -54,27 +54,27 @@
     </div>
 
     <!-- Right Column: Form Container -->
-    <div class="w-full lg:w-1/2 flex flex-col justify-between p-6 sm:p-12 overflow-y-auto bg-slate-50/50">
+    <div class="w-full lg:w-1/2 flex flex-col justify-between p-4 sm:p-8 lg:p-12 overflow-y-auto bg-slate-50 min-h-screen">
       <!-- Mobile Top Header Logo -->
-      <div class="lg:hidden flex items-center justify-between pb-6">
-        <NuxtLink to="/" class="inline-flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-lg bg-slate-900 text-white font-extrabold text-base flex items-center justify-center">
-            S
+      <div class="lg:hidden flex items-center justify-between pb-4 sm:pb-6">
+        <NuxtLink to="/" class="inline-flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white font-extrabold text-base flex items-center justify-center shadow-sm">
+            SK
           </div>
           <span class="text-lg font-black text-slate-900">SuaraKita</span>
         </NuxtLink>
-        <NuxtLink to="/" class="text-xs text-slate-500 font-semibold hover:text-slate-900">
+        <NuxtLink to="/" class="text-xs text-slate-600 font-semibold hover:text-slate-900 bg-white border border-slate-200/80 px-3 py-1.5 rounded-lg shadow-2xs">
           Beranda
         </NuxtLink>
       </div>
 
       <!-- Main Slot Content (Login / Register Form) -->
-      <div class="w-full max-w-xl xl:max-w-2xl mx-auto my-auto py-6 sm:py-10">
+      <div class="w-full max-w-lg mx-auto my-auto py-4 sm:py-6">
         <slot />
       </div>
 
       <!-- Footer links for mobile -->
-      <div class="lg:hidden text-center text-xs text-slate-400 pt-6 border-t border-slate-200/60">
+      <div class="lg:hidden text-center text-xs text-slate-400 pt-6 border-t border-slate-200/60 mt-4">
         © {{ new Date().getFullYear() }} SuaraKita Platform
       </div>
     </div>
