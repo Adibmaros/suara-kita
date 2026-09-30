@@ -31,7 +31,21 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 
 ## 🎬 3. Skenario & Alur Demo yang Direkomendasikan
 
-### Skenario A: Alur Voter (Beli Token & Vote Real-time)
+### Skenario A: Pendaftaran & Setup Kontes (End-to-End)
+1. **Admin Instansi**: Buka halaman registrasi di `http://localhost:3000/register`.
+2. Daftar sebagai Instansi baru (misal: *Himpunan Mahasiswa Informatika*).
+3. **Super Admin**: Login dengan akun Super Admin (`superadmin@suarakita.id`), lalu buka menu **Persetujuan Instansi**.
+4. Klik **"Approve"** pada instansi yang baru saja mendaftar.
+5. **Admin Instansi**: Login dengan akun instansi yang baru dibuat.
+6. Masuk ke menu **Kelola Kontes** → Klik **"Buat Kontes Baru"**.
+7. Setelah kontes jadi, buka detail kontes tersebut untuk:
+   - Menambahkan **Kandidat/Paslon** (beserta foto dan visi-misi).
+   - Membuat **Paket Token** (mengatur harga dan jumlah suara per paket).
+8. Salin **Link Voting Publik** dan bagikan (Lanjut ke Skenario B).
+
+---
+
+### Skenario B: Alur Voter (Beli Token & Vote Real-time)
 1. Buka URL Kontes: `http://localhost:3000/i/bem-fikom/kontes/1`.
 2. Tunjukkan **Daftar Kandidat** dan **Leaderboard Suara Live**.
 3. Pilih salah satu **Paket Token** (misal *Paket Sultan - 15 Suara*), klik **"Beli Token via WA"**.
@@ -41,7 +55,7 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 
 ---
 
-### Skenario B: Alur Admin Instansi (Verifikasi Pembelian & Generate Token)
+### Skenario C: Alur Admin Instansi (Verifikasi Pembelian & Generate Token)
 1. Login sebagai Admin BEM FIKOM di `http://localhost:3000/login` (`admin.fikom@instansi.ac.id` / `Password123!`).
 2. Masuk ke menu **Kelola Kontes** → Klik **"Orders"** pada *Pemilihan Duta FIKOM 2026*.
 3. Tunjukkan daftar pesanan token yang berstatus **`MENUNGGU_VERIFIKASI`**.
@@ -50,7 +64,7 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 
 ---
 
-### Skenario C: Alur Super Admin (Persetujuan Instansi & Rekap Komisi 20%)
+### Skenario D: Alur Super Admin (Persetujuan Instansi & Rekap Komisi 20%)
 1. Coba login dengan akun `admin.seni@instansi.ac.id` / `Password123!` → Tunjukkan sistem menolak karena instansi berstatus **`PENDING`**.
 2. Logout, lalu login sebagai Super Admin (`superadmin@suarakita.id` / `SuperAdminSuaraKita2026!`).
 3. Buka menu **Persetujuan Instansi** → Tunjukkan instansi *UKM Seni & Musik Mahasiswa* berstatus `PENDING`.

@@ -1,0 +1,127 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="alur-suarakita-lengkap" name="Alur Lengkap">
+    <mxGraphModel dx="1422" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Swimlanes -->
+        <mxCell id="swimlane-voter" value="Pemilih (Voter)" style="swimlane;whiteSpace=wrap;html=1;startSize=23;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="240" height="1160" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="swimlane-admin" value="Admin Instansi (Panitia)" style="swimlane;whiteSpace=wrap;html=1;startSize=23;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="240" height="1160" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="swimlane-super" value="Super Admin (Platform)" style="swimlane;whiteSpace=wrap;html=1;startSize=23;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="240" height="1160" as="geometry" />
+        </mxCell>
+
+        <!-- Nodes -->
+        <mxCell id="a1" value="1. Register Akun Instansi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="60" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="2. Review &amp; Approve Akun" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-super">
+          <mxGeometry x="40" y="130" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="3. Buat Kontes Baru" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="200" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="4. Tambah Kandidat" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="270" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="5. Buat Paket Token" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="340" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="6. Share Link Voting/Kontes" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="410" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="v1" value="7. Akses URL Link Voting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-voter">
+          <mxGeometry x="40" y="480" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v2" value="8. Pilih Paket &amp; Beli via WA" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-voter">
+          <mxGeometry x="40" y="550" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="a6" value="9. Terima Pesan &amp; Bukti (WA)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="620" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="10. Lihat List Order &amp; Verifikasi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="690" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="s2" value="11. Sistem Potong Komisi 20%" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-super">
+          <mxGeometry x="40" y="760" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="12. Kirim Kode Token (WA)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="830" width="160" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="v3" value="13. Terima &amp; Redeem Token" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-voter">
+          <mxGeometry x="40" y="900" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v4" value="14. Vote &amp; Update Leaderboard" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-voter">
+          <mxGeometry x="40" y="970" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a9" value="15. Pantau Hasil (Dashboard)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-admin">
+          <mxGeometry x="40" y="1040" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="16. Pantau Rekap Komisi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="swimlane-super">
+          <mxGeometry x="40" y="1040" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" edge="1" parent="1" source="a1" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="s1" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="a2" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="a3" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="a4" target="a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="a5" target="v1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="v1" target="v2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="v2" target="a6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="a6" target="a7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Admin verifying triggers both commission calculation and token sending -->
+        <mxCell id="e10" edge="1" parent="1" source="a7" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="a7" target="a8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="e12" edge="1" parent="1" source="a8" target="v3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="v3" target="v4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="v4" target="a9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="a9" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
