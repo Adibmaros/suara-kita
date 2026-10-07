@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasil & Live Count Pemilihan - Admin Suara Kita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans flex flex-col">
+
+  <div class="bg-blue-900/40 border-b border-blue-500/30 py-2 px-4 text-center text-xs text-blue-200">
+    💡 Prototype View. <a href="index.html" class="underline font-bold hover:text-white">← Navigasi Prototype Hub</a>
+  </div>
+
+  <div class="flex-1 flex overflow-hidden">
+    <aside class="w-64 bg-slate-950 border-r border-slate-800 flex flex-col justify-between hidden md:flex">
+      <div>
+        <div class="p-6 flex items-center space-x-3 border-b border-slate-800">
+          <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white text-lg">SK</div>
+          <div>
+            <h1 class="font-bold text-white text-sm">Suara Kita</h1>
+            <span class="text-[10px] text-blue-400 font-semibold block uppercase">Admin Instansi</span>
+          </div>
+        </div>
+
+        <nav class="p-4 space-y-1.5 text-xs font-semibold">
+          <a href="admin-dashboard.html" class="flex items-center space-x-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all">
+            <i class="fa-solid fa-chart-line text-sm w-4"></i>
+            <span>Overview Dashboard</span>
+          </a>
+          <a href="admin-kontes-list.html" class="flex items-center space-x-3 px-3.5 py-2.5 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl">
+            <i class="fa-solid fa-box-archive text-sm w-4"></i>
+            <span>Kelola Kontes Pemilu</span>
+          </a>
+          <a href="admin-kontes-buat.html" class="flex items-center space-x-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all">
+            <i class="fa-solid fa-plus-circle text-sm w-4"></i>
+            <span>Buat Kontes Baru</span>
+          </a>
+          <a href="admin-profil.html" class="flex items-center space-x-3 px-3.5 py-2.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all">
+            <i class="fa-solid fa-building text-sm w-4"></i>
+            <span>Profil Instansi</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col overflow-y-auto">
+      
+      <header class="h-16 border-b border-slate-800 bg-slate-900/80 px-6 flex items-center justify-between sticky top-0 z-20 backdrop-blur">
+        <div class="flex items-center space-x-3 text-xs">
+          <a href="admin-kontes-list.html" class="text-slate-400 hover:text-white">Kontes</a>
+          <i class="fa-solid fa-chevron-right text-slate-600 text-[10px]"></i>
+          <span class="text-white font-semibold">Realtime Quick Count</span>
+        </div>
+        <button class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow">
+          <i class="fa-solid fa-file-pdf mr-1"></i> Cetak Berita Acara PDF
+        </button>
+      </header>
+
+      <main class="p-6 max-w-6xl mx-auto w-full space-y-8">
+
+        <!-- Title -->
+        <div class="text-center max-w-xl mx-auto">
+          <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full inline-flex items-center gap-1.5 mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> LIVE COUNTING SYSTEM
+          </span>
+          <h2 class="text-3xl font-black text-white">Hasil Rekapitulasi Perolehan Suara</h2>
+          <p class="text-xs text-slate-400 mt-1">Pemilihan Presiden & Wakil Presiden BEM KM 2026</p>
+        </div>
+
+        <!-- Metric Summary Card -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl text-center">
+            <div class="text-xs text-slate-400 font-semibold mb-1">TOTAL SUARA MASUK</div>
+            <div class="text-3xl font-black text-white">920</div>
+            <div class="text-[10px] text-slate-500 mt-1">Suara Sah Terverifikasi</div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl text-center">
+            <div class="text-xs text-slate-400 font-semibold mb-1">TOTAL DPT KUOTA</div>
+            <div class="text-3xl font-black text-blue-400">1.200</div>
+            <div class="text-[10px] text-slate-500 mt-1">Pemilih Terdaftar</div>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 p-5 rounded-2xl text-center">
+            <div class="text-xs text-slate-400 font-semibold mb-1">PERSENTASE SUARA</div>
+            <div class="text-3xl font-black text-emerald-400">76,6%</div>
+            <div class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-circle-check"></i> Memenuhi Quorum</div>
+          </div>
+        </div>
+
+        <!-- Paslon Progress / Bar Chart Visualization -->
+        <div class="bg-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+          <h3 class="text-lg font-bold text-white mb-6">Grafik Perolehan Suara Paslon</h3>
+
+          <!-- Candidate 1 Result -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-sm font-bold">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-blue-600 text-white text-xs flex items-center justify-center">01</span>
+                <span class="text-white">Aditya Pratama & Maya Sativa</span>
+              </div>
+              <span class="text-blue-400 font-mono text-base">552 Suara (60.0%)</span>
+            </div>
+            <div class="w-full h-5 bg-slate-900 rounded-full overflow-hidden p-1 border border-slate-800">
+              <div class="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-1000" style="width: 60%;"></div>
+            </div>
+          </div>
+
+          <!-- Candidate 2 Result -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-sm font-bold">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-lg bg-purple-600 text-white text-xs flex items-center justify-center">02</span>
+                <span class="text-white">Bagus Wijaya & Rania Putri</span>
+              </div>
+              <span class="text-purple-400 font-mono text-base">368 Suara (40.0%)</span>
+            </div>
+            <div class="w-full h-5 bg-slate-900 rounded-full overflow-hidden p-1 border border-slate-800">
+              <div class="h-full bg-gradient-to-r from-purple-600 to-pink-500 rounded-full transition-all duration-1000" style="width: 40%;"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+</body>
+</html>

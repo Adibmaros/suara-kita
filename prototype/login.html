@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk - Suara Kita</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between">
+
+  <!-- Hub Banner -->
+  <div class="bg-blue-900/40 border-b border-blue-500/30 py-2 px-4 text-center text-xs text-blue-200">
+    💡 Prototype View. <a href="index.html" class="underline font-bold hover:text-white">← Navigasi Prototype Hub</a>
+  </div>
+
+  <div class="flex-1 flex items-center justify-center p-4 py-12">
+    <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      
+      <!-- Top Glow -->
+      <div class="absolute -top-12 -right-12 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl"></div>
+
+      <!-- Header -->
+      <div class="flex items-center space-x-3 mb-6">
+        <a href="landing.html" class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20">
+          SK
+        </a>
+        <div>
+          <h2 class="text-xl font-bold text-white">Masuk ke Suara Kita</h2>
+          <p class="text-xs text-slate-400">Portal Admin Instansi & Super Admin</p>
+        </div>
+      </div>
+
+      <!-- Quick Role Toggle Simulator -->
+      <div class="bg-slate-800/80 p-1.5 rounded-xl flex text-xs font-semibold mb-6 border border-slate-700/60">
+        <button onclick="setRole('admin')" id="btn-admin" class="flex-1 py-2 rounded-lg bg-blue-600 text-white shadow transition-all text-center">
+          Admin Instansi
+        </button>
+        <button onclick="setRole('superadmin')" id="btn-superadmin" class="flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all text-center">
+          Super Admin
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form action="admin-dashboard.html" id="loginForm" class="space-y-4">
+        
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email Admin</label>
+          <div class="relative">
+            <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
+            <input type="email" id="emailInput" value="admin@bem.univ.ac.id" required class="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors" placeholder="admin@instansi.com">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Password</label>
+            <a href="#" class="text-xs text-blue-400 hover:underline">Lupa password?</a>
+          </div>
+          <div class="relative">
+            <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
+            <input type="password" value="••••••••••••" required class="w-full pl-10 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors" placeholder="••••••••">
+          </div>
+        </div>
+
+        <button type="submit" id="submitBtn" class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/20 transition-all mt-2">
+          Masuk Dashboard Admin Instansi <i class="fa-solid fa-right-to-bracket ml-1.5"></i>
+        </button>
+
+      </form>
+
+      <div class="mt-6 pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
+        Belum mendaftarkan instansi Anda? <a href="register.html" class="text-blue-400 font-bold hover:underline">Daftar Instansi</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function setRole(role) {
+      const form = document.getElementById('loginForm');
+      const emailInput = document.getElementById('emailInput');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnAdmin = document.getElementById('btn-admin');
+      const btnSuperadmin = document.getElementById('btn-superadmin');
+
+      if(role === 'superadmin') {
+        form.action = 'superadmin-dashboard.html';
+        emailInput.value = 'superadmin@suarakita.id';
+        submitBtn.innerHTML = 'Masuk Super Admin Dashboard <i class="fa-solid fa-user-shield ml-1.5"></i>';
+        btnSuperadmin.className = 'flex-1 py-2 rounded-lg bg-rose-600 text-white shadow transition-all text-center';
+        btnAdmin.className = 'flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all text-center';
+      } else {
+        form.action = 'admin-dashboard.html';
+        emailInput.value = 'admin@bem.univ.ac.id';
+        submitBtn.innerHTML = 'Masuk Dashboard Admin Instansi <i class="fa-solid fa-right-to-bracket ml-1.5"></i>';
+        btnAdmin.className = 'flex-1 py-2 rounded-lg bg-blue-600 text-white shadow transition-all text-center';
+        btnSuperadmin.className = 'flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all text-center';
+      }
+    }
+  </script>
+
+</body>
+</html>
