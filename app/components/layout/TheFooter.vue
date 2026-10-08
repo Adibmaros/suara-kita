@@ -15,10 +15,6 @@
           <p class="text-xs text-slate-500 leading-relaxed">
             Platform kontes & polling online berbasis token transparan untuk instansi, organisasi, dan sekolah.
           </p>
-          <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Semua Sistem Normal</span>
-          </div>
         </div>
 
         <!-- Col 2: Platform Links -->
