@@ -1,91 +1,80 @@
 <template>
-  <section class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="text-center space-y-3 mb-12 sm:mb-16">
-      <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3.5 py-1 rounded-full border border-slate-200/60">
-        <Zap class="w-3.5 h-3.5 text-amber-500" />
-        <span>Alur Mudah & Praktis</span>
+  <section class="bg-slate-100/70 border-y border-slate-200/80 py-10 sm:py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-8 sm:mb-12 space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-700 bg-white px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
+          Alur Partisipasi
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          4 Langkah Mudah Berpartisipasi
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+          Cukup menggunakan perangkat smartphone Anda, berikan suara sah dalam beberapa detik.
+        </p>
       </div>
-      <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">Cara Kerja Sistem</h2>
-      <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
-        Hanya butuh 3 langkah singkat untuk memulai event pemungutan suara instansi Anda.
-      </p>
-    </div>
 
-    <!-- Process Steps Flow with Visual Connectors -->
-    <div class="relative">
-      <!-- Connecting Line (Desktop) -->
-      <div class="hidden md:block absolute top-1/2 left-12 right-12 h-0.5 bg-slate-200 -translate-y-6 -z-10"></div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Step 1 -->
-        <div class="bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 space-y-5 shadow-xs hover:shadow-xl transition-all duration-300 relative group">
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <span class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-mono font-black text-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-              01
+            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+              1
             </span>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
-              Langkah 1
-            </span>
+            <Vote class="w-5 h-5 text-blue-600" />
           </div>
-
-          <div class="space-y-2">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Buat Instansi & Event</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Daftarkan organisasi Anda, tambahkan daftar kandidat paslon, dan atur harga paket token sesuai kebutuhan event.
+          <div>
+            <h4 class="text-sm font-bold text-slate-900">Pilih Kontes Voting</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              Cari dan buka halaman kontes pemilihan dari instansi, komunitas, atau organisasi Anda.
             </p>
-          </div>
-
-          <div class="pt-2 flex items-center space-x-2 text-xs text-slate-500 font-medium">
-            <Building2 class="w-4 h-4 text-slate-400" />
-            <span>Gratis Pembuatan Instansi</span>
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 space-y-5 shadow-xs hover:shadow-xl transition-all duration-300 relative group">
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <span class="w-12 h-12 rounded-2xl bg-emerald-600 text-white font-mono font-black text-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-              02
+            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+              2
             </span>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/60">
-              Langkah 2
-            </span>
+            <MessageSquare class="w-5 h-5 text-blue-600" />
           </div>
-
-          <div class="space-y-2">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Pembelian Token Support</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Pendukung memilih paket suara dan mengirim bukti bayar via WhatsApp Admin. Kode token langsung terbit.
+          <div>
+            <h4 class="text-sm font-bold text-slate-900">Dapatkan Kode Token</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              Hubungi Admin WA Instansi/Organisasi untuk menerima kode token voting resmi.
             </p>
-          </div>
-
-          <div class="pt-2 flex items-center space-x-2 text-xs text-slate-500 font-medium">
-            <Smartphone class="w-4 h-4 text-emerald-500" />
-            <span>Checkout Terhubung WA</span>
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-8 space-y-5 shadow-xs hover:shadow-xl transition-all duration-300 relative group">
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
           <div class="flex items-center justify-between">
-            <span class="w-12 h-12 rounded-2xl bg-slate-900 text-white font-mono font-black text-lg flex items-center justify-center shadow-md group-hover:scale-110 transition-transform">
-              03
+            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+              3
             </span>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-100 px-2.5 py-1 rounded-md">
-              Langkah 3
-            </span>
+            <KeyRound class="w-5 h-5 text-blue-600" />
           </div>
-
-          <div class="space-y-2">
-            <h3 class="text-base sm:text-lg font-bold text-slate-900">Redeem & Live Leaderboard</h3>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Voter memasukkan kode token di halaman voting. Perolehan suara kandidat langsung ter-update secara otomatis!
+          <div>
+            <h4 class="text-sm font-bold text-slate-900">Input Token Unik</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              Masukkan 8 digit kode token pada bilik suara digital yang tersedia.
             </p>
           </div>
+        </div>
 
-          <div class="pt-2 flex items-center space-x-2 text-xs text-slate-500 font-medium">
-            <Trophy class="w-4 h-4 text-amber-500" />
-            <span>Update Skor Real-Time</span>
+        <!-- Step 4 -->
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+              4
+            </span>
+            <CheckCircle2 class="w-5 h-5 text-emerald-600" />
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-slate-900">Suara Terhitung</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+              Suara Anda resmi tercatat dan langsung memperbarui hasil di leaderboard live.
+            </p>
           </div>
         </div>
       </div>
@@ -94,5 +83,5 @@
 </template>
 
 <script setup lang="ts">
-import { Zap, Building2, Smartphone, Trophy } from 'lucide-vue-next'
+import { Vote, MessageSquare, KeyRound, CheckCircle2 } from 'lucide-vue-next'
 </script>

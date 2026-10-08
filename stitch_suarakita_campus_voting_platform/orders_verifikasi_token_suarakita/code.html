@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-surface-variant":"#464553","secondary-fixed":"#ffddb8","secondary-fixed-dim":"#ffb95f","secondary":"#855300","surface-bright":"#f8f9ff","primary-fixed":"#e2dfff","on-secondary":"#ffffff","on-secondary-fixed-variant":"#653e00","primary-container":"#3730a3","inverse-primary":"#c3c0ff","surface":"#f8f9ff","on-primary-container":"#a9a7ff","surface-dim":"#cbdbf5","tertiary-container":"#004e1e","outline":"#777584","on-primary-fixed":"#0f0069","primary":"#1f108e","on-secondary-container":"#684000","tertiary":"#003512","on-tertiary":"#ffffff","primary-fixed-dim":"#c3c0ff","surface-container":"#e5eeff","on-tertiary-container":"#48c768","on-error-container":"#93000a","on-primary":"#ffffff","inverse-surface":"#213145","on-primary-fixed-variant":"#3b35a7","tertiary-fixed-dim":"#62df7d","tertiary-fixed":"#7ffc97","on-tertiary-fixed":"#002109","surface-tint":"#544fc0","on-error":"#ffffff","on-surface":"#0b1c30","error":"#ba1a1a","on-secondary-fixed":"#2a1700","surface-container-low":"#eff4ff","on-tertiary-fixed-variant":"#005320","surface-variant":"#d3e4fe","surface-container-high":"#dce9ff","outline-variant":"#c8c4d5","secondary-container":"#fea619","surface-container-highest":"#d3e4fe","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","surface-container-lowest":"#ffffff","error-container":"#ffdad6","background":"#f8f9ff"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin":"1rem","space-lg":"1.5rem","margin-tablet":"1.5rem","space-md":"1rem","gutter-desktop":"1.5rem","space-xs":"0.25rem","gutter":"1rem","margin-desktop":"2.5rem","space-sm":"0.5rem","space-xl":"2rem"},fontFamily:{"headline-lg-mobile":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"]},fontSize:{"headline-lg-mobile":["24px",{lineHeight:"32px",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"headline-md":["22px",{lineHeight:"28px",fontWeight:"700"}],"display-hero-mobile":["30px",{lineHeight:"38px",fontWeight:"800"}],"body-sm":["13px",{lineHeight:"18px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"26px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"22px",fontWeight:"400"}],"title-md":["16px",{lineHeight:"22px",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",fontWeight:"700"}],"display-hero":["40px",{lineHeight:"48px",fontWeight:"800"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg px-space-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="px-space-sm flex items-center gap-space-sm"><div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[24px]">how_to_vote</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">SuaraKita</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Portal Kampus</span></div></div><div class="p-space-sm rounded-xl bg-surface-container flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm min-w-0"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md flex-shrink-0">BF</div><div class="min-w-0"><p class="font-title-md text-title-md truncate text-on-surface">BEM FIKOM Unpad</p><p class="font-body-sm text-body-sm text-on-surface-variant truncate">ID: KPU-KMP-2024</p></div></div><button class="text-on-surface-variant hover:text-on-surface flex-shrink-0 p-space-xs" type="button"><span class="material-symbols-outlined text-[20px]">unfold_more</span></button></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg rounded-xl"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="kelola-kontes" href="#"><span class="material-symbols-outlined text-[20px]">how_to_reg</span><span>Kelola Kontes</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="transaksi-token" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span>Orders / Transaksi Token</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="pengaturan-organisasi" href="#"><span class="material-symbols-outlined text-[20px]">corporate_fare</span><span>Pengaturan Organisasi</span></a></nav></div><div class="flex flex-col gap-space-md pt-space-md"><div class="p-space-sm rounded-xl bg-surface-container-lowest flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-sm"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed-dim opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-tertiary-container"></span></span><span class="font-label-sm text-label-sm text-tertiary">Audit KPU Terhubung</span></div><span class="material-symbols-outlined text-[16px] text-tertiary-container">verified</span></div><div class="flex flex-col gap-space-xs"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-md text-label-md" data-path="beranda-publik" href="#"><span class="material-symbols-outlined text-[18px]">open_in_new</span><span>Lihat Beranda Publik</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-md text-label-md" data-path="logout" href="#"><span class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">logout</span><span>Keluar Sesi</span></span><span class="font-label-sm text-label-sm text-outline">v2.4</span></a></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] px-space-xl flex items-center justify-between gap-space-lg"><div class="relative flex-1 max-w-md"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full bg-surface-container-lowest rounded-full py-space-sm pl-11 pr-space-md font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary-container shadow-[0_1px_8px_rgba(0,0,0,0.04)]" placeholder="Cari kontes, nomor transaksi..." type="text"/></div><div class="flex items-center gap-space-md flex-shrink-0"><button class="relative p-space-sm rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container ring-2 ring-surface"></span></button><a class="bg-primary-container text-on-primary font-label-lg text-label-lg px-space-lg py-space-sm rounded-full flex items-center gap-space-xs hover:bg-primary transition-all shadow-[0_1px_8px_rgba(0,0,0,0.04)]" data-path="buat-kontes-baru" href="#"><span class="material-symbols-outlined text-[18px]">add</span><span>Buat Kontes Baru</span></a><div class="h-8 w-px bg-surface-container"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-md text-label-md text-on-surface font-bold leading-tight">Admin BEM FIKOM</span><span class="font-label-sm text-label-sm text-on-surface-variant">Super Admin</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-20 bg-surface min-h-screen px-space-xl py-space-lg"><div class="flex flex-col w-full gap-space-lg pb-12">
+<!-- Breadcrumb & Top Bar Meta -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">Ormawa</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="hover:text-primary cursor-pointer transition-colors">BEM FIKOM</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<span class="font-semibold text-primary">Kelola Transaksi &amp; Token</span>
+</nav>
+<div class="flex items-center gap-space-xs px-3 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Ledger KPU: Blok #88921-SHA256 Sinkron</span>
+</div>
+</div>
+<!-- Page Header Banner -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
+<div class="flex flex-col max-w-3xl">
+<div class="inline-flex items-center gap-2 mb-2">
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wider font-bold">
+          E-Voting &amp; Fundraising Ledger
+        </span>
+<span class="text-outline text-label-sm font-label-sm">• ID: KPU-KMP-2024</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+        Manajemen Order &amp; Verifikasi Token
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+        Verifikasi pembayaran token donasi via WhatsApp, aktifkan hak suara pemilih, dan kelola rekonsiliasi kas ormawa secara transparan.
+      </p>
+</div>
+<!-- Top Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm flex-shrink-0">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container-lowest text-on-surface font-label-lg text-label-lg shadow-sm hover:bg-surface-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] text-outline">download</span>
+<span>Unduh Rekap CSV</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-surface-container text-primary font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">forum</span>
+<span>Sinkronisasi Bot WA</span>
+</button>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary transition-all" onclick="openSuccessModal('ORD-88219', 'Faris Pratama', 'Paket Sultan (15 Suara)', '25.000', 'SK-A1B2C3D4')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Input Pesanan Manual</span>
+</button>
+</div>
+</div>
+<!-- 4 Quick Stat Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Stat 1: Total Orders -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Pesanan Masuk</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">342</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Order</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-semibold mt-1">Rp 56.920.000 Bruto</p>
+</div>
+<div class="mt-3 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Target Donasi Ormawa</span>
+<span class="text-tertiary font-bold">94.8% tercapai</span>
+</div>
+</div>
+<!-- Stat 2: Menunggu Verifikasi (Amber) -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary font-semibold uppercase tracking-wider">Menunggu Verifikasi</span>
+<div class="w-9 h-9 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-secondary">14</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
+            Prioritas
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary font-semibold mt-1">Rp 420.000 Tertahan</p>
+</div>
+<div class="mt-3 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Perlu tinjau bukti mutasi</span>
+<span class="text-secondary font-semibold">&lt; 15 menit lalu</span>
+</div>
+</div>
+<!-- Stat 3: Berhasil Diverifikasi (Green) -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-tertiary-container font-semibold uppercase tracking-wider">Berhasil Diverifikasi</span>
+<div class="w-9 h-9 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-tertiary">326</span>
+<span class="font-label-sm text-label-sm text-tertiary-container font-semibold">Order Lolos</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary font-semibold mt-1">Rp 56.500.000 Masuk Kas</p>
+</div>
+<div class="mt-3 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Rasio Sukses</span>
+<span class="text-tertiary-container font-bold">95.3% tanpa sengketa</span>
+</div>
+</div>
+<!-- Stat 4: SLA Verifikasi -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Rata-rata Waktu Verifikasi</span>
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</div>
+</div>
+<div class="mt-4">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface">4.2</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">Menit</span>
+</div>
+<p class="font-body-sm text-body-sm text-tertiary font-semibold mt-1">2.1x Lebih Cepat dari Target</p>
+</div>
+<div class="mt-3 pt-3 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Admin Aktif Piket</span>
+<span class="font-semibold text-primary">3 Pengurus BEM</span>
+</div>
+</div>
+</div>
+<!-- Filters, Tabs & Search Section -->
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<!-- Top Row: Tabs & Quick Action Badges -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-1">
+<div class="flex items-center gap-2 overflow-x-auto">
+<button class="px-4 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md transition-all shadow-sm flex items-center gap-2" type="button">
+<span>Semua Transaksi</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed-dim text-primary text-[10px] font-bold">342</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all flex items-center gap-2" type="button">
+<span>Perlu Verifikasi</span>
+<span class="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold text-[11px]">
+            14
+          </span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all flex items-center gap-2" type="button">
+<span>Selesai &amp; Terbit</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-lowest text-on-surface-variant text-[10px] font-semibold">326</span>
+</button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-all" type="button">
+<span>Dibatalkan / Tolak (2)</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm self-end lg:self-auto">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">sync</span>
+<span>Auto-refresh setiap 30 detik</span>
+</div>
+</div>
+<!-- Filter Fields Bar -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-sm pt-2">
+<!-- Search Input -->
+<div class="md:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[20px] text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary shadow-inner" placeholder="Cari nomor WhatsApp, Order ID, atau nama pemilih..." type="text"/>
+</div>
+<!-- Kontes Selector -->
+<div class="md:col-span-3 relative">
+<select class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option>Semua Kontes BEM FIKOM</option>
+<option selected="">Pemilihan Duta FIKOM 2026</option>
+<option>Sayembara Mars &amp; Jingle Ormawa</option>
+<option>Kandidat Terbaik BPM 2025</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+<!-- Status Selector -->
+<div class="md:col-span-2 relative">
+<select class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option>Status: Semua</option>
+<option>Menunggu Verifikasi</option>
+<option>Selesai</option>
+<option>Ditolak</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+<!-- Date Range Selector -->
+<div class="md:col-span-2 relative">
+<select class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option>Hari Ini (26 Okt)</option>
+<option selected="">7 Hari Terakhir</option>
+<option>Bulan Ini</option>
+<option>Custom Periode</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">date_range</span>
+</div>
+</div>
+</div>
+<!-- Orders Data Table Container -->
+<div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md tracking-wider uppercase">
+<th class="py-3.5 px-5 font-semibold">Order ID &amp; Waktu</th>
+<th class="py-3.5 px-5 font-semibold">Pembeli &amp; WhatsApp</th>
+<th class="py-3.5 px-5 font-semibold">Paket Token</th>
+<th class="py-3.5 px-5 font-semibold">Nominal</th>
+<th class="py-3.5 px-5 font-semibold text-center">Bukti Transfer</th>
+<th class="py-3.5 px-5 font-semibold">Status</th>
+<th class="py-3.5 px-5 font-semibold text-right">Aksi &amp; Kode Token</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-md text-body-md text-on-surface">
+<!-- Row 1: Menunggu Verifikasi (Faris Pratama) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-mono font-bold text-primary text-title-md">#ORD-88219</span>
+<span class="font-label-sm text-label-sm text-outline">Hari ini, 14:28 WIB</span>
+<span class="text-[11px] text-on-surface-variant">BCA Transfer • Rek. 4910</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Faris Pratama</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold">Ilkom '22</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-mono text-body-sm text-on-surface-variant">+62 812-3456-7890</span>
+<a class="p-1 rounded-full text-tertiary-container hover:bg-tertiary-fixed transition-colors" href="https://wa.me/6281234567890" target="_blank" title="Buka WhatsApp Langsung">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col gap-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold w-fit">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                  Paket Sultan (15 Suara)
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Untuk No. 02 - Arkan &amp; Salsa</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Rp 25.000</span>
+<span class="text-[11px] text-tertiary font-semibold">Kas Bersih: Rp 20.000</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle text-center">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="previewImage('BCA Mobile: Faris Pratama Rp 25.000')" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+<span>Lihat Bukti</span>
+</button>
+</td>
+<td class="py-4 px-5 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                MENUNGGU VERIFIKASI
+              </span>
+</td>
+<td class="py-4 px-5 align-middle text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="inline-flex items-center gap-1 px-3.5 py-2 rounded-full bg-tertiary-container text-on-primary font-label-md text-label-md hover:bg-tertiary shadow-sm transition-all" onclick="openSuccessModal('ORD-88219', 'Faris Pratama', 'Paket Sultan (15 Suara)', '25.000', 'SK-A1B2C3D4')" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Verifikasi</span>
+</button>
+<a class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" href="https://wa.me/6281234567890" target="_blank" title="Hubungi WA">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<button class="p-2 rounded-full text-error hover:bg-error-container transition-colors" title="Tolak Pesanan" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Menunggu Verifikasi (Nabila Rachmania) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-mono font-bold text-primary text-title-md">#ORD-88218</span>
+<span class="font-label-sm text-label-sm text-outline">Hari ini, 14:22 WIB</span>
+<span class="text-[11px] text-on-surface-variant">QRIS Merchant BEM</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Nabila Rachmania</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold">Humas '23</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-mono text-body-sm text-on-surface-variant">+62 857-1982-4411</span>
+<a class="p-1 rounded-full text-tertiary-container hover:bg-tertiary-fixed transition-colors" href="https://wa.me/6285719824411" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col gap-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-bold w-fit">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+                  Paket Juara (10 Suara)
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Untuk No. 01 - Zaki &amp; Clara</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Rp 50.000</span>
+<span class="text-[11px] text-tertiary font-semibold">Kas Bersih: Rp 40.000</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle text-center">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" onclick="previewImage('GoPay/QRIS: Nabila Rachmania Rp 50.000')" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt</span>
+<span>Lihat Bukti</span>
+</button>
+</td>
+<td class="py-4 px-5 align-middle">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                MENUNGGU VERIFIKASI
+              </span>
+</td>
+<td class="py-4 px-5 align-middle text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="inline-flex items-center gap-1 px-3.5 py-2 rounded-full bg-tertiary-container text-on-primary font-label-md text-label-md hover:bg-tertiary shadow-sm transition-all" onclick="openSuccessModal('ORD-88218', 'Nabila Rachmania', 'Paket Juara (10 Suara)', '50.000', 'SK-J9K8L7M6')" type="button">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Verifikasi</span>
+</button>
+<a class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" href="https://wa.me/6285719824411" target="_blank" title="Hubungi WA">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<button class="p-2 rounded-full text-error hover:bg-error-container transition-colors" title="Tolak Pesanan" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: SELESAI (Dimas Surya Wijaya) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-mono font-bold text-on-surface text-title-md">#ORD-88217</span>
+<span class="font-label-sm text-label-sm text-outline">Hari ini, 13:50 WIB</span>
+<span class="text-[11px] text-on-surface-variant">Mandiri Virtual Account</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Dimas Surya W.</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold">Jurnalistik '21</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-mono text-body-sm text-on-surface-variant">+62 821-9988-7712</span>
+<a class="p-1 rounded-full text-tertiary-container hover:bg-tertiary-fixed transition-colors" href="https://wa.me/6282199887712" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col gap-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold w-fit">
+<span class="material-symbols-outlined text-[14px]">how_to_vote</span>
+                  Paket Pemula (3 Suara)
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Untuk No. 03 - Dania Putri</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Rp 10.000</span>
+<span class="text-[11px] text-tertiary font-semibold">Kas Bersih: Rp 8.000</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle text-center">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">image</span>
+<span>Tervalidasi</span>
+</button>
+</td>
+<td class="py-4 px-5 align-middle">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                SELESAI
+              </span>
+</td>
+<td class="py-4 px-5 align-middle text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-primary font-mono text-label-md font-bold hover:bg-surface-container-high transition-all" onclick="navigator.clipboard.writeText('SK-E9X4T2W1'); alert('Token SK-E9X4T2W1 disalin!')" title="Klik untuk salin kode" type="button">
+<span>SK-E9X4T2W1</span>
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Kirim Ulang ke WhatsApp" type="button">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Detail Transaksi" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: SELESAI (Clara Alverina) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-mono font-bold text-on-surface text-title-md">#ORD-88216</span>
+<span class="font-label-sm text-label-sm text-outline">Hari ini, 12:45 WIB</span>
+<span class="text-[11px] text-on-surface-variant">Bank BRI Transfer</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Clara Alverina</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold">Manajemen Kom '22</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-mono text-body-sm text-on-surface-variant">+62 813-7744-1290</span>
+<a class="p-1 rounded-full text-tertiary-container hover:bg-tertiary-fixed transition-colors" href="https://wa.me/6281377441290" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col gap-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold w-fit">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                  Paket Sultan (15 Suara)
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Untuk No. 01 - Zaki &amp; Clara</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Rp 25.000</span>
+<span class="text-[11px] text-tertiary font-semibold">Kas Bersih: Rp 20.000</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle text-center">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">image</span>
+<span>Tervalidasi</span>
+</button>
+</td>
+<td class="py-4 px-5 align-middle">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                SELESAI
+              </span>
+</td>
+<td class="py-4 px-5 align-middle text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-primary font-mono text-label-md font-bold hover:bg-surface-container-high transition-all" onclick="navigator.clipboard.writeText('SK-Q8M2P4Z9'); alert('Token SK-Q8M2P4Z9 disalin!')" title="Klik untuk salin kode" type="button">
+<span>SK-Q8M2P4Z9</span>
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Kirim Ulang ke WhatsApp" type="button">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Detail Transaksi" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: SELESAI (Aditya Permadi) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-mono font-bold text-on-surface text-title-md">#ORD-88215</span>
+<span class="font-label-sm text-label-sm text-outline">Hari ini, 11:18 WIB</span>
+<span class="text-[11px] text-on-surface-variant">BCA Transfer • Rek. 8922</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-bold">Aditya Permadi</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold">TV &amp; Film '20</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="font-mono text-body-sm text-on-surface-variant">+62 878-1122-3344</span>
+<a class="p-1 rounded-full text-tertiary-container hover:bg-tertiary-fixed transition-colors" href="https://wa.me/6287811223344" target="_blank">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</a>
+</div>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col gap-0.5">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-bold w-fit">
+<span class="material-symbols-outlined text-[14px]">military_tech</span>
+                  Paket Juara (10 Suara)
+                </span>
+<span class="font-label-sm text-label-sm text-outline mt-0.5">Untuk No. 02 - Arkan &amp; Salsa</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Rp 50.000</span>
+<span class="text-[11px] text-tertiary font-semibold">Kas Bersih: Rp 40.000</span>
+</div>
+</td>
+<td class="py-4 px-5 align-middle text-center">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-outline font-label-sm text-label-sm hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">image</span>
+<span>Tervalidasi</span>
+</button>
+</td>
+<td class="py-4 px-5 align-middle">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                SELESAI
+              </span>
+</td>
+<td class="py-4 px-5 align-middle text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-primary font-mono text-label-md font-bold hover:bg-surface-container-high transition-all" onclick="navigator.clipboard.writeText('SK-T3V7K1L8'); alert('Token SK-T3V7K1L8 disalin!')" title="Klik untuk salin kode" type="button">
+<span>SK-T3V7K1L8</span>
+<span class="material-symbols-outlined text-[15px]">content_copy</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Kirim Ulang ke WhatsApp" type="button">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container transition-colors" title="Detail Transaksi" type="button">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Bulk Status Footer -->
+<div class="p-4 bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span>Menampilkan <strong class="text-on-surface">1 - 5</strong> dari <strong class="text-on-surface">342</strong> transaksi</span>
+<span class="text-outline">•</span>
+<span class="text-tertiary-container font-semibold">Otomasi Bot WA Aktif</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container text-outline cursor-not-allowed font-label-md text-label-md flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>Sebelumnya</span>
+</button>
+<span class="px-3 py-1 rounded-lg bg-primary text-on-primary font-bold text-label-md">1</span>
+<button class="px-3 py-1 rounded-lg hover:bg-surface-container text-on-surface text-label-md font-semibold" type="button">2</button>
+<button class="px-3 py-1 rounded-lg hover:bg-surface-container text-on-surface text-label-md font-semibold" type="button">3</button>
+<span class="text-outline">...</span>
+<button class="px-3 py-1 rounded-lg hover:bg-surface-container text-on-surface text-label-md font-semibold" type="button">69</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1" type="button">
+<span>Selanjutnya</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Informative Section: Audit & Kas Ormawa Policy -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span>Validasi SHA-256 Bilik Suara</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Setiap token yang diverifikasi memiliki tanda tangan kriptografi tak berulang, mencegah duplikasi suara pada bilik suara pemilihan Duta FIKOM.
+      </p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-tertiary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+<span>Bagi Hasil Kas Transparan</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        80% dana masuk ke kas kepanitiaan ormawa secara real-time, 20% dialokasikan untuk pemeliharaan server, kuota WhatsApp API, dan gerbang pembayaran.
+      </p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-lowest shadow-sm flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary font-title-md text-title-md">
+<span class="material-symbols-outlined text-[20px]">sms</span>
+<span>WhatsApp Auto-Responder</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Pemilih yang selesai diverifikasi akan menerima notifikasi pesan resmi dengan tautan otomatis ke bilik suara tanpa input manual berulang.
+      </p>
+</div>
+</div>
+<!-- Interactive Modal Component (Showcased / Activated on Verify Action) -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-200" id="successModalBackdrop">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+<!-- Modal Header -->
+<div class="px-6 py-5 bg-surface-container-low flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">
+              Verifikasi Berhasil &amp; Token Terbit! 🎉
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Token hak suara otomatis tersinkronisasi ke sistem KPU dan siap dikirim ke WhatsApp pemilih.
+            </p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg hover:bg-surface-container transition-colors" onclick="closeSuccessModal()" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-6 flex flex-col gap-space-md max-h-[75vh] overflow-y-auto">
+<!-- Large Highlighted Token Code Card -->
+<div class="p-6 rounded-2xl bg-primary text-on-primary flex flex-col items-center text-center shadow-lg relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-container rounded-full opacity-50 blur-xl pointer-events-none"></div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary-fixed-dim">
+            Kode Token Bilik Suara Resmi
+          </span>
+<div class="my-3 flex items-center gap-3">
+<span class="font-mono text-display-hero text-on-primary font-extrabold tracking-widest drop-shadow-sm" id="modalTokenCode">
+              SK-A1B2C3D4
+            </span>
+<button class="p-2.5 rounded-full bg-on-primary/10 hover:bg-on-primary/20 text-on-primary transition-all active:scale-95" onclick="copyTokenCode()" title="Salin Kode Token" type="button">
+<span class="material-symbols-outlined text-[22px]">content_copy</span>
+</button>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/80 text-primary-fixed-dim font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span id="modalTokenQuota">Aktif • Kuota 15 Hak Suara • Belum Dipakai</span>
+</div>
+</div>
+<!-- Order Meta Summary -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-surface-container-low font-body-sm text-body-sm">
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Order ID</span>
+<span class="font-mono font-bold text-on-surface" id="modalOrderId">#ORD-88219</span>
+</div>
+<div>
+<span class="text-outline text-label-sm font-label-sm block">Pemilih</span>
+<span class="font-bold text-on-surface" id="modalBuyerName">Faris Pratama</span>
+</div>
+<div class="col-span-2 sm:col-span-1">
+<span class="text-outline text-label-sm font-label-sm block">Paket Pilihan</span>
+<span class="font-semibold text-primary" id="modalPackageName">Paket Sultan (15 Suara)</span>
+</div>
+</div>
+<!-- Breakdown Financial Transparency Card -->
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3">
+<div class="flex items-center justify-between pb-2">
+<h4 class="font-title-md text-title-md text-on-surface font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary-container">receipt_long</span>
+<span>Rincian Transaksi &amp; Bagi Hasil Kas</span>
+</h4>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-semibold">SK-KPU Rekonsiliasi</span>
+</div>
+<div class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex justify-between items-center">
+<span>Nominal Pembayaran Pembeli</span>
+<span class="font-bold text-on-surface" id="modalAmountTotal">Rp 25.000</span>
+</div>
+<div class="flex justify-between items-center text-outline">
+<div class="flex items-center gap-1">
+<span>Platform &amp; Payment Gateway Fee (20%)</span>
+<span class="material-symbols-outlined text-[14px]" title="Biaya server KPU, WA OTP Cloud, &amp; QRIS switcher">info</span>
+</div>
+<span>-Rp 5.000</span>
+</div>
+<div class="h-px bg-surface-container my-1"></div>
+<div class="flex justify-between items-center text-on-surface font-title-md text-title-md font-bold">
+<span class="text-tertiary">Diterima Panitia / Kas Ormawa</span>
+<span class="text-tertiary text-headline-sm" id="modalAmountNet">Rp 20.000</span>
+</div>
+</div>
+<p class="text-[11px] text-outline italic">
+            *100% alokasi kas ormawa langsung dicatat pada buku kas bendahara BEM FIKOM.
+          </p>
+</div>
+<!-- WhatsApp Auto-Dispatch Action & Preview -->
+<div class="p-4 rounded-xl bg-tertiary-fixed/30 flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">send</span>
+              Preview Pesan WhatsApp Otomatis:
+            </span>
+<span class="text-[11px] text-tertiary-container font-semibold">Siap Kirim</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-lowest font-mono text-body-sm text-on-surface text-left whitespace-pre-line leading-relaxed shadow-inner">
+Halo Kak Faris! 👋
+Pembayaran token donasi kamu telah BERHASIL diverifikasi oleh BEM FIKOM Unpad.
+
+🗳️ Kode Token: *SK-A1B2C3D4*
+✨ Kuota Suara: 15 Hak Suara
+🔗 Bilik Suara: https://suarakita.id/vote/fikom2026
+
+Gunakan sebelum bilik suara ditutup pada 30 Oktober 2026. Terima kasih telah berpartisipasi!
+          </div>
+<div class="flex flex-col sm:flex-row items-center gap-2 pt-2">
+<a class="w-full sm:flex-1 py-3 px-5 rounded-full bg-tertiary-container hover:bg-tertiary text-on-primary font-label-lg text-label-lg font-bold flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99]" href="https://wa.me/6281234567890?text=Halo%20Kak%20Faris!%20Pembayaran%20telah%20diverifikasi.%20Kode%20token%20kamu:%20SK-A1B2C3D4" id="btnSendWa" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>Kirim Token via WhatsApp Sekarang</span>
+</a>
+<button class="w-full sm:w-auto py-3 px-6 rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-colors" onclick="closeSuccessModal()" type="button">
+              Selesai &amp; Tutup Modal
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function openSuccessModal(orderId, buyerName, packageName, amount, tokenCode) {
+    var modal = document.getElementById('successModalBackdrop');
+    if (modal) {
+      document.getElementById('modalOrderId').textContent = '#' + orderId;
+      document.getElementById('modalBuyerName').textContent = buyerName;
+      document.getElementById('modalPackageName').textContent = packageName;
+      document.getElementById('modalTokenCode').textContent = tokenCode;
+      document.getElementById('modalAmountTotal').textContent = 'Rp ' + amount;
+      
+      // Calculate net amount for display (approx 80%)
+      var numAmount = parseInt(amount.replace(/\./g, ''), 10) || 25000;
+      var netAmount = (numAmount * 0.8).toLocaleString('id-ID');
+      document.getElementById('modalAmountNet').textContent = 'Rp ' + netAmount;
+
+      var waMsg = encodeURIComponent("Halo Kak " + buyerName + "! 👋\nPembayaran token donasi kamu telah BERHASIL diverifikasi oleh BEM FIKOM Unpad.\n\n🗳️ Kode Token: *" + tokenCode + "*\n✨ Status: Aktif & Siap Pakai\n🔗 Bilik Suara: https://suarakita.id/vote/fikom2026\n\nTerima kasih telah berpartisipasi!");
+      document.getElementById('btnSendWa').href = "https://wa.me/6281234567890?text=" + waMsg;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+  }
+
+  function closeSuccessModal() {
+    var modal = document.getElementById('successModalBackdrop');
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+
+  function copyTokenCode() {
+    var code = document.getElementById('modalTokenCode').textContent.trim();
+    navigator.clipboard.writeText(code).then(function() {
+      alert("Kode Token " + code + " berhasil disalin ke clipboard!");
+    });
+  }
+
+  function previewImage(info) {
+    alert("Pratinjau Struk Transfer:\n" + info + "\nStatus: Dana telah masuk ke rekening penampungan KPU.");
+  }
+</script></main><footer class="w-full bg-surface-container-low py-space-md px-space-xl flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-tertiary-container text-[18px]">verified_user</span><span>Tervalidasi Protokol KPU Mahasiswa • Enkripsi SHA-256 Bilik Suara Digital</span></div><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors" data-path="bantuan-keamanan" href="#">Pusat Bantuan &amp; Regulasi</a><span>© 2024 SuaraKita Kampus. Hak Cipta Dilindungi.</span></div></footer></div></body></html>

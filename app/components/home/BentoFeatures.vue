@@ -1,89 +1,72 @@
 <template>
-  <section class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 border-b border-slate-200/80 pb-6 gap-4">
-      <div class="space-y-2">
-        <div class="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-slate-500">
-          <Sparkles class="w-4 h-4 text-emerald-500" />
-          <span>Kapabilitas Platform</span>
-        </div>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">Fitur Utama SuaraKita</h2>
-      </div>
-      <p class="text-xs sm:text-sm text-slate-500 max-w-md">
-        Dirancang khusus untuk mendukung fleksibilitas pemungutan suara skala kecil hingga event berskala besar.
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+    <div class="text-center mb-8 sm:mb-12 space-y-2">
+      <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+        Keunggulan Utama
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        Kenapa Menggunakan SuaraKita?
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+        Solusi pemungutan suara digital yang aman, akurat, dan transparan untuk instansi, organisasi, dan komunitas.
       </p>
     </div>
 
-    <!-- Bento Grid (Different Card Styles) -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-      <!-- Feature 1: Large Featured Card -->
-      <div class="md:col-span-7 bg-slate-900 text-white rounded-3xl p-7 sm:p-10 flex flex-col justify-between space-y-8 relative overflow-hidden group shadow-xl">
-        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-slate-800 rounded-full blur-2xl opacity-50 group-hover:scale-125 transition-transform duration-500"></div>
-        
-        <div class="space-y-4 relative z-10">
-          <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-emerald-400">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- Card 1: Key Token Security -->
+      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
             <KeyRound class="w-6 h-6" />
           </div>
-          <span class="inline-block text-[11px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-3 py-1 rounded-full">
-            Keamanan Terjamin
-          </span>
-          <h3 class="text-xl sm:text-2xl font-extrabold text-white">Token-Based Voting & Akses Unik</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-lg">
-            Setiap pemilih menggunakan kode unik token 8 karakter. Sistem memastikan satu token hanya dapat digunakan tepat satu kali (*one-time redeem*), mencegah *double voting* maupun manipulasi data.
+          <h3 class="text-lg font-bold text-slate-900 leading-snug">
+            Token Akses Unik & Sekali Pakai
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Setiap pemilih menggunakan kode token unik rahasia. Sistem memastikan satu token hanya dapat digunakan tepat satu kali (*one-time redeem*), mencegah *double voting*.
           </p>
         </div>
-
-        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 relative z-10">
-          <span class="flex items-center space-x-2">
-            <CheckCircle2 class="w-4 h-4 text-emerald-400" />
-            <span>Otomatis Non-aktif setelah Redeem</span>
-          </span>
-          <span class="font-mono text-[11px] text-slate-500">SEC-8BIT</span>
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-blue-600">
+          <ShieldCheck class="w-4 h-4" />
+          <span>Keamanan Suara Terjamin</span>
         </div>
       </div>
 
-      <!-- Feature 2: Side Card (WhatsApp Integration) -->
-      <div class="md:col-span-5 bg-white border border-slate-200/90 rounded-3xl p-7 sm:p-9 flex flex-col justify-between space-y-6 shadow-xs hover:border-slate-300 transition-all duration-300">
+      <!-- Card 2: Real-time Leaderboard -->
+      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
+        <div class="space-y-4">
+          <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center">
+            <BarChart3 class="w-6 h-6" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 leading-snug">
+            Leaderboard Live Real-Time
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Pantau perolehan suara secara langsung detik demi detik dengan grafik transparan yang dapat diakses publik secara terbuka.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-emerald-600">
+          <Activity class="w-4 h-4" />
+          <span>Update Data Tanpa Delay</span>
+        </div>
+      </div>
+
+      <!-- Card 3: WhatsApp Distribution -->
+      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
             <MessageSquareCheck class="w-6 h-6" />
           </div>
-          <h3 class="text-lg sm:text-xl font-bold text-slate-900">Integrasi WhatsApp Fast Checkout</h3>
+          <h3 class="text-lg font-bold text-slate-900 leading-snug">
+            Kemudahan Verifikasi WhatsApp
+          </h3>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Pendukung dapat memilih paket token voting dan secara otomatis terhubung langsung ke WhatsApp Admin Instansi untuk pengiriman bukti transfer.
+            Pengiriman dan verifikasi token dilakukan dengan mudah melalui WhatsApp Admin Instansi tanpa kerumitan alur pendaftaran ulang.
           </p>
         </div>
-
-        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center space-x-3">
-          <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-            <MessageSquareCheck class="w-4 h-4" />
-          </div>
-          <p class="text-[11px] font-medium text-slate-600">
-            "Halo Admin, saya ingin beli 10 Token Suara untuk Paslon 01."
-          </p>
-        </div>
-      </div>
-
-      <!-- Feature 3: Analytics Card (Full Width Row) -->
-      <div class="md:col-span-12 bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-200/90 rounded-3xl p-7 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 shadow-xs">
-        <div class="space-y-3 max-w-xl">
-          <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center">
-            <BarChart3 class="w-6 h-6" />
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-slate-900">Real-Time Analytics & Financial Report</h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Pantau arus perolehan suara, total pendapatan dari penjualan token dukungan, serta rincian bagian instansi secara transparan tanpa perlu rekap manual.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4 w-full md:w-auto shrink-0">
-          <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-2xs min-w-[130px]">
-            <span class="block text-xl font-black text-slate-900">100%</span>
-            <span class="text-[11px] font-medium text-slate-500">Transparansi</span>
-          </div>
-          <div class="bg-white border border-slate-200/80 rounded-2xl p-4 text-center shadow-2xs min-w-[130px]">
-            <span class="block text-xl font-black text-emerald-600">0.0s</span>
-            <span class="text-[11px] font-medium text-slate-500">Delay Update</span>
-          </div>
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-700">
+          <CheckCircle2 class="w-4 h-4 text-emerald-600" />
+          <span>Praktis & Aksesibel</span>
         </div>
       </div>
     </div>
@@ -91,5 +74,5 @@
 </template>
 
 <script setup lang="ts">
-import { Sparkles, KeyRound, CheckCircle2, MessageSquareCheck, BarChart3 } from 'lucide-vue-next'
+import { KeyRound, ShieldCheck, BarChart3, Activity, MessageSquareCheck, CheckCircle2 } from 'lucide-vue-next'
 </script>

@@ -1,15 +1,18 @@
 <template>
-  <div class="space-y-24 sm:space-y-36 pb-20 sm:pb-32">
-    <!-- Hero Section -->
+  <div class="space-y-12 sm:space-y-20 pb-16 sm:pb-24">
+    <!-- 1. Hero Section -->
     <HomeHeroSection />
 
-    <!-- Fitur Utama: Asymmetric Bento Box Layout -->
+    <!-- 2. Keunggulan Utama (Bento Features) -->
     <HomeBentoFeatures />
 
-    <!-- Cara Kerja: Interactive Step Workflow Process -->
+    <!-- 3. Alur Partisipasi (4-Step Workflow) -->
     <HomeWorkflowSteps />
 
-    <!-- Bottom Banner CTA -->
+    <!-- 4. Kontes Berlangsung (Active Contests from DB) -->
+    <HomeActiveContests />
+
+    <!-- 5. Bottom WhatsApp Consultation Banner CTA -->
     <HomeCallToAction />
   </div>
 </template>
@@ -19,6 +22,3 @@ definePageMeta({
   layout: 'default',
 })
 </script>
-
-
-
