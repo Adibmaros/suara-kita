@@ -21,6 +21,8 @@ Proyek ini dibangun menggunakan **Nuxt 3** dan **Prisma ORM**.
 
 Untuk memahami alur dan model bisnis platform ini secara menyeluruh, silakan baca dokumentasi berikut:
 - 📖 [Panduan Skenario Demo (DEMO_GUIDE.md)](./DEMO_GUIDE.md)
+- 💼 [Dokumen Model Bisnis & BMC (MODEL_BISNIS.md)](./MODEL_BISNIS.md)
+- 📱 [Rencana Konten Media Sosial & Bio IG (RENCANA_KONTEN_INSTAGRAM.md)](./RENCANA_KONTEN_INSTAGRAM.md)
 - 💡 [Argumen Keunggulan Aplikasi (keunggulan_aplikasi.md)](./keunggulan_aplikasi.md)
 - 📊 [Diagram Alur Aplikasi (alur_aplikasi.xml)](./alur_aplikasi.xml) — *File ini bisa langsung di-import ke Draw.io*
 

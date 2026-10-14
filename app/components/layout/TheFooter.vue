@@ -5,7 +5,8 @@
         <!-- Col 1: Brand Info -->
         <div class="space-y-4 sm:col-span-2 md:col-span-1">
           <NuxtLink to="/" class="flex items-center space-x-3 group">
-            <div class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-extrabold text-xs shadow-md">
+            <div
+              class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-extrabold text-xs shadow-md">
               SK
             </div>
             <span class="text-base font-bold tracking-tight text-slate-900">
@@ -21,10 +22,19 @@
         <div class="space-y-3">
           <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Platform</h4>
           <ul class="space-y-2 text-xs text-slate-500">
-            <li><NuxtLink to="/" class="hover:text-slate-900 transition-colors">Beranda</NuxtLink></li>
-            <li><NuxtLink to="/panduan" class="hover:text-emerald-600 font-medium transition-colors">Panduan & Manual Book</NuxtLink></li>
-            <li><NuxtLink to="/register" class="hover:text-slate-900 transition-colors">Daftarkan Instansi</NuxtLink></li>
-            <li><NuxtLink to="/login" class="hover:text-slate-900 transition-colors">Masuk Dashboard</NuxtLink></li>
+            <li>
+              <NuxtLink to="/" class="hover:text-slate-900 transition-colors">Beranda</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/panduan" class="hover:text-emerald-600 font-medium transition-colors">Panduan & Manual Book
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/register" class="hover:text-slate-900 transition-colors">Daftarkan Instansi</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/login" class="hover:text-slate-900 transition-colors">Masuk Dashboard</NuxtLink>
+            </li>
           </ul>
         </div>
 
@@ -43,14 +53,23 @@
         <div class="space-y-3">
           <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Legal & Privasi</h4>
           <ul class="space-y-2 text-xs text-slate-500">
-            <li><NuxtLink to="/syarat-ketentuan" class="hover:text-slate-900 transition-colors">Syarat & Ketentuan</NuxtLink></li>
-            <li><NuxtLink to="/kebijakan-privasi" class="hover:text-slate-900 transition-colors">Kebijakan Privasi</NuxtLink></li>
-            <li><NuxtLink to="/kebijakan-token" class="hover:text-slate-900 transition-colors">Kebijakan Token</NuxtLink></li>
+            <li>
+              <NuxtLink to="/syarat-ketentuan" class="hover:text-slate-900 transition-colors">Syarat & Ketentuan
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/kebijakan-privasi" class="hover:text-slate-900 transition-colors">Kebijakan Privasi
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/kebijakan-token" class="hover:text-slate-900 transition-colors">Kebijakan Token</NuxtLink>
+            </li>
           </ul>
         </div>
       </div>
 
-      <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div
+        class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
         <div>
           &copy; {{ new Date().getFullYear() }} SuaraKita. All rights reserved.
         </div>
@@ -65,4 +84,3 @@
     </div>
   </footer>
 </template>
-
