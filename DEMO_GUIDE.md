@@ -2,6 +2,8 @@
 
 Panduan ini berisi daftar akun demo, URL publik, dan skenario presentasi untuk mendemonstrasikan seluruh fitur **SuaraKita v2** kepada kolega/pemangku kepentingan.
 
+**URL Production / Live Demo**: [https://suarakita.vercel.app/](https://suarakita.vercel.app/)
+
 ---
 
 ## 🔐 1. Kredensial Akun Demo
@@ -21,18 +23,18 @@ Semua akun terdaftar dengan password berikut:
 
 Voter tidak perlu login. Cukup akses URL publik berikut:
 
-- **Halaman Utama / Landing Page**: `http://localhost:3000/`
-- **Profil Instansi BEM FIKOM**: `http://localhost:3000/i/bem-fikom`
-- **Kontes Duta FIKOM 2026**: `http://localhost:3000/i/bem-fikom/kontes/1`
-- **Halaman Vote / Redeem Token**: `http://localhost:3000/i/bem-fikom/kontes/1/vote`
-- **Profil Instansi HMM FEB**: `http://localhost:3000/i/hmm-feb`
+- **Halaman Utama / Landing Page**: `https://suarakita.vercel.app/`
+- **Profil Instansi BEM FIKOM**: `https://suarakita.vercel.app/instansi/bem-fikom`
+- **Kontes Duta FIKOM 2026**: `https://suarakita.vercel.app/instansi/bem-fikom/kontes/1`
+- **Halaman Vote / Redeem Token**: `https://suarakita.vercel.app/instansi/bem-fikom/kontes/1/vote`
+- **Profil Instansi HMM FEB**: `https://suarakita.vercel.app/instansi/hmm-feb`
 
 ---
 
 ## 🎬 3. Skenario & Alur Demo yang Direkomendasikan
 
 ### Skenario A: Pendaftaran & Setup Kontes (End-to-End)
-1. **Admin Instansi**: Buka halaman registrasi di `http://localhost:3000/register`.
+1. **Admin Instansi**: Buka halaman registrasi di `https://suarakita.vercel.app/register`.
 2. Daftar sebagai Instansi baru (misal: *Himpunan Mahasiswa Informatika*).
 3. **Super Admin**: Login dengan akun Super Admin (`superadmin@suarakita.id`), lalu buka menu **Persetujuan Instansi**.
 4. Klik **"Approve"** pada instansi yang baru saja mendaftar.
@@ -46,7 +48,7 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 ---
 
 ### Skenario B: Alur Voter (Beli Token & Vote Real-time)
-1. Buka URL Kontes: `http://localhost:3000/i/bem-fikom/kontes/1`.
+1. Buka URL Kontes: `https://suarakita.vercel.app/instansi/bem-fikom/kontes/1`.
 2. Tunjukkan **Daftar Kandidat** dan **Leaderboard Suara Live**.
 3. Pilih salah satu **Paket Token** (misal *Paket Sultan - 15 Suara*), klik **"Beli Token via WA"**.
 4. Masukkan nomor WA, lalu klik **"Lanjut ke WhatsApp"** → Tunjukkan bahwa sistem men-generate pesan otomatis ke WhatsApp Admin Instansi dengan isi Order ID & rincian paket.
@@ -56,7 +58,7 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 ---
 
 ### Skenario C: Alur Admin Instansi (Verifikasi Pembelian & Generate Token)
-1. Login sebagai Admin BEM FIKOM di `http://localhost:3000/login` (`admin.fikom@instansi.ac.id` / `Password123!`).
+1. Login sebagai Admin BEM FIKOM di `https://suarakita.vercel.app/login` (`admin.fikom@instansi.ac.id` / `Password123!`).
 2. Masuk ke menu **Kelola Kontes** → Klik **"Orders"** pada *Pemilihan Duta FIKOM 2026*.
 3. Tunjukkan daftar pesanan token yang berstatus **`MENUNGGU_VERIFIKASI`**.
 4. Klik tombol **"Verifikasi"** pada salah satu order pending → Tunjukkan popup sukses yang menampilkan **Kode Token Unik** (format `SK-XXXXXXXX`) dan otomatis menghitung **20% Platform Fee**.
@@ -73,10 +75,12 @@ Voter tidak perlu login. Cukup akses URL publik berikut:
 
 ---
 
-## 🛠️ Perintah Menjalankan Server Lokal
+## 🛠️ Menjalankan di Lingkungan Lokal (Opsional)
+
+Jika ingin menjalankan aplikasi secara lokal di komputer:
 
 ```bash
 npm run dev
 ```
 
-Server akan aktif di `http://localhost:3000`.
+Aplikasi lokal akan berjalan di `http://localhost:3000` (atau gunakan domain live [https://suarakita.vercel.app/](https://suarakita.vercel.app/)).

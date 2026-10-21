@@ -1,23 +1,23 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
-    <!-- Voter Navbar Minimal -->
-    <header class="sticky top-0 z-50 w-full px-4 sm:px-8 py-3">
-      <div class="max-w-7xl mx-auto">
-        <nav class="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between shadow-xs hover:shadow-md transition-shadow duration-300">
+  <div class="min-h-screen flex flex-col bg-white text-[#141414] font-sans antialiased">
+    <!-- Voter Navbar Minimal (Floating Stadium Pill) -->
+    <header class="sticky top-0 z-50 w-full px-4 sm:px-6 pt-4 pb-2 transition-all">
+      <div class="max-w-5xl mx-auto">
+        <nav class="bg-[#f3f3f3]/95 backdrop-blur-md border border-[#e0e0e0] rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
           <!-- Logo Brand -->
-          <NuxtLink to="/" class="flex items-center space-x-3 group">
-            <div class="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white font-extrabold text-sm shadow-md group-hover:scale-105 transition-transform duration-200">
+          <NuxtLink to="/" class="flex items-center space-x-2.5 group">
+            <div class="w-8 h-8 rounded-[30%] bg-[#141414] flex items-center justify-center text-white font-bold text-xs transition-transform duration-200 group-hover:scale-105">
               SK
             </div>
-            <span class="text-lg font-bold tracking-tight text-slate-900 group-hover:text-slate-700 transition-colors">
-              SuaraKita
+            <span class="text-base font-bold text-[#141414] tracking-tight">
+              SuaraKita<span class="text-[#0066ff]">.</span>
             </span>
           </NuxtLink>
 
           <!-- Voting Context Badge -->
-          <div class="flex items-center space-x-2 text-xs font-semibold text-slate-600 bg-slate-100/80 px-3 py-1.5 rounded-full border border-slate-200/60">
+          <div class="flex items-center space-x-2 text-xs font-semibold text-[#141414] bg-white px-3.5 py-1 rounded-full border border-[#e0e0e0]">
             <span>🗳️</span>
-            <span>Halaman Voting</span>
+            <span>Bilik Suara Digital</span>
           </div>
         </nav>
       </div>
@@ -28,35 +28,35 @@
       <slot />
     </main>
 
-    <!-- Voter Footer Compact -->
-    <footer class="border-t border-slate-200/80 bg-white px-4 sm:px-6 lg:px-8 mt-12">
-      <div class="max-w-7xl mx-auto">
+    <!-- Voter Footer Compact (Mobbin Ink Footer) -->
+    <footer class="bg-[#141414] text-white rounded-t-3xl px-6 sm:px-10 pt-12 pb-8 mt-16 sm:mt-24">
+      <div class="max-w-5xl mx-auto space-y-8">
         <!-- Soft CTA / Promotion -->
-        <div class="py-6 sm:py-8 text-center space-y-3">
-          <p class="text-sm font-medium text-slate-600">
-            Ingin membuat kontes & polling online untuk instansi Anda?
+        <div class="py-4 text-center space-y-3">
+          <p class="text-sm font-medium text-[#adadad]">
+            Ingin mengadakan kontes voting & polling online untuk organisasi Anda?
           </p>
           <NuxtLink 
             to="/register" 
-            class="inline-flex items-center px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95 space-x-1.5"
+            class="inline-flex items-center h-10 px-6 rounded-full bg-white text-[#141414] text-xs font-semibold hover:bg-[#f3f3f3] transition-all active:scale-[0.98]"
           >
-            <span>Daftarkan Instansi Anda →</span>
+            <span>Daftarkan Instansi Anda ↗</span>
           </NuxtLink>
         </div>
 
         <!-- Bottom Bar -->
-        <div class="py-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div class="pt-6 border-t border-[#262626] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#707070]">
           <div class="flex items-center space-x-2">
-            <div class="w-5 h-5 rounded bg-slate-900 flex items-center justify-center text-white font-extrabold text-[9px]">
+            <div class="w-5 h-5 rounded-[30%] bg-white flex items-center justify-center text-[#141414] font-bold text-[9px]">
               SK
             </div>
-            <span>Powered by <strong class="text-slate-600 font-semibold">SuaraKita</strong></span>
+            <span>Platform <strong class="text-white font-semibold">SuaraKita</strong></span>
             <span>• &copy; {{ new Date().getFullYear() }}</span>
           </div>
-          <div class="flex items-center space-x-3">
-            <NuxtLink to="/kebijakan-privasi" class="hover:text-slate-600 transition-colors">Kebijakan Privasi</NuxtLink>
+          <div class="flex items-center space-x-4">
+            <NuxtLink to="/kebijakan-privasi" class="hover:text-[#adadad] transition-colors">Privasi</NuxtLink>
             <span>•</span>
-            <NuxtLink to="/syarat-ketentuan" class="hover:text-slate-600 transition-colors">Syarat & Ketentuan</NuxtLink>
+            <NuxtLink to="/syarat-ketentuan" class="hover:text-[#adadad] transition-colors">Syarat & Ketentuan</NuxtLink>
           </div>
         </div>
       </div>

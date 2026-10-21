@@ -1,72 +1,72 @@
 <template>
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-    <div class="text-center mb-8 sm:mb-12 space-y-2">
-      <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <div class="text-center mb-10 sm:mb-14 space-y-3">
+      <span class="text-xs font-semibold text-[#707070] bg-[#f3f3f3] px-3.5 py-1 rounded-full border border-[#e0e0e0]">
         Keunggulan Utama
       </span>
-      <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-        Kenapa Menggunakan SuaraKita?
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight">
+        Mengapa ormawa memilih SuaraKita.
       </h2>
-      <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-        Solusi pemungutan suara digital yang aman, akurat, dan transparan untuk instansi, organisasi, dan komunitas.
+      <p class="text-sm sm:text-base font-light text-[#707070] max-w-lg mx-auto leading-relaxed">
+        Sistem pemungutan suara digital terintegrasi yang adil, anti-manipulasi, dan mudah diakses oleh seluruh mahasiswa.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Card 1: Key Token Security -->
-      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
+      <div class="p-7 rounded-3xl bg-white border border-[#e0e0e0] flex flex-col justify-between transition-all">
         <div class="space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-            <KeyRound class="w-6 h-6" />
+          <div class="w-12 h-12 rounded-[30%] bg-[#141414] text-white flex items-center justify-center">
+            <KeyRound class="w-5 h-5" />
           </div>
-          <h3 class="text-lg font-bold text-slate-900 leading-snug">
-            Token Akses Unik & Sekali Pakai
+          <h3 class="text-xl font-bold text-[#141414] leading-snug">
+            Token Unik Sekali Pakai
           </h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Setiap pemilih menggunakan kode token unik rahasia. Sistem memastikan satu token hanya dapat digunakan tepat satu kali (*one-time redeem*), mencegah *double voting*.
+          <p class="text-xs sm:text-sm text-[#707070] leading-relaxed">
+            Setiap suara dilindungi kode token unik acak. Sistem memastikan satu token hanya dapat dipakai satu kali (*one-time redeem*), mencegah *multiple voting* dan kecurangan bot.
           </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-blue-600">
-          <ShieldCheck class="w-4 h-4" />
+        <div class="mt-8 pt-4 border-t border-[#f0f0f0] flex items-center gap-2 text-xs font-semibold text-[#141414]">
+          <ShieldCheck class="w-4 h-4 text-[#141414]" />
           <span>Keamanan Suara Terjamin</span>
         </div>
       </div>
 
       <!-- Card 2: Real-time Leaderboard -->
-      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
+      <div class="p-7 rounded-3xl bg-[#f3f3f3] flex flex-col justify-between transition-all">
         <div class="space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center">
-            <BarChart3 class="w-6 h-6" />
+          <div class="w-12 h-12 rounded-[30%] bg-white text-[#141414] border border-[#e0e0e0] flex items-center justify-center">
+            <BarChart3 class="w-5 h-5" />
           </div>
-          <h3 class="text-lg font-bold text-slate-900 leading-snug">
-            Leaderboard Live Real-Time
+          <h3 class="text-xl font-bold text-[#141414] leading-snug">
+            Live Leaderboard Real-Time
           </h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Pantau perolehan suara secara langsung detik demi detik dengan grafik transparan yang dapat diakses publik secara terbuka.
+          <p class="text-xs sm:text-sm text-[#707070] leading-relaxed">
+            Pantau perolehan suara detik demi detik dengan grafik transparan yang dapat disaksikan publik tanpa rekap manual yang rawan kecurigaan.
           </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-emerald-600">
-          <Activity class="w-4 h-4" />
-          <span>Update Data Tanpa Delay</span>
+        <div class="mt-8 pt-4 border-t border-[#e0e0e0] flex items-center gap-2 text-xs font-semibold text-[#141414]">
+          <Activity class="w-4 h-4 text-[#0066ff]" />
+          <span>Update Instan Tanpa Delay</span>
         </div>
       </div>
 
       <!-- Card 3: WhatsApp Distribution -->
-      <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-slate-300 transition-all">
+      <div class="p-7 rounded-3xl bg-white border border-[#e0e0e0] flex flex-col justify-between transition-all">
         <div class="space-y-4">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-            <MessageSquareCheck class="w-6 h-6" />
+          <div class="w-12 h-12 rounded-[30%] bg-[#141414] text-white flex items-center justify-center">
+            <MessageSquareCheck class="w-5 h-5" />
           </div>
-          <h3 class="text-lg font-bold text-slate-900 leading-snug">
-            Kemudahan Verifikasi WhatsApp
+          <h3 class="text-xl font-bold text-[#141414] leading-snug">
+            Beli Token via WhatsApp
           </h3>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Pengiriman dan verifikasi token dilakukan dengan mudah melalui WhatsApp Admin Instansi tanpa kerumitan alur pendaftaran ulang.
+          <p class="text-xs sm:text-sm text-[#707070] leading-relaxed">
+            Pemesanan dan verifikasi token dilakukan langsung ke WhatsApp panitia. Dana voting masuk langsung ke rekening kas panitia tanpa potongan payment gateway pihak ketiga.
           </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-700">
-          <CheckCircle2 class="w-4 h-4 text-emerald-600" />
-          <span>Praktis & Aksesibel</span>
+        <div class="mt-8 pt-4 border-t border-[#f0f0f0] flex items-center gap-2 text-xs font-semibold text-[#141414]">
+          <CheckCircle2 class="w-4 h-4 text-[#141414]" />
+          <span>Dana Langsung Masuk Kas</span>
         </div>
       </div>
     </div>

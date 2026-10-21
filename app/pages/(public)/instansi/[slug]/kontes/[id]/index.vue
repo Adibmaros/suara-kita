@@ -41,48 +41,49 @@
         @open-vote="openVoteModal"
       />
 
-      <!-- Header Kontes -->
-      <div class="bg-white border border-slate-200 shadow-2xs rounded-xl p-5 sm:p-8 space-y-3">
+      <!-- Header Kontes (Mobbin card-mobbin) -->
+      <div class="bg-white border border-[#e0e0e0] rounded-3xl p-6 sm:p-8 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">{{ kontes.instansi.nama }}</span>
-            <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">{{ kontes.nama }}</h1>
+            <span class="text-xs font-semibold text-[#707070] uppercase tracking-wider">{{ kontes.instansi.nama }}</span>
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight mt-1">{{ kontes.nama }}</h1>
           </div>
           <span 
-            class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
+            class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold"
             :class="{
-              'bg-emerald-100 text-emerald-800': kontes.status === 'AKTIF',
-              'bg-amber-100 text-amber-800': kontes.status === 'DRAFT',
-              'bg-rose-100 text-rose-800': kontes.status === 'DITUTUP'
+              'bg-[#141414] text-white': kontes.status === 'AKTIF',
+              'bg-[#f3f3f3] text-[#707070] border border-[#e0e0e0]': kontes.status === 'DRAFT',
+              'bg-[#f3f3f3] text-[#141414] border border-[#e0e0e0]': kontes.status === 'DITUTUP'
             }"
           >
+            <span v-if="kontes.status === 'AKTIF'" class="w-1.5 h-1.5 rounded-full bg-[#0066ff] mr-1.5"></span>
             {{ kontes.status }}
           </span>
         </div>
 
-        <p v-if="kontes.deskripsi" class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-3xl">
+        <p v-if="kontes.deskripsi" class="text-xs sm:text-sm text-[#707070] leading-relaxed max-w-3xl font-light">
           {{ kontes.deskripsi }}
         </p>
       </div>
 
       <!-- Section Search & Candidate Cards -->
       <div class="space-y-4 sm:space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
-          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Daftar Kandidat</h2>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f0f0f0] pb-4">
+          <h2 class="text-xl sm:text-2xl font-bold text-[#141414] tracking-tight">Daftar Kandidat</h2>
           
-          <!-- Fitur Search Kandidat -->
+          <!-- Fitur Search Kandidat (Mobbin field input) -->
           <div class="w-full sm:w-72 relative">
-            <Search class="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+            <Search class="absolute left-3.5 top-2.5 h-4 w-4 text-[#707070]" />
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Cari kandidat..."
-              class="w-full h-9 pl-9 pr-3 bg-white border border-slate-200 rounded-md text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-950 transition-colors"
+              class="w-full h-9 pl-9 pr-3 bg-[#f0f0f0] rounded-full text-sm text-[#141414] placeholder:text-[#adadad] focus:outline-none focus:ring-2 focus:ring-[#141414] transition-all"
             />
           </div>
         </div>
 
-        <div v-if="filteredKandidat.length === 0" class="text-center py-8 text-slate-500 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm">
+        <div v-if="filteredKandidat.length === 0" class="text-center py-10 text-[#707070] bg-[#f3f3f3] rounded-3xl border border-[#e0e0e0] text-xs sm:text-sm">
           {{ searchQuery ? 'Kandidat tidak ditemukan.' : 'Belum ada kandidat yang terdaftar.' }}
         </div>
 

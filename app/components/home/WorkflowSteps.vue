@@ -1,79 +1,79 @@
 <template>
-  <section class="bg-slate-100/70 border-y border-slate-200/80 py-10 sm:py-16">
+  <section class="bg-[#f3f3f3] border-y border-[#e0e0e0] py-14 sm:py-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-8 sm:mb-12 space-y-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-700 bg-white px-3 py-1 rounded-full border border-slate-200 shadow-2xs">
+      <div class="text-center mb-10 sm:mb-14 space-y-3">
+        <span class="text-xs font-semibold text-[#707070] bg-white px-3.5 py-1 rounded-full border border-[#e0e0e0]">
           Alur Partisipasi
         </span>
-        <h2 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-          4 Langkah Mudah Berpartisipasi
+        <h2 class="text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight">
+          Empat langkah mudah memberikan suara.
         </h2>
-        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-          Cukup menggunakan perangkat smartphone Anda, berikan suara sah dalam beberapa detik.
+        <p class="text-sm sm:text-base font-light text-[#707070] max-w-md mx-auto leading-relaxed">
+          Cukup dari peramban HP Anda, berikan suara sah hanya dalam beberapa detik.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <!-- Step 1 -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-[#e0e0e0] flex flex-col justify-between space-y-5">
           <div class="flex items-center justify-between">
-            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+            <span class="w-8 h-8 rounded-[30%] bg-[#141414] text-white flex items-center justify-center font-bold text-xs">
               1
             </span>
-            <Vote class="w-5 h-5 text-blue-600" />
+            <Vote class="w-5 h-5 text-[#141414]" />
           </div>
           <div>
-            <h4 class="text-sm font-bold text-slate-900">Pilih Kontes Voting</h4>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-              Cari dan buka halaman kontes pemilihan dari instansi, komunitas, atau organisasi Anda.
+            <h4 class="text-base font-bold text-[#141414]">Pilih Kontes</h4>
+            <p class="text-xs text-[#707070] mt-1.5 leading-relaxed">
+              Buka link publik kontes pemilihan atau ajang favorit ormawa kampus Anda.
             </p>
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-[#e0e0e0] flex flex-col justify-between space-y-5">
           <div class="flex items-center justify-between">
-            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+            <span class="w-8 h-8 rounded-[30%] bg-[#141414] text-white flex items-center justify-center font-bold text-xs">
               2
             </span>
-            <MessageSquare class="w-5 h-5 text-blue-600" />
+            <MessageSquare class="w-5 h-5 text-[#141414]" />
           </div>
           <div>
-            <h4 class="text-sm font-bold text-slate-900">Dapatkan Kode Token</h4>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-              Hubungi Admin WA Instansi/Organisasi untuk menerima kode token voting resmi.
+            <h4 class="text-base font-bold text-[#141414]">Beli Token via WA</h4>
+            <p class="text-xs text-[#707070] mt-1.5 leading-relaxed">
+              Pilih paket suara dan chat panitia via WhatsApp untuk mendapatkan kode token unik.
             </p>
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-[#e0e0e0] flex flex-col justify-between space-y-5">
           <div class="flex items-center justify-between">
-            <span class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+            <span class="w-8 h-8 rounded-[30%] bg-[#141414] text-white flex items-center justify-center font-bold text-xs">
               3
             </span>
-            <KeyRound class="w-5 h-5 text-blue-600" />
+            <KeyRound class="w-5 h-5 text-[#141414]" />
           </div>
           <div>
-            <h4 class="text-sm font-bold text-slate-900">Input Token Unik</h4>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-              Masukkan 8 digit kode token pada bilik suara digital yang tersedia.
+            <h4 class="text-base font-bold text-[#141414]">Masukkan Token</h4>
+            <p class="text-xs text-[#707070] mt-1.5 leading-relaxed">
+              Ketik kode token rahasia pada bilik suara digital kandidat pilihan Anda.
             </p>
           </div>
         </div>
 
         <!-- Step 4 -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-2xs flex flex-col justify-between space-y-4">
+        <div class="p-6 rounded-2xl bg-white border border-[#e0e0e0] flex flex-col justify-between space-y-5">
           <div class="flex items-center justify-between">
-            <span class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+            <span class="w-8 h-8 rounded-[30%] bg-[#141414] text-white flex items-center justify-center font-bold text-xs">
               4
             </span>
-            <CheckCircle2 class="w-5 h-5 text-emerald-600" />
+            <CheckCircle2 class="w-5 h-5 text-[#141414]" />
           </div>
           <div>
-            <h4 class="text-sm font-bold text-slate-900">Suara Terhitung</h4>
-            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-              Suara Anda resmi tercatat dan langsung memperbarui hasil di leaderboard live.
+            <h4 class="text-base font-bold text-[#141414]">Suara Terhitung</h4>
+            <p class="text-xs text-[#707070] mt-1.5 leading-relaxed">
+              Suara langsung terverifikasi dan memperbarui peringkat live leaderboard seketika.
             </p>
           </div>
         </div>

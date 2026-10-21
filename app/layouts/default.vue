@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
+  <div class="min-h-screen flex flex-col bg-white text-[#141414] font-sans antialiased">
     <LayoutTheNavbar />
     <main class="flex-1">
       <slot />
