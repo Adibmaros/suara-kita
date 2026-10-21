@@ -110,7 +110,29 @@ definePageMeta({
   middleware: ['guest'],
 })
 
-const { fetch: fetchSession } = useUserSession()
+const { loggedIn, user, fetch: fetchSession } = useUserSession()
+
+const redirectByRole = () => {
+  if (loggedIn.value && user.value) {
+    const role = (user.value as any).role
+    if (role === 'SUPER_ADMIN') {
+      return navigateTo('/super-admin')
+    }
+    return navigateTo('/admin')
+  }
+}
+
+// Cek langsung jika sudah login
+if (loggedIn.value) {
+  redirectByRole()
+}
+
+onMounted(async () => {
+  if (!loggedIn.value) {
+    await fetchSession()
+  }
+  redirectByRole()
+})
 
 const form = reactive({
   email: '',

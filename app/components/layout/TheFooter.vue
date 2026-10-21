@@ -5,8 +5,12 @@
         <!-- Col 1: Brand Info -->
         <div class="space-y-4 sm:col-span-2 md:col-span-1">
           <NuxtLink to="/" class="inline-flex items-center space-x-2.5 group">
-            <div class="w-8 h-8 rounded-[30%] bg-white flex items-center justify-center text-[#141414] font-bold text-xs">
-              SK
+            <div class="w-8 h-8 rounded-xl bg-white p-1 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+              <img 
+                src="/logo%20aplikasi%20transparant.png" 
+                alt="SuaraKita Logo" 
+                class="w-full h-full object-contain" 
+              />
             </div>
             <span class="text-xl font-bold tracking-tight text-white">
               SuaraKita<span class="text-[#0066ff]">.</span>
@@ -19,7 +23,7 @@
 
         <!-- Col 2: Platform Links -->
         <div class="space-y-3">
-          <h4 class="text-xs font-semibold text-white tracking-wider uppercase">Platform</h4>
+          <h4 class="text-xs font-semibold text-white">Platform</h4>
           <ul class="space-y-2 text-xs text-[#adadad]">
             <li>
               <NuxtLink to="/" class="hover:text-white transition-colors">Beranda</NuxtLink>
@@ -38,7 +42,7 @@
 
         <!-- Col 3: Layanan -->
         <div class="space-y-3">
-          <h4 class="text-xs font-semibold text-white tracking-wider uppercase">Fitur</h4>
+          <h4 class="text-xs font-semibold text-white">Fitur</h4>
           <ul class="space-y-2 text-xs text-[#adadad]">
             <li><span>Token Sekali Pakai</span></li>
             <li><span>Live Leaderboard</span></li>
@@ -49,7 +53,7 @@
 
         <!-- Col 4: Legal -->
         <div class="space-y-3">
-          <h4 class="text-xs font-semibold text-white tracking-wider uppercase">Legalitas</h4>
+          <h4 class="text-xs font-semibold text-white">Legalitas</h4>
           <ul class="space-y-2 text-xs text-[#adadad]">
             <li>
               <NuxtLink to="/syarat-ketentuan" class="hover:text-white transition-colors">Syarat & Ketentuan</NuxtLink>

@@ -1,5 +1,9 @@
-export default defineNuxtRouteMiddleware((to, from) => {
-  const { loggedIn, user } = useUserSession()
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const { loggedIn, user, fetch: fetchSession } = useUserSession()
+
+  if (!loggedIn.value) {
+    await fetchSession()
+  }
 
   if (loggedIn.value && user.value) {
     const role = (user.value as any).role

@@ -8,8 +8,8 @@
       <!-- Top Header & Trust Badge -->
       <div class="relative z-10 space-y-6">
         <NuxtLink to="/" class="inline-flex items-center space-x-3 group">
-          <div class="w-10 h-10 rounded-[30%] bg-white text-[#141414] font-bold text-base flex items-center justify-center transition-transform group-hover:scale-105">
-            SK
+          <div class="w-10 h-10 rounded-2xl bg-white p-1.5 flex items-center justify-center transition-transform group-hover:scale-105 shrink-0 shadow-xs">
+            <img src="/logo%20aplikasi%20transparant.png" alt="SuaraKita Logo" class="w-full h-full object-contain" />
           </div>
           <span class="text-2xl font-bold tracking-tight text-white">SuaraKita<span class="text-[#0066ff]">.</span></span>
         </NuxtLink>
@@ -93,9 +93,7 @@
       <!-- Top Navigation Header Bar -->
       <div class="flex items-center justify-between pb-6 border-b border-[#f0f0f0] mb-6">
         <NuxtLink to="/" class="inline-flex items-center space-x-2.5">
-          <div class="w-8 h-8 rounded-[30%] bg-[#141414] text-white font-bold text-xs flex items-center justify-center">
-            SK
-          </div>
+          <img src="/logo%20aplikasi%20transparant.png" alt="SuaraKita Logo" class="w-8 h-8 object-contain shrink-0" />
           <span class="text-lg font-bold text-[#141414]">SuaraKita<span class="text-[#0066ff]">.</span></span>
         </NuxtLink>
 

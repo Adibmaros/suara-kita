@@ -5,9 +5,11 @@
       <nav class="bg-[#f3f3f3]/95 backdrop-blur-md border border-[#e0e0e0] rounded-full px-4 sm:px-6 py-2.5 flex items-center justify-between">
         <!-- Logo Brand -->
         <NuxtLink to="/" class="flex items-center space-x-2.5 group" @click="isOpen = false">
-          <div class="w-8 h-8 rounded-[30%] bg-[#141414] flex items-center justify-center text-white font-bold text-xs transition-transform duration-200 group-hover:scale-105">
-            SK
-          </div>
+          <img 
+            src="/logo%20aplikasi%20transparant.png" 
+            alt="SuaraKita Logo" 
+            class="w-8 h-8 object-contain transition-transform duration-200 group-hover:scale-105 shrink-0" 
+          />
           <span class="text-base font-bold text-[#141414] tracking-tight">
             SuaraKita<span class="text-[#0066ff]">.</span>
           </span>
@@ -35,9 +37,9 @@
               :to="user?.role === 'SUPER_ADMIN' ? '/super-admin' : '/admin'"
               class="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-[#141414] text-white text-xs font-semibold hover:bg-[#262626] transition-all"
             >
-              <LayoutGrid class="w-3.5 h-3.5" />
+              <LayoutGrid class="w-3.5 h-3.5" :stroke-width="1.75" />
               <span>Dashboard</span>
-              <ArrowRight class="w-3 h-3 text-[#adadad]" />
+              <ArrowRight class="w-3 h-3 text-[#adadad]" :stroke-width="1.75" />
             </NuxtLink>
           </template>
           <template v-else>
@@ -73,8 +75,8 @@
             :aria-expanded="isOpen"
             aria-label="Toggle navigation menu"
           >
-            <Menu v-if="!isOpen" class="w-5 h-5" />
-            <X v-else class="w-5 h-5" />
+            <Menu v-if="!isOpen" class="w-5 h-5" :stroke-width="1.75" />
+            <X v-else class="w-5 h-5" :stroke-width="1.75" />
           </button>
         </div>
       </nav>
@@ -97,7 +99,7 @@
             @click="isOpen = false"
             class="px-4 py-2.5 text-sm font-semibold text-[#141414] hover:bg-white rounded-full transition-colors flex items-center space-x-2.5"
           >
-            <BookOpen class="w-4 h-4 text-[#707070]" />
+            <BookOpen class="w-4 h-4 text-[#707070]" :stroke-width="1.75" />
             <span>Panduan</span>
           </NuxtLink>
           <a 
@@ -105,7 +107,7 @@
             @click="isOpen = false"
             class="px-4 py-2.5 text-sm font-semibold text-[#141414] hover:bg-white rounded-full transition-colors flex items-center space-x-2.5"
           >
-            <Vote class="w-4 h-4 text-[#707070]" />
+            <Vote class="w-4 h-4 text-[#707070]" :stroke-width="1.75" />
             <span>Kontes Aktif</span>
           </a>
 
@@ -118,10 +120,10 @@
               class="px-4 py-2.5 text-sm font-semibold text-white bg-[#141414] hover:bg-[#262626] rounded-full transition-all flex items-center justify-between"
             >
               <div class="flex items-center space-x-2.5">
-                <LayoutGrid class="w-4 h-4 text-[#adadad]" />
+                <LayoutGrid class="w-4 h-4 text-[#adadad]" :stroke-width="1.75" />
                 <span>Dashboard</span>
               </div>
-              <ArrowRight class="w-4 h-4 text-[#adadad]" />
+              <ArrowRight class="w-4 h-4 text-[#adadad]" :stroke-width="1.75" />
             </NuxtLink>
           </template>
 
@@ -131,7 +133,7 @@
               @click="isOpen = false"
               class="px-4 py-2.5 text-sm font-semibold text-[#141414] hover:bg-white rounded-full transition-colors flex items-center space-x-2.5"
             >
-              <LogIn class="w-4 h-4 text-[#707070]" />
+              <LogIn class="w-4 h-4 text-[#707070]" :stroke-width="1.75" />
               <span>Masuk</span>
             </NuxtLink>
 
@@ -140,7 +142,7 @@
               @click="isOpen = false"
               class="px-4 py-2.5 text-sm font-semibold text-white bg-[#141414] hover:bg-[#262626] rounded-full transition-all flex items-center justify-center space-x-2"
             >
-              <Building2 class="w-4 h-4" />
+              <Building2 class="w-4 h-4" :stroke-width="1.75" />
               <span>Daftar Instansi</span>
             </NuxtLink>
           </template>

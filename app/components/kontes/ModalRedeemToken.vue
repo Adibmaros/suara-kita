@@ -89,12 +89,14 @@
                 :class="kandidatId === k.id ? 'border-blue-600 bg-blue-50/60 shadow-xs ring-1 ring-blue-600' : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'"
               >
                 <img 
-                  v-if="k.fotoUrl" 
+                  v-if="k.fotoUrl && !imgErrors[k.id]" 
                   :src="k.fotoUrl" 
-                  class="w-10 h-10 rounded-lg object-cover border border-slate-200 shrink-0" 
+                  :alt="k.nama"
+                  class="w-10 h-10 rounded-xl object-cover border border-slate-200 shrink-0" 
+                  @error="imgErrors[k.id] = true"
                 />
-                <div v-else class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 shrink-0">
-                  👤
+                <div v-else class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+                  <User class="w-5 h-5" :stroke-width="1.75" />
                 </div>
 
                 <div class="flex-1 min-w-0">
@@ -148,12 +150,14 @@
             <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kandidat Pilihan Anda:</div>
             <div class="flex items-center space-x-3 bg-white p-3 rounded-xl border border-slate-200">
               <img 
-                v-if="selectedKandidat.fotoUrl" 
+                v-if="selectedKandidat.fotoUrl && !step2ImgError" 
                 :src="selectedKandidat.fotoUrl" 
+                :alt="selectedKandidat.nama"
                 class="w-12 h-12 rounded-xl object-cover border border-slate-200 shrink-0" 
+                @error="step2ImgError = true"
               />
-              <div v-else class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-400 shrink-0">
-                👤
+              <div v-else class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 shrink-0">
+                <User class="w-6 h-6" :stroke-width="1.75" />
               </div>
               <div>
                 <h4 class="font-extrabold text-slate-900 text-sm">{{ selectedKandidat.nama }}</h4>
@@ -194,7 +198,11 @@
 </template>
 
 <script setup lang="ts">
-import { X, AlertCircle, CheckCircle2, Search, Loader2, AlertTriangle, Lock } from 'lucide-vue-next'
+import { ref, reactive } from 'vue'
+import { X, AlertCircle, CheckCircle2, Search, Loader2, AlertTriangle, Lock, User } from 'lucide-vue-next'
+
+const imgErrors = reactive<Record<number, boolean>>({})
+const step2ImgError = ref(false)
 
 defineProps<{
   isOpen: boolean

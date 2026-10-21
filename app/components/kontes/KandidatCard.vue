@@ -1,17 +1,16 @@
 <template>
   <div class="bg-white border border-[#e0e0e0] hover:border-[#141414] rounded-3xl p-3 sm:p-4 transition-all flex flex-col group h-full">
     <!-- Image Container with 16px radius -->
-    <div class="relative aspect-4/3 bg-[#f3f3f3] rounded-2xl overflow-hidden shrink-0 border border-[#f0f0f0]">
+    <div class="relative aspect-4/3 bg-[#f3f3f3] rounded-2xl overflow-hidden shrink-0 border border-[#f0f0f0] flex items-center justify-center">
       <img 
-        v-if="kandidat.fotoUrl" 
+        v-if="kandidat.fotoUrl && kandidat.fotoUrl.trim() && !imgError"
         :src="kandidat.fotoUrl" 
         :alt="kandidat.nama" 
         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        @error="imgError = true"
       />
-      <div v-else class="w-full h-full flex items-center justify-center text-[#adadad] bg-[#f3f3f3]">
-        <svg class="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
+      <div v-else class="w-full h-full flex items-center justify-center bg-[#f3f3f3] text-[#adadad] group-hover:text-[#707070] transition-colors">
+        <User class="w-16 h-16 sm:w-20 sm:h-20" :stroke-width="1.5" />
       </div>
 
       <!-- Candidate Number Pill -->
@@ -50,6 +49,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import { User } from 'lucide-vue-next'
+
+const imgError = ref(false)
+
 defineProps<{
   kandidat: {
     id: number

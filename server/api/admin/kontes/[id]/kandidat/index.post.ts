@@ -3,7 +3,11 @@ import { z } from 'zod'
 
 const kandidatSchema = z.object({
   nama: z.string().min(2, 'Nama kandidat minimal 2 karakter'),
-  nomorUrut: z.number().optional().nullable(),
+  nomorUrut: z.preprocess((val) => {
+    if (val === '' || val === null || val === undefined) return null
+    const num = Number(val)
+    return isNaN(num) ? val : num
+  }, z.number().nullable().optional()),
   fotoUrl: z.string().optional().nullable(),
   deskripsi: z.string().optional().nullable(),
 })
@@ -23,7 +27,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, statusMessage: 'Kontes tidak ditemukan.' })
   }
 
-  const body = await readBody(event)
+  const rawBody = await readBody(event)
+  const body = {
+    ...rawBody,
+    deskripsi: rawBody.deskripsi !== undefined ? rawBody.deskripsi : rawBody.visiMisi,
+  }
   const parseResult = kandidatSchema.safeParse(body)
   if (!parseResult.success) {
     throw createError({ statusCode: 400, statusMessage: parseResult.error.errors[0].message })

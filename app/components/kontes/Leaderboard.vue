@@ -57,12 +57,17 @@
 
             <!-- Avatar Foto (Squircle 30%) -->
             <img 
-              v-if="item.fotoUrl" 
+              v-if="item.fotoUrl && !imgErrors[item.id]" 
               :src="item.fotoUrl" 
+              :alt="item.nama"
               class="w-10 h-10 sm:w-12 sm:h-12 rounded-[30%] object-cover border border-[#e0e0e0] shrink-0" 
+              @error="imgErrors[item.id] = true"
             />
-            <div v-else class="w-10 h-10 sm:w-12 sm:h-12 rounded-[30%] bg-white border border-[#e0e0e0] text-[#707070] flex items-center justify-center text-sm shrink-0">
-              👤
+            <div 
+              v-else 
+              class="w-10 h-10 sm:w-12 sm:h-12 rounded-[30%] bg-white border border-[#e0e0e0] flex items-center justify-center text-[#707070] shrink-0"
+            >
+              <User class="w-5 h-5 sm:w-6 sm:h-6" :stroke-width="1.75" />
             </div>
 
             <div class="min-w-0">
@@ -100,7 +105,10 @@
 </template>
 
 <script setup lang="ts">
-import { Trophy } from 'lucide-vue-next'
+import { reactive } from 'vue'
+import { Trophy, User } from 'lucide-vue-next'
+
+const imgErrors = reactive<Record<number, boolean>>({})
 
 defineProps<{
   items: Array<{

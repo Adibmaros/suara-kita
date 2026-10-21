@@ -1,227 +1,362 @@
 <template>
-  <div class="space-y-6 sm:space-y-8">
+  <div class="space-y-8 pb-12">
     <!-- Header Admin Dashboard -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      <div>
-        <h1 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Dashboard Admin Instansi</h1>
-        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Ringkasan statistik kontes & pendapatan instansi Anda</p>
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3f3f3] border border-[#e0e0e0] text-[#141414] font-medium text-xs mb-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#141414]"></span>
+          <span>Portal Pengurus Instansi</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight">
+          Ringkasan & Aktivitas.
+        </h1>
+        <p class="text-xs sm:text-sm text-[#707070] font-light max-w-xl">
+          Pantau performa voting, omset penjualan token, dan verifikasi pesanan voter secara real-time.
+        </p>
       </div>
 
-      <NuxtLink to="/admin/kontes/buat" class="inline-flex items-center justify-center px-4 h-10 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm rounded-xl transition-all shadow-xs active:scale-98 w-full sm:w-auto">
-        + Buat Kontes Baru
+      <NuxtLink 
+        to="/admin/kontes" 
+        class="inline-flex items-center justify-center gap-2 px-5 h-10 bg-[#141414] hover:bg-[#262626] text-white font-medium text-xs sm:text-sm rounded-full transition-colors cursor-pointer shrink-0 w-full sm:w-auto"
+      >
+        <Plus class="w-4 h-4" :stroke-width="2" />
+        <span>Kelola Kontes</span>
       </NuxtLink>
     </div>
 
-    <div v-if="pending" class="text-slate-500 text-sm">Memuat statistik...</div>
+    <!-- Skeleton Loading State -->
+    <div v-if="pending" class="space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div v-for="i in 4" :key="i" class="h-36 rounded-3xl bg-[#f3f3f3] border border-[#e0e0e0] animate-pulse"></div>
+      </div>
+      <div class="h-32 rounded-3xl bg-[#f3f3f3] border border-[#e0e0e0] animate-pulse"></div>
+    </div>
 
-    <div v-else-if="stats" class="space-y-5 sm:space-y-6">
+    <!-- Main Stats Section -->
+    <div v-else-if="stats" class="space-y-6">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <!-- Card 1: Total Kontes -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-slate-300 transition-all duration-200"
+          class="group rounded-3xl border border-[#e0e0e0] bg-white hover:border-[#141414] p-6 flex flex-col justify-between transition-colors duration-200"
         >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Kontes</p>
-              <h4 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">{{ stats.totalKontes }}</h4>
-              <p class="text-xs text-slate-500 mt-1">Kontes terdaftar</p>
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-[#707070]">Total kontes</span>
+              <div class="w-10 h-10 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center shrink-0 group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200">
+                <Vote class="w-4 h-4" :stroke-width="1.75" />
+              </div>
             </div>
-            <div class="h-10 w-10 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-200 text-slate-900 group-hover:bg-slate-900 group-hover:text-white transition-colors">
-              <Trophy class="w-5 h-5" />
-            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight mt-3 tabular-nums">
+              {{ stats.totalKontes }}
+            </h3>
+            <p class="text-xs text-[#adadad] mt-1 font-light">Event kontes terdaftar</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 group-hover:text-slate-900 font-medium">
-            <span>Lihat semua kontes</span>
-            <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-medium text-[#707070] group-hover:text-[#141414] transition-colors">
+            <span>Daftar kontes</span>
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
         <!-- Card 2: Menunggu Verifikasi -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group rounded-2xl border p-5 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
+          class="group rounded-3xl border p-6 flex flex-col justify-between transition-colors duration-200"
           :class="stats.pendingOrdersCount > 0 
-            ? 'border-amber-300 bg-amber-50/50 hover:border-amber-400' 
-            : 'border-slate-200 bg-white hover:border-slate-300'"
+            ? 'border-[#141414] bg-white' 
+            : 'border-[#e0e0e0] bg-white hover:border-[#141414]'"
         >
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Menunggu Verifikasi</p>
-                <span v-if="stats.pendingOrdersCount > 0" class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500 text-white rounded-full">
-                  PERLU TINDAKAN
-                </span>
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-[#707070]">Menunggu verifikasi</span>
+              <div 
+                class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-200"
+                :class="stats.pendingOrdersCount > 0 
+                  ? 'bg-[#141414] text-white' 
+                  : 'bg-[#f3f3f3] text-[#141414] group-hover:bg-[#141414] group-hover:text-white'"
+              >
+                <Clock3 class="w-4 h-4" :stroke-width="1.75" />
               </div>
-              <h4 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">{{ stats.pendingOrdersCount }}</h4>
-              <p class="text-xs text-slate-500 mt-1">Order token dari voter</p>
             </div>
-            <div 
-              class="h-10 w-10 rounded-xl flex items-center justify-center border transition-colors shrink-0"
-              :class="stats.pendingOrdersCount > 0 
-                ? 'bg-amber-100 border-amber-300 text-amber-800 group-hover:bg-amber-600 group-hover:text-white' 
-                : 'bg-amber-50 border-amber-200 text-amber-700 group-hover:bg-slate-900 group-hover:text-white'"
-            >
-              <Clock class="w-5 h-5" />
+            <div class="flex items-baseline gap-2 mt-3">
+              <h3 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight tabular-nums">
+                {{ stats.pendingOrdersCount }}
+              </h3>
+              <span 
+                v-if="stats.pendingOrdersCount > 0" 
+                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0066ff]/10 text-[#0066ff] text-[10px] font-semibold border border-[#0066ff]/20"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#0066ff] animate-pulse"></span>
+                Perlu tindakan
+              </span>
             </div>
+            <p class="text-xs text-[#adadad] mt-1 font-light">Order token menunggu persetujuan</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100/60 flex items-center justify-between text-xs font-medium" :class="stats.pendingOrdersCount > 0 ? 'text-amber-800' : 'text-slate-500 group-hover:text-slate-900'">
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-medium text-[#707070] group-hover:text-[#141414] transition-colors">
             <span>Verifikasi order token</span>
-            <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
         <!-- Card 3: Total Omset Penjualan -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-slate-300 transition-all duration-200"
+          class="group rounded-3xl border border-[#e0e0e0] bg-white hover:border-[#141414] p-6 flex flex-col justify-between transition-colors duration-200"
         >
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Omset Penjualan</p>
-              <h4 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }}</h4>
-              <p class="text-xs text-slate-500 mt-1">Total pendapatan kotor</p>
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-[#707070]">Total omset kotor</span>
+              <div class="w-10 h-10 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center shrink-0 group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200">
+                <Wallet class="w-4 h-4" :stroke-width="1.75" />
+              </div>
             </div>
-            <div class="h-10 w-10 rounded-xl flex items-center justify-center bg-emerald-50 border border-emerald-200 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors shrink-0">
-              <TrendingUp class="w-5 h-5" />
-            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight mt-3 tabular-nums">
+              Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }}
+            </h3>
+            <p class="text-xs text-[#adadad] mt-1 font-light">Total pendapatan kotor token</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 group-hover:text-slate-900 font-medium">
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-medium text-[#707070] group-hover:text-[#141414] transition-colors">
             <span>Rincian per kontes</span>
-            <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
-        <!-- Card 4: Potongan Komisi (Info only) -->
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col justify-between shadow-2xs">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Potongan Komisi ({{ stats.persenKomisi }}%)</p>
-              <h4 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }}</h4>
-              <p class="text-xs text-slate-500 mt-1">Bagi hasil platform</p>
+        <!-- Card 4: Potongan Komisi Platform -->
+        <div class="rounded-3xl border border-[#e0e0e0] bg-white p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-[#707070]">Bagi hasil ({{ stats.persenKomisi }}%)</span>
+              <div class="w-10 h-10 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center shrink-0">
+                <BadgePercent class="w-4 h-4" :stroke-width="1.75" />
+              </div>
             </div>
-            <div class="h-10 w-10 rounded-xl flex items-center justify-center bg-rose-50 border border-rose-200 text-rose-700 shrink-0">
-              <Percent class="w-5 h-5" />
-            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight mt-3 tabular-nums">
+              Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }}
+            </h3>
+            <p class="text-xs text-[#adadad] mt-1 font-light">Komisi pemeliharaan platform</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-400 font-medium">
-            Statistik komisi platform
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] text-xs text-[#adadad] font-light">
+            Biaya operasional & cloud platform
           </div>
         </div>
       </div>
 
-      <!-- Pendapatan Bersih Banner -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-2xs">
-        <div>
-          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Estimasi Pendapatan Bersih Instansi</span>
-          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
+      <!-- Pendapatan Bersih Banner (Polarity Inversion Surface) -->
+      <div class="bg-[#141414] text-white rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border border-[#262626]">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white font-medium text-xs border border-white/10">
+            <Sparkles class="w-3.5 h-3.5 text-white" :stroke-width="1.75" />
+            <span>Estimasi Bersih Siap Cair.</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white tabular-nums">
             Rp {{ stats.pendapatanBersih.toLocaleString('id-ID') }}
-          </h3>
-          <p class="text-xs text-slate-500 mt-1 leading-relaxed">
-            (Total Omset Kotor Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }} dikurangi Komisi Platform {{ stats.persenKomisi }}% Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }})
+          </h2>
+          <p class="text-xs sm:text-sm text-[#adadad] font-light leading-relaxed max-w-2xl">
+            Hasil omset kotor Rp {{ stats.totalPendapatan.toLocaleString('id-ID') }} dikurangi komisi platform {{ stats.persenKomisi }}% (Rp {{ stats.totalPlatformFee.toLocaleString('id-ID') }}). Dana voting masuk langsung ke rekening instansi yang terdaftar.
           </p>
         </div>
+
         <NuxtLink 
-          to="/admin/kontes" 
-          class="inline-flex items-center justify-center gap-2 px-4 h-9 bg-slate-100 hover:bg-slate-200 text-slate-900 font-medium text-xs rounded-xl transition-colors whitespace-nowrap shrink-0 w-full sm:w-auto"
+          to="/admin/profil" 
+          class="inline-flex items-center justify-center gap-2 px-6 h-10 bg-white hover:bg-[#f3f3f3] text-[#141414] font-medium text-xs sm:text-sm rounded-full transition-colors whitespace-nowrap shrink-0 w-full lg:w-auto cursor-pointer"
         >
-          <span>Lihat Detail Transaksi</span>
-          <ArrowRight class="w-3.5 h-3.5" />
+          <Landmark class="w-4 h-4 text-[#141414]" :stroke-width="1.75" />
+          <span>Rekening Pencairan ↗</span>
         </NuxtLink>
       </div>
     </div>
 
     <!-- Quick Actions Grid -->
-    <div>
-      <h2 class="text-base font-bold text-slate-900 mb-3.5">Aksi Cepat</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="space-y-4">
+      <div>
+        <h2 class="text-base sm:text-lg font-bold text-[#141414] tracking-tight">Alur Kerja Cepat.</h2>
+        <p class="text-xs sm:text-sm text-[#707070] font-light mt-0.5">Navigasi langsung ke modul manajemen voting instansi Anda</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <!-- Action 1: Kelola Kontes -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all duration-200 flex flex-col justify-between"
+          class="group bg-white border border-[#e0e0e0] hover:border-[#141414] rounded-3xl p-6 transition-colors duration-200 flex flex-col justify-between"
         >
-          <div>
-            <div class="h-9 w-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-900 group-hover:text-white transition-colors mb-3">
-              <Trophy class="w-4 h-4" />
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200 shrink-0">
+              <Vote class="w-5 h-5" :stroke-width="1.75" />
             </div>
-            <h3 class="text-sm font-semibold text-slate-900">Kelola Kontes</h3>
-            <p class="text-xs text-slate-500 mt-1">Buat, edit, dan pantau status kontes aktif</p>
+            <div>
+              <h3 class="text-sm font-bold text-[#141414] tracking-tight">Kelola Kontes</h3>
+              <p class="text-xs text-[#707070] mt-1 font-light leading-relaxed">
+                Buat kontes baru, atur paslon kandidat, dan pantau status publikasi.
+              </p>
+            </div>
           </div>
-          <div class="mt-4 flex items-center text-xs font-medium text-slate-900 gap-1 group-hover:translate-x-1 transition-transform">
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-semibold text-[#141414]">
             <span>Buka Kontes</span>
-            <ArrowRight class="w-3.5 h-3.5" />
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
         <!-- Action 2: Verifikasi Order -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group border rounded-2xl p-5 shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
-          :class="stats?.pendingOrdersCount && stats.pendingOrdersCount > 0 ? 'bg-amber-50/60 border-amber-200 hover:border-amber-300' : 'bg-white border-slate-200 hover:border-slate-300'"
+          class="group bg-white border border-[#e0e0e0] hover:border-[#141414] rounded-3xl p-6 transition-colors duration-200 flex flex-col justify-between"
         >
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div 
-                class="h-9 w-9 rounded-xl flex items-center justify-center transition-colors"
-                :class="stats?.pendingOrdersCount && stats.pendingOrdersCount > 0 ? 'bg-amber-100 text-amber-800 group-hover:bg-amber-600 group-hover:text-white' : 'bg-slate-100 text-slate-700 group-hover:bg-slate-900 group-hover:text-white'"
-              >
-                <CheckCircle2 class="w-4 h-4" />
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200 shrink-0">
+                <FileCheck class="w-5 h-5" :stroke-width="1.75" />
               </div>
-              <span v-if="stats?.pendingOrdersCount && stats.pendingOrdersCount > 0" class="px-2 py-0.5 text-[10px] font-bold bg-amber-500 text-white rounded-full">
+              <span 
+                v-if="stats?.pendingOrdersCount && stats.pendingOrdersCount > 0" 
+                class="px-2.5 py-0.5 text-[10px] font-semibold bg-[#0066ff] text-white rounded-full"
+              >
                 {{ stats.pendingOrdersCount }} pending
               </span>
             </div>
-            <h3 class="text-sm font-semibold text-slate-900">Verifikasi Order</h3>
-            <p class="text-xs text-slate-500 mt-1">Cek dan verifikasi bukti transfer voter</p>
+            <div>
+              <h3 class="text-sm font-bold text-[#141414] tracking-tight">Verifikasi Order</h3>
+              <p class="text-xs text-[#707070] mt-1 font-light leading-relaxed">
+                Cek bukti transfer voter dan setujui token suara yang dipesan.
+              </p>
+            </div>
           </div>
-          <div class="mt-4 flex items-center text-xs font-medium gap-1 group-hover:translate-x-1 transition-transform" :class="stats?.pendingOrdersCount && stats.pendingOrdersCount > 0 ? 'text-amber-800 font-semibold' : 'text-slate-900'">
-            <span>Verifikasi Sekarang</span>
-            <ArrowRight class="w-3.5 h-3.5" />
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-semibold text-[#141414]">
+            <span>Verifikasi Order</span>
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
         <!-- Action 3: Rekap Hasil Voting -->
         <NuxtLink 
           to="/admin/kontes" 
-          class="group bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all duration-200 flex flex-col justify-between"
+          class="group bg-white border border-[#e0e0e0] hover:border-[#141414] rounded-3xl p-6 transition-colors duration-200 flex flex-col justify-between"
         >
-          <div>
-            <div class="h-9 w-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-900 group-hover:text-white transition-colors mb-3">
-              <BarChart3 class="w-4 h-4" />
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200 shrink-0">
+              <TrendingUp class="w-5 h-5" :stroke-width="1.75" />
             </div>
-            <h3 class="text-sm font-semibold text-slate-900">Rekap Hasil Voting</h3>
-            <p class="text-xs text-slate-500 mt-1">Lihat perolehan suara per kandidat</p>
+            <div>
+              <h3 class="text-sm font-bold text-[#141414] tracking-tight">Rekapitulasi Suara</h3>
+              <p class="text-xs text-[#707070] mt-1 font-light leading-relaxed">
+                Lihat perolehan suara tiap kandidat secara real-time dan transparan.
+              </p>
+            </div>
           </div>
-          <div class="mt-4 flex items-center text-xs font-medium text-slate-900 gap-1 group-hover:translate-x-1 transition-transform">
-            <span>Lihat Rekap</span>
-            <ArrowRight class="w-3.5 h-3.5" />
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-semibold text-[#141414]">
+            <span>Lihat Hasil Rekap</span>
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
 
         <!-- Action 4: Profil Instansi -->
         <NuxtLink 
           to="/admin/profil" 
-          class="group bg-white border border-slate-200 rounded-2xl p-5 shadow-2xs hover:shadow-md hover:border-slate-300 transition-all duration-200 flex flex-col justify-between"
+          class="group bg-white border border-[#e0e0e0] hover:border-[#141414] rounded-3xl p-6 transition-colors duration-200 flex flex-col justify-between"
         >
-          <div>
-            <div class="h-9 w-9 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 group-hover:bg-slate-900 group-hover:text-white transition-colors mb-3">
-              <Building2 class="w-4 h-4" />
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-2xl bg-[#f3f3f3] text-[#141414] flex items-center justify-center group-hover:bg-[#141414] group-hover:text-white transition-colors duration-200 shrink-0">
+              <Landmark class="w-5 h-5" :stroke-width="1.75" />
             </div>
-            <h3 class="text-sm font-semibold text-slate-900">Profil Instansi</h3>
-            <p class="text-xs text-slate-500 mt-1">Atur nama instansi & WA admin</p>
+            <div>
+              <h3 class="text-sm font-bold text-[#141414] tracking-tight">Profil & Rekening</h3>
+              <p class="text-xs text-[#707070] mt-1 font-light leading-relaxed">
+                Konfigurasi rekening tujuan transfer voter dan nomor WhatsApp panitia.
+              </p>
+            </div>
           </div>
-          <div class="mt-4 flex items-center text-xs font-medium text-slate-900 gap-1 group-hover:translate-x-1 transition-transform">
-            <span>Edit Profil</span>
-            <ArrowRight class="w-3.5 h-3.5" />
+          <div class="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs font-semibold text-[#141414]">
+            <span>Buka Pengaturan</span>
+            <ArrowUpRight class="w-3.5 h-3.5 text-[#adadad] group-hover:text-[#141414] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" :stroke-width="1.75" />
           </div>
         </NuxtLink>
+      </div>
+    </div>
+
+    <!-- Recent Contests Quick Preview Section -->
+    <div v-if="recentKontes?.data && recentKontes.data.length > 0" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-base sm:text-lg font-bold text-[#141414] tracking-tight">Kontes Terbaru.</h2>
+          <p class="text-xs sm:text-sm text-[#707070] font-light mt-0.5">Daftar event kontes pemilihan yang terakhir diperbarui</p>
+        </div>
+        <NuxtLink 
+          to="/admin/kontes" 
+          class="inline-flex items-center gap-1 text-xs font-semibold text-[#141414] hover:text-[#707070] transition-colors"
+        >
+          <span>Semua Kontes</span>
+          <ArrowUpRight class="w-3.5 h-3.5" :stroke-width="1.75" />
+        </NuxtLink>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div 
+          v-for="kontes in recentKontes.data" 
+          :key="kontes.id"
+          class="rounded-3xl border border-[#e0e0e0] bg-white p-5 flex flex-col justify-between hover:border-[#141414] transition-colors duration-200"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span 
+                class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold flex items-center gap-1.5"
+                :class="{
+                  'bg-[#141414] text-white': kontes.status === 'AKTIF',
+                  'bg-[#f3f3f3] text-[#707070] border border-[#e0e0e0]': kontes.status === 'DRAFT',
+                  'bg-[#f0f0f0] text-[#adadad]': kontes.status === 'SELESAI'
+                }"
+              >
+                <span 
+                  v-if="kontes.status === 'AKTIF'" 
+                  class="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                ></span>
+                {{ kontes.status }}
+              </span>
+
+              <span class="text-[11px] text-[#adadad] font-light">
+                {{ kontes._count?.kandidat || 0 }} Paslon
+              </span>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-bold text-[#141414] line-clamp-1 tracking-tight">
+                {{ kontes.judul }}
+              </h4>
+              <p class="text-xs text-[#707070] line-clamp-2 mt-1 font-light leading-relaxed">
+                {{ kontes.deskripsi || 'Tidak ada deskripsi kontes.' }}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-xs">
+            <span class="text-[11px] text-[#adadad] font-light">
+              {{ kontes._count?.tokenPackages || 0 }} Paket Token
+            </span>
+            <NuxtLink 
+              :to="`/admin/kontes/${kontes.id}`" 
+              class="inline-flex items-center gap-1 font-semibold text-[#141414] hover:underline"
+            >
+              <span>Detail</span>
+              <ArrowUpRight class="w-3.5 h-3.5 text-[#707070]" :stroke-width="1.75" />
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Trophy, Clock, TrendingUp, Percent, ArrowRight, CheckCircle2, BarChart3, Building2 } from 'lucide-vue-next'
+import { 
+  Vote, 
+  Clock3, 
+  Wallet, 
+  BadgePercent, 
+  ArrowUpRight, 
+  Sparkles, 
+  FileCheck, 
+  TrendingUp, 
+  Landmark, 
+  Plus 
+} from 'lucide-vue-next'
 
 definePageMeta({
   layout: 'dashboard',
@@ -229,5 +364,7 @@ definePageMeta({
 })
 
 const { data: stats, pending } = await useFetch('/api/admin/stats')
+const { data: recentKontes } = await useFetch('/api/admin/kontes', {
+  query: { perPage: 3 }
+})
 </script>
-

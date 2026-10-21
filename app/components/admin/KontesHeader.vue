@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ExternalLink, CheckCircle2, Trophy } from 'lucide-vue-next'
+import { ExternalLink, CheckCircle2, Trophy, Pencil } from 'lucide-vue-next'
 
 const props = defineProps<{
   kontes: any
@@ -27,7 +27,7 @@ const emit = defineEmits<{
         </span>
         <span class="text-xs text-slate-500 font-mono">ID Kontes: #{{ kontes.id }}</span>
       </div>
-      <h1 class="text-2xl font-bold text-slate-900 tracking-tight mt-1">{{ kontes.judul }}</h1>
+      <h1 class="text-2xl font-bold text-slate-900 tracking-tight mt-1">{{ kontes.nama || kontes.judul }}</h1>
       <p class="text-slate-500 text-xs mt-1 max-w-2xl line-clamp-2">{{ kontes.deskripsi || 'Tidak ada deskripsi' }}</p>
     </div>
 
@@ -35,6 +35,16 @@ const emit = defineEmits<{
     <div class="flex flex-wrap items-center gap-2.5">
       <!-- Quick Navigation Actions Group -->
       <div class="inline-flex items-center p-1 bg-slate-100/80 border border-slate-200/80 rounded-xl space-x-1">
+        <!-- Edit Kontes Button -->
+        <NuxtLink 
+          :to="`/admin/kontes/${kontes.id}/edit`" 
+          class="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-lg transition-all shadow-2xs group"
+          title="Edit Rincian, Jadwal, dan Status Kontes"
+        >
+          <Pencil class="w-3.5 h-3.5 text-slate-300 group-hover:text-white transition-colors" />
+          <span>Edit Kontes</span>
+        </NuxtLink>
+
         <!-- Internal Admin Results Page -->
         <NuxtLink 
           :to="`/admin/kontes/${kontes.id}/hasil`" 

@@ -7,7 +7,7 @@
         class="md:hidden p-2 rounded-full text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3] transition-colors shrink-0"
         aria-label="Buka Menu Sidebar"
       >
-        <Menu class="w-5 h-5" />
+        <Menu class="w-5 h-5" :stroke-width="1.75" />
       </button>
 
       <!-- Clickable Breadcrumb Navigation -->
@@ -18,7 +18,7 @@
             :to="item.to" 
             class="text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3] px-2.5 py-1 rounded-full transition-all flex items-center truncate"
           >
-            <Home v-if="index === 0" class="w-3.5 h-3.5 mr-1 text-[#adadad] shrink-0" />
+            <Home v-if="index === 0" class="w-3.5 h-3.5 mr-1 text-[#adadad] shrink-0" :stroke-width="1.75" />
             <span class="truncate">{{ item.label }}</span>
           </NuxtLink>
 
@@ -26,20 +26,13 @@
             v-else 
             class="text-[#141414] font-semibold px-2.5 py-1 rounded-full bg-[#f3f3f3] flex items-center truncate"
           >
-            <Home v-if="index === 0 && breadcrumbs.length === 1" class="w-3.5 h-3.5 mr-1 text-[#707070] shrink-0" />
+            <Home v-if="index === 0 && breadcrumbs.length === 1" class="w-3.5 h-3.5 mr-1 text-[#707070] shrink-0" :stroke-width="1.75" />
             <span class="truncate">{{ item.label }}</span>
           </span>
 
-          <ChevronRight v-if="index < breadcrumbs.length - 1" class="w-3.5 h-3.5 text-[#adadad] shrink-0" />
+          <ChevronRight v-if="index < breadcrumbs.length - 1" class="w-3.5 h-3.5 text-[#adadad] shrink-0" :stroke-width="1.75" />
         </template>
       </nav>
-    </div>
-
-    <!-- Quick Status Badge -->
-    <div class="flex items-center space-x-2 text-xs font-semibold text-[#141414] bg-[#f3f3f3] px-3 py-1.5 rounded-full border border-[#e0e0e0] shrink-0">
-      <span class="w-1.5 h-1.5 rounded-full bg-[#0066ff]"></span>
-      <span class="hidden sm:inline">Sistem Aktif</span>
-      <span class="sm:hidden text-[11px]">Aktif</span>
     </div>
   </header>
 </template>

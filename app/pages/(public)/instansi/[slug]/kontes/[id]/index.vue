@@ -11,41 +11,32 @@
 
     <template v-else>
       <!-- Alert Banner Draft Kontes -->
-      <div v-if="isDraft" class="flex items-start gap-3.5 bg-amber-50 border border-amber-300 rounded-2xl p-4 sm:p-5 text-amber-900 shadow-2xs">
-        <AlertTriangle class="w-5 h-5 text-amber-600 mt-0.5 shrink-0" />
+      <div v-if="isDraft" class="flex items-start gap-3.5 bg-amber-50 border border-amber-200 rounded-3xl p-4 sm:p-5 text-amber-900">
+        <AlertTriangle class="w-5 h-5 text-amber-600 mt-0.5 shrink-0" :stroke-width="1.75" />
         <div class="space-y-1">
           <h3 class="text-sm font-bold text-amber-900">Kontes Belum Dibuka untuk Voting</h3>
-          <p class="text-xs text-amber-800 leading-relaxed">
+          <p class="text-xs text-amber-800 leading-relaxed font-light">
             Kontes ini saat ini masih dalam status <strong>DRAFT</strong>. Pengiriman suara belum dibuka hingga admin mengaktifkan kontes ini. Anda tetap dapat mempelajari kandidat dan melihat paket token yang tersedia.
           </p>
         </div>
       </div>
 
       <!-- Alert Banner Kontes Ditutup -->
-      <div v-else-if="isClosed" class="flex items-start gap-3.5 bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 text-white shadow-md">
-        <Lock class="w-5 h-5 text-slate-400 mt-0.5 shrink-0" />
+      <div v-else-if="isClosed" class="flex items-start gap-3.5 bg-[#141414] border border-[#262626] rounded-3xl p-4 sm:p-5 text-white">
+        <Lock class="w-5 h-5 text-[#adadad] mt-0.5 shrink-0" :stroke-width="1.75" />
         <div class="space-y-1">
           <h3 class="text-sm font-bold text-white">Kontes Telah Resmi Ditutup</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-[#adadad] leading-relaxed font-light">
             Sesi pemungutan suara untuk kontes ini telah berakhir. Pengiriman suara dan pembelian token sudah tidak tersedia. Perolehan suara di bawah ini merupakan hasil akhir.
           </p>
         </div>
       </div>
 
-      <!-- Tombol Input Token & CTA Beli Token di Paling Atas -->
-      <KontesVoteBannerAction 
-        :is-draft="isDraft"
-        :is-closed="isClosed"
-        @open-guide="showGuideModal = true"
-        @scroll-to-beli="scrollToBeliToken"
-        @open-vote="openVoteModal"
-      />
-
       <!-- Header Kontes (Mobbin card-mobbin) -->
       <div class="bg-white border border-[#e0e0e0] rounded-3xl p-6 sm:p-8 space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <span class="text-xs font-semibold text-[#707070] uppercase tracking-wider">{{ kontes.instansi.nama }}</span>
+            <span class="text-xs font-medium text-[#707070]">{{ kontes.instansi.nama }}</span>
             <h1 class="text-2xl sm:text-3xl font-bold text-[#141414] tracking-tight mt-1">{{ kontes.nama }}</h1>
           </div>
           <span 
@@ -73,7 +64,7 @@
           
           <!-- Fitur Search Kandidat (Mobbin field input) -->
           <div class="w-full sm:w-72 relative">
-            <Search class="absolute left-3.5 top-2.5 h-4 w-4 text-[#707070]" />
+            <Search class="absolute left-3.5 top-2.5 h-4 w-4 text-[#707070]" :stroke-width="1.75" />
             <input
               v-model="searchQuery"
               type="text"
@@ -164,7 +155,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch, onMounted, onUnmounted } from 'vue'
 import { Search, AlertTriangle, Lock } from 'lucide-vue-next'
 
 definePageMeta({
@@ -180,10 +171,43 @@ const { data: kontes, pending, error, refresh } = await useFetch<any>(`/api/publ
 const isDraft = computed(() => kontes.value?.status === 'DRAFT')
 const isClosed = computed(() => kontes.value?.status === 'DITUTUP')
 
+// Connect with sticky floating navbar in voter layout
+const { 
+  isContestPage, 
+  isDraft: voterNavDraft, 
+  isClosed: voterNavClosed, 
+  showGuideModal, 
+  showTokenModal 
+} = useVoterNav()
+
+onMounted(() => {
+  isContestPage.value = true
+})
+
+onUnmounted(() => {
+  isContestPage.value = false
+})
+
+watch(isDraft, (val) => {
+  voterNavDraft.value = val
+}, { immediate: true })
+
+watch(isClosed, (val) => {
+  voterNavClosed.value = val
+}, { immediate: true })
+
+// Reset form whenever token modal opens
+watch(showTokenModal, (isOpen) => {
+  if (isOpen) {
+    voteStep.value = 1
+    voteErrorMsg.value = ''
+    voteSuccessMsg.value = ''
+    modalCandidateSearch.value = ''
+  }
+})
+
 const searchQuery = ref('')
 const showModal = ref(false)
-const showTokenModal = ref(false)
-const showGuideModal = ref(false)
 const selectedPackage = ref<any>(null)
 const kontakWa = ref('')
 const ordering = ref(false)
@@ -193,10 +217,6 @@ const modalCandidateSearch = ref('')
 
 const openVoteModal = () => {
   if (isDraft.value || isClosed.value) return
-  voteStep.value = 1
-  voteErrorMsg.value = ''
-  voteSuccessMsg.value = ''
-  modalCandidateSearch.value = ''
   showTokenModal.value = true
 }
 

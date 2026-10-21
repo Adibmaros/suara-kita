@@ -7,9 +7,11 @@
     <!-- Header Sidebar -->
     <div class="p-4 border-b border-[#f0f0f0] flex items-center justify-between h-16">
       <NuxtLink to="/" class="flex items-center space-x-3 group min-w-0 overflow-hidden">
-        <div class="w-8 h-8 rounded-[30%] bg-[#141414] flex items-center justify-center text-white font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
-          SK
-        </div>
+        <img 
+          src="/logo%20aplikasi%20transparant.png" 
+          alt="SuaraKita Logo" 
+          class="w-8 h-8 object-contain shrink-0 group-hover:scale-105 transition-transform" 
+        />
         <span 
           v-if="!isCollapsed" 
           class="font-bold text-[#141414] text-base tracking-tight truncate transition-opacity duration-200"
@@ -32,7 +34,7 @@
     <!-- Navigation Links -->
     <nav class="flex-1 p-3 space-y-1 overflow-y-auto">
       <template v-if="user?.role === 'SUPER_ADMIN'">
-        <div v-if="!isCollapsed" class="px-3 py-2 text-[10px] font-semibold text-[#adadad] uppercase tracking-wider transition-opacity duration-200">
+        <div v-if="!isCollapsed" class="px-3 py-1.5 text-[11px] font-medium text-[#707070] transition-opacity duration-200">
           Super Admin
         </div>
         <div v-else class="my-2 border-t border-[#f0f0f0]"></div>
@@ -48,7 +50,7 @@
           ]"
           :title="isCollapsed ? 'Overview' : undefined"
         >
-          <LayoutGrid class="w-4 h-4 shrink-0" />
+          <LayoutGrid class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Overview</span>
         </NuxtLink>
 
@@ -63,7 +65,7 @@
           ]"
           :title="isCollapsed ? 'Kelola Instansi' : undefined"
         >
-          <Building2 class="w-4 h-4 shrink-0" />
+          <Building2 class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Kelola Instansi</span>
         </NuxtLink>
 
@@ -78,13 +80,13 @@
           ]"
           :title="isCollapsed ? 'Rekap Komisi' : undefined"
         >
-          <Percent class="w-4 h-4 shrink-0" />
+          <BadgePercent class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Rekap Komisi</span>
         </NuxtLink>
       </template>
 
       <template v-else-if="user?.role === 'ADMIN_INSTANSI'">
-        <div v-if="!isCollapsed" class="px-3 py-2 text-[10px] font-semibold text-[#adadad] uppercase tracking-wider transition-opacity duration-200">
+        <div v-if="!isCollapsed" class="px-3 py-1.5 text-[11px] font-medium text-[#707070] transition-opacity duration-200">
           Menu Instansi
         </div>
         <div v-else class="my-2 border-t border-[#f0f0f0]"></div>
@@ -100,7 +102,7 @@
           ]"
           :title="isCollapsed ? 'Dashboard' : undefined"
         >
-          <LayoutGrid class="w-4 h-4 shrink-0" />
+          <LayoutGrid class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Dashboard</span>
         </NuxtLink>
 
@@ -115,7 +117,7 @@
           ]"
           :title="isCollapsed ? 'Kelola Kontes' : undefined"
         >
-          <Trophy class="w-4 h-4 shrink-0" />
+          <Vote class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Kelola Kontes</span>
         </NuxtLink>
 
@@ -130,7 +132,7 @@
           ]"
           :title="isCollapsed ? 'Profil Instansi' : undefined"
         >
-          <User class="w-4 h-4 shrink-0" />
+          <Landmark class="w-4 h-4 shrink-0" :stroke-width="1.75" />
           <span v-if="!isCollapsed" class="truncate">Profil Instansi</span>
         </NuxtLink>
       </template>
@@ -205,9 +207,11 @@
           <!-- Mobile Sidebar Header -->
           <div class="p-4 border-b border-[#f0f0f0] flex items-center justify-between h-16">
             <NuxtLink to="/" class="flex items-center space-x-3 group" @click="isMobileOpen = false">
-              <div class="w-8 h-8 rounded-[30%] bg-[#141414] flex items-center justify-center text-white font-bold text-xs shrink-0">
-                SK
-              </div>
+              <img 
+                src="/logo%20aplikasi%20transparant.png" 
+                alt="SuaraKita Logo" 
+                class="w-8 h-8 object-contain shrink-0" 
+              />
               <span class="font-bold text-[#141414] text-base tracking-tight">
                 SuaraKita<span class="text-[#0066ff]">.</span>
               </span>
@@ -225,7 +229,7 @@
           <!-- Mobile Sidebar Navigation Links -->
           <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
             <template v-if="user?.role === 'SUPER_ADMIN'">
-              <div class="px-3 py-1 text-[10px] font-semibold text-[#adadad] uppercase tracking-wider">
+              <div class="px-3 py-1.5 text-[11px] font-medium text-[#707070]">
                 Super Admin
               </div>
 
@@ -235,7 +239,7 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path === '/super-admin' ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <LayoutGrid class="w-4 h-4 shrink-0" />
+                <LayoutGrid class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Overview</span>
               </NuxtLink>
 
@@ -245,7 +249,7 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path.startsWith('/super-admin/instansi') ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <Building2 class="w-4 h-4 shrink-0" />
+                <Building2 class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Kelola Instansi</span>
               </NuxtLink>
 
@@ -255,13 +259,13 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path.startsWith('/super-admin/komisi') ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <Percent class="w-4 h-4 shrink-0" />
+                <BadgePercent class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Rekap Komisi</span>
               </NuxtLink>
             </template>
 
             <template v-else-if="user?.role === 'ADMIN_INSTANSI'">
-              <div class="px-3 py-1 text-[10px] font-semibold text-[#adadad] uppercase tracking-wider">
+              <div class="px-3 py-1.5 text-[11px] font-medium text-[#707070]">
                 Menu Instansi
               </div>
 
@@ -271,7 +275,7 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path === '/admin' ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <LayoutGrid class="w-4 h-4 shrink-0" />
+                <LayoutGrid class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Dashboard</span>
               </NuxtLink>
 
@@ -281,7 +285,7 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path.startsWith('/admin/kontes') ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <Trophy class="w-4 h-4 shrink-0" />
+                <Vote class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Kelola Kontes</span>
               </NuxtLink>
 
@@ -291,7 +295,7 @@
                 class="flex items-center space-x-3 px-4 py-2.5 rounded-full text-sm font-semibold transition-all"
                 :class="route.path === '/admin/profil' ? 'bg-[#141414] text-white' : 'text-[#707070] hover:text-[#141414] hover:bg-[#f3f3f3]'"
               >
-                <User class="w-4 h-4 shrink-0" />
+                <Landmark class="w-4 h-4 shrink-0" :stroke-width="1.75" />
                 <span>Profil Instansi</span>
               </NuxtLink>
             </template>
@@ -327,7 +331,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { LayoutGrid, Building2, Percent, Trophy, User, LogOut, ChevronLeft, ChevronRight, X } from 'lucide-vue-next'
+import { LayoutGrid, Building2, BadgePercent, Vote, Landmark, LogOut, ChevronLeft, ChevronRight, X } from 'lucide-vue-next'
 
 const route = useRoute()
 const session = useUserSession()

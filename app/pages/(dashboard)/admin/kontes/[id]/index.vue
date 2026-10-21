@@ -27,13 +27,49 @@ const updatingStatus = ref(false)
 
 // State Modal Kandidat
 const showModalKandidat = ref(false)
+const isEditingKandidat = ref(false)
+const editingKandidatId = ref<number | null>(null)
 const submittingKandidat = ref(false)
 const uploadingImage = ref(false)
 const kandidatForm = ref({
   nama: '',
+  nomorUrut: null as number | null,
+  deskripsi: '',
   visiMisi: '',
   fotoUrl: ''
 })
+
+function openCreateKandidatModal() {
+  isEditingKandidat.value = false
+  editingKandidatId.value = null
+  kandidatForm.value = {
+    nama: '',
+    nomorUrut: null,
+    deskripsi: '',
+    visiMisi: '',
+    fotoUrl: ''
+  }
+  showModalKandidat.value = true
+}
+
+function openEditKandidatModal(k: any) {
+  isEditingKandidat.value = true
+  editingKandidatId.value = k.id
+  kandidatForm.value = {
+    nama: k.nama || '',
+    nomorUrut: k.nomorUrut !== undefined && k.nomorUrut !== null ? Number(k.nomorUrut) : null,
+    deskripsi: k.deskripsi || k.visiMisi || '',
+    visiMisi: k.deskripsi || k.visiMisi || '',
+    fotoUrl: k.fotoUrl || ''
+  }
+  showModalKandidat.value = true
+}
+
+function closeModalKandidat() {
+  showModalKandidat.value = false
+  isEditingKandidat.value = false
+  editingKandidatId.value = null
+}
 
 // State Modal Paket Token
 const showModalPaket = ref(false)
@@ -115,26 +151,37 @@ async function handleFileUpload(event: Event) {
   }
 }
 
-// Modal Kandidat Submit
+// Modal Kandidat Submit (Create or Edit)
 async function submitKandidat() {
   if (!kandidatForm.value.nama) return
 
   try {
     submittingKandidat.value = true
-    await $fetch(`/api/admin/kontes/${kontesId.value}/kandidat`, {
-      method: 'POST',
-      body: {
-        nama: kandidatForm.value.nama,
-        visiMisi: kandidatForm.value.visiMisi,
-        fotoUrl: kandidatForm.value.fotoUrl
-      }
-    })
+    const payload = {
+      nama: kandidatForm.value.nama,
+      nomorUrut: kandidatForm.value.nomorUrut !== null && kandidatForm.value.nomorUrut !== undefined && kandidatForm.value.nomorUrut !== ('' as any)
+        ? Number(kandidatForm.value.nomorUrut)
+        : null,
+      deskripsi: kandidatForm.value.deskripsi || kandidatForm.value.visiMisi || null,
+      fotoUrl: kandidatForm.value.fotoUrl || null
+    }
 
-    showModalKandidat.value = false
-    kandidatForm.value = { nama: '', visiMisi: '', fotoUrl: '' }
+    if (isEditingKandidat.value && editingKandidatId.value) {
+      await $fetch(`/api/admin/kontes/${kontesId.value}/kandidat/${editingKandidatId.value}`, {
+        method: 'PATCH',
+        body: payload
+      })
+    } else {
+      await $fetch(`/api/admin/kontes/${kontesId.value}/kandidat`, {
+        method: 'POST',
+        body: payload
+      })
+    }
+
+    closeModalKandidat()
     await fetchKontes()
   } catch (err: any) {
-    alert(err.data?.statusMessage || 'Gagal menambah kandidat')
+    alert(err.data?.statusMessage || (isEditingKandidat.value ? 'Gagal mengubah data kandidat' : 'Gagal menambah kandidat'))
   } finally {
     submittingKandidat.value = false
   }
@@ -239,14 +286,15 @@ onMounted(() => {
       <KontesQuickStats 
         :kontes="kontes" 
         :paket-token-count="paketTokenList.length" 
-        @open-kandidat-modal="showModalKandidat = true" 
+        @open-kandidat-modal="openCreateKandidatModal" 
         @open-paket-modal="showModalPaket = true" 
       />
 
       <!-- Section Kandidat Component -->
       <KandidatList 
         :kandidat-list="kontes.kandidat || []" 
-        @open-kandidat-modal="showModalKandidat = true" 
+        @open-kandidat-modal="openCreateKandidatModal" 
+        @edit-kandidat="openEditKandidatModal"
         @confirm-delete="confirmDelete" 
       />
 
@@ -261,10 +309,11 @@ onMounted(() => {
     <!-- Modals -->
     <ModalKandidat 
       :show="showModalKandidat" 
+      :is-edit="isEditingKandidat"
       :submitting="submittingKandidat" 
       :uploading-image="uploadingImage" 
       :form="kandidatForm" 
-      @close="showModalKandidat = false" 
+      @close="closeModalKandidat" 
       @submit="submitKandidat" 
       @upload-file="handleFileUpload" 
     />

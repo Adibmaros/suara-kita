@@ -6,17 +6,7 @@
         <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Pengaturan Instansi</h1>
         <p class="text-xs text-slate-500 mt-1">Kelola informasi instansi, nomor WA admin, dan preferensi pembayaran token</p>
       </div>
-      
-      <div v-if="instansi" class="flex items-center space-x-2 text-xs font-semibold">
-        <span class="text-slate-400">Status Setup:</span>
-        <span 
-          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border"
-          :class="form.infoRekening && form.noWaAdmin ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'"
-        >
-          <span class="w-2 h-2 rounded-full" :class="form.infoRekening && form.noWaAdmin ? 'bg-emerald-500' : 'bg-amber-500'"></span>
-          {{ form.infoRekening && form.noWaAdmin ? 'Siap Menerima Order' : 'Lengkapi Rekening' }}
-        </span>
-      </div>
+    
     </div>
 
     <!-- Loading State -->
