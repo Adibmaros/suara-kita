@@ -1,109 +1,117 @@
 <template>
-  <div class="space-y-6 sm:space-y-8 w-full">
-    <!-- Form Header -->
-    <div class="space-y-2">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3f3f3] border border-[#e0e0e0] text-[#141414] font-semibold text-xs mb-1">
+  <div class="w-full max-w-[420px] mx-auto space-y-6 sm:space-y-7">
+    <!-- Segmented Control Toggle (Mobbin Signature) -->
+    <div class="bg-[#f3f3f3] p-1 rounded-full flex items-center border border-[#e0e0e0]">
+      <div class="flex-1 py-1.5 text-center text-xs font-semibold rounded-full bg-white text-[#141414] shadow-xs cursor-default">
+        Masuk
+      </div>
+      <NuxtLink 
+        to="/register" 
+        class="flex-1 py-1.5 text-center text-xs font-semibold rounded-full text-[#707070] hover:text-[#141414] transition-colors"
+      >
+        Daftar Instansi
+      </NuxtLink>
+    </div>
+
+    <!-- Header Lockup -->
+    <div class="space-y-2 text-center sm:text-left">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f3f3f3] text-[#707070] text-xs font-medium">
         <span class="w-1.5 h-1.5 rounded-full bg-[#141414]"></span>
         <span>Portal Pengurus Instansi</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight">
+      <h1 class="text-3xl sm:text-4xl font-bold text-[#141414] tracking-tight leading-[1.12]">
         Selamat datang kembali.
-      </h2>
-      <p class="text-xs sm:text-sm text-[#707070] leading-relaxed max-w-md font-light">
-        Masuk ke dashboard admin untuk mengelola kontes, kandidat, dan memantau perolehan suara secara real-time.
+      </h1>
+      <p class="text-xs sm:text-sm text-[#707070] leading-relaxed font-light">
+        Masuk ke dashboard untuk mengelola kontes voting, data kandidat, dan memantau perolehan suara secara real-time.
       </p>
     </div>
 
-    <!-- Error Alert -->
-    <div v-if="errorMsg" class="p-4 bg-[#f3f3f3] border border-[#e0e0e0] text-[#141414] text-xs sm:text-sm rounded-2xl flex items-center gap-2.5">
-      <AlertCircle class="w-4 h-4 text-[#141414] shrink-0" />
-      <span>{{ errorMsg }}</span>
+    <!-- Error Alert (Monochrome Soft Pill) -->
+    <div 
+      v-if="errorMsg" 
+      class="p-3.5 bg-[#f3f3f3] border border-[#e0e0e0] rounded-2xl text-xs text-[#141414] flex items-start gap-2.5"
+    >
+      <AlertCircle class="w-4 h-4 text-[#141414] shrink-0 mt-0.5" :stroke-width="1.75" />
+      <span class="leading-relaxed">{{ errorMsg }}</span>
     </div>
 
-    <!-- Login Form -->
-    <form @submit.prevent="handleLogin" class="space-y-5">
-      <!-- Email Input -->
-      <div class="space-y-2">
-        <label class="block text-xs font-semibold text-[#141414] uppercase tracking-wider">
-          Email Admin
-        </label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#adadad]">
-            <Mail class="w-4 h-4" />
-          </div>
+    <!-- Auth Card Surface (ex-auth-form-card) -->
+    <div class="bg-white border border-[#e0e0e0] rounded-3xl p-6 sm:p-8 space-y-5">
+      <form @submit.prevent="handleLogin" class="space-y-4">
+        <!-- Email Input -->
+        <div class="space-y-1.5">
+          <label class="block text-xs font-semibold text-[#141414]">
+            Email admin
+          </label>
           <input
             v-model="form.email"
             type="email"
             placeholder="admin@instansi.com"
             required
-            class="w-full h-11 pl-10 pr-4 bg-[#f0f0f0] rounded-2xl text-sm text-[#141414] placeholder:text-[#adadad] focus:outline-none focus:ring-2 focus:ring-[#141414] transition-all"
+            autocomplete="email"
+            class="w-full h-11 px-4 bg-[#f0f0f0] rounded-2xl text-sm text-[#141414] placeholder:text-[#adadad] focus:outline-none focus:ring-2 focus:ring-[#141414] focus:bg-white transition-all"
           />
         </div>
-      </div>
 
-      <!-- Password Input -->
-      <div class="space-y-2">
-        <label class="block text-xs font-semibold text-[#141414] uppercase tracking-wider">
-          Password
-        </label>
-        <div class="relative">
-          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#adadad]">
-            <Lock class="w-4 h-4" />
+        <!-- Password Input -->
+        <div class="space-y-1.5">
+          <div class="flex items-center justify-between">
+            <label class="block text-xs font-semibold text-[#141414]">
+              Kata sandi
+            </label>
           </div>
-          <input
-            v-model="form.password"
-            :type="showPassword ? 'text' : 'password'"
-            placeholder="••••••••••••"
-            required
-            class="w-full h-11 pl-10 pr-10 bg-[#f0f0f0] rounded-2xl text-sm text-[#141414] placeholder:text-[#adadad] focus:outline-none focus:ring-2 focus:ring-[#141414] transition-all"
-          />
+          <div class="relative">
+            <input
+              v-model="form.password"
+              :type="showPassword ? 'text' : 'password'"
+              placeholder="••••••••••••"
+              required
+              autocomplete="current-password"
+              class="w-full h-11 pl-4 pr-11 bg-[#f0f0f0] rounded-2xl text-sm text-[#141414] placeholder:text-[#adadad] focus:outline-none focus:ring-2 focus:ring-[#141414] focus:bg-white transition-all font-mono"
+            />
+            <button
+              type="button"
+              @click="showPassword = !showPassword"
+              class="absolute right-0 top-0 bottom-0 pr-3.5 flex items-center text-[#707070] hover:text-[#141414] transition-colors cursor-pointer"
+              :title="showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'"
+            >
+              <EyeOff v-if="showPassword" class="w-4 h-4" :stroke-width="1.75" />
+              <Eye v-else class="w-4 h-4" :stroke-width="1.75" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button (Mobbin button-primary stadium pill) -->
+        <div class="pt-2">
           <button
-            type="button"
-            @click="showPassword = !showPassword"
-            class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#707070] hover:text-[#141414]"
+            type="submit"
+            :disabled="loading"
+            class="w-full h-11 px-6 rounded-full bg-[#141414] hover:bg-[#262626] text-white text-xs sm:text-sm font-semibold transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            <Eye v-if="!showPassword" class="w-4 h-4" />
-            <EyeOff v-else class="w-4 h-4" />
+            <Loader2 v-if="loading" class="w-4 h-4 animate-spin" :stroke-width="2" />
+            <span>Masuk ke Dashboard</span>
           </button>
         </div>
+      </form>
+
+      <!-- Card Switch Footer -->
+      <div class="pt-4 border-t border-[#f0f0f0] text-center text-xs text-[#707070]">
+        <span>Belum memiliki akun instansi? </span>
+        <NuxtLink
+          to="/register"
+          class="text-[#141414] font-semibold hover:underline inline-flex items-center gap-0.5 ml-1"
+        >
+          <span>Daftar sekarang ↗</span>
+        </NuxtLink>
       </div>
-
-      <!-- Security Guarantee -->
-      <div class="flex items-center justify-between pt-1 text-xs">
-        <span class="text-[#707070]">Sistem terenkripsi</span>
-        <span class="text-[#141414] font-semibold flex items-center gap-1">
-          <ShieldCheck class="w-4 h-4 text-[#141414]" />
-          SSL Enkripsi 256-bit
-        </span>
-      </div>
-
-      <!-- Submit Button (Mobbin button-primary stadium pill) -->
-      <button
-        type="submit"
-        :disabled="loading"
-        class="w-full btn-primary disabled:opacity-50 disabled:pointer-events-none"
-      >
-        <Loader2 v-if="loading" class="w-4 h-4 mr-2 animate-spin" />
-        <span>Masuk ke Dashboard</span>
-      </button>
-    </form>
-
-    <!-- Register Footer CTA -->
-    <div class="pt-4 border-t border-[#f0f0f0] text-xs sm:text-sm text-[#707070] flex flex-col sm:flex-row items-center justify-between gap-2">
-      <span>Belum memiliki akun instansi?</span>
-      <NuxtLink
-        to="/register"
-        class="text-[#141414] font-semibold hover:underline flex items-center gap-1"
-      >
-        <span>Daftar Sekarang ↗</span>
-      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { Mail, Lock, Eye, EyeOff, Loader2, AlertCircle, ShieldCheck } from 'lucide-vue-next'
+import { ref, reactive, onMounted } from 'vue'
+import { Eye, EyeOff, Loader2, AlertCircle } from 'lucide-vue-next'
 
 definePageMeta({
   layout: 'auth',
@@ -148,22 +156,23 @@ const handleLogin = async () => {
   errorMsg.value = ''
 
   try {
-    const res = await $fetch('/api/auth/login', {
+    const res = await $fetch<any>('/api/auth/login', {
       method: 'POST',
       body: form,
     })
 
     await fetchSession()
 
-    if (res.user.role === 'SUPER_ADMIN') {
+    if (res?.user?.role === 'SUPER_ADMIN') {
       await navigateTo('/super-admin')
     } else {
       await navigateTo('/admin')
     }
   } catch (err: any) {
-    errorMsg.value = err.data?.statusMessage || 'Gagal masuk. Periksa email dan password Anda.'
+    errorMsg.value = err.data?.statusMessage || err.statusMessage || 'Gagal masuk. Periksa email dan password Anda.'
   } finally {
     loading.value = false
   }
 }
 </script>
+
