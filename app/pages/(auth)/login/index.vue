@@ -1,5 +1,27 @@
 <template>
   <div class="w-full max-w-[420px] mx-auto space-y-6 sm:space-y-7">
+    <!-- Top Navigation to Root & Brand -->
+    <div class="flex items-center justify-between pb-1">
+      <NuxtLink
+        to="/"
+        class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#f3f3f3] hover:bg-[#e8e8e8] text-[#141414] text-xs font-semibold border border-[#e0e0e0] transition-all group cursor-pointer"
+      >
+        <ArrowLeft class="w-3.5 h-3.5 text-[#707070] group-hover:-translate-x-0.5 group-hover:text-[#141414] transition-all" />
+        <span>Kembali ke Beranda</span>
+      </NuxtLink>
+
+      <NuxtLink to="/" class="inline-flex items-center space-x-2 group">
+        <img 
+          src="/logo%20aplikasi%20transparant.png" 
+          alt="SuaraKita Logo" 
+          class="w-7 h-7 object-contain transition-transform duration-200 group-hover:scale-105" 
+        />
+        <span class="text-base font-bold text-[#141414] tracking-tight">
+          SuaraKita<span class="text-[#0066ff]">.</span>
+        </span>
+      </NuxtLink>
+    </div>
+
     <!-- Segmented Control Toggle (Mobbin Signature) -->
     <div class="bg-[#f3f3f3] p-1 rounded-full flex items-center border border-[#e0e0e0]">
       <div class="flex-1 py-1.5 text-center text-xs font-semibold rounded-full bg-white text-[#141414] shadow-xs cursor-default">
@@ -111,7 +133,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
-import { Eye, EyeOff, Loader2, AlertCircle } from 'lucide-vue-next'
+import { Eye, EyeOff, Loader2, AlertCircle, ArrowLeft } from 'lucide-vue-next'
 
 definePageMeta({
   layout: 'auth',
